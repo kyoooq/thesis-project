@@ -1,0 +1,1971 @@
+ 
+ 
+AUTOMATED ASSESSMENT OF ACADEMIC PAPERS’ GAD RESPONSIVENESS 
+USING NAÏVE BAYES AND BERT 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Undergraduate Thesis Project 
+Submitted to the Faculty of the 
+Department of Computer Studies of the 
+Cavite State University-CCAT Campus 
+Rosario, Cavite 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+In partial fulfilment 
+of the requirements for the degree of 
+Bachelor Science in Computer Science 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+PAULO GABRIEL L. ALARCON 
+JOSHUA R. ANGELES 
+MYANG GUN V. KIM 
+October 2025 
+ 
+ 
+ 
+AUTOMATED ASSESSMENT OF ACADEMIC PAPERS’ GAD RESPONSIVENESS 
+USING NAÏVE BAYES AND BERT 
+ 
+ 
+ 
+PAULO GABRIEL L. ALARCON 
+JOSHUA R. ANGELES 
+MYANG GUN V. KIM 
+ 
+ 
+ 
+An undergraduate thesis project manuscript submitted to the faculty of the Department 
+of Computer Studies, Cavite State University-CCAT Campus, Rosario, Cavite in partial 
+fulfillment for the degree of Bachelor of Science in Computer Science. Contribution No. 
+_______________. Prepared under the supervision of Dr. Karlo Jose E. Nabablit and 
+Mr. Vince Lorenz Dela Rea. 
+ 
+ 
+INTRODUCTION 
+ 
+Gender mainstreaming has emerged as a central principle in promoting 
+inclusivity achieving fair outcomes within academic and institutional settings. This 
+involves a critical examination of how knowledge production itself can either make or 
+mitigate gender-based inequalities. Consequently, there is a global push for academic 
+outputs to demonstrate genuine gender responsiveness and actively contribute to the 
+goals of Gender and Development (GAD). Institutions are increasingly held 
+accountable to ensure their research output aligns with national and international 
+commitments to gender equality, making the accurate evaluation of academic content 
+a crucial task. Gender mainstreaming ensures that the government pursues equality 
+in development processes and aims for a responsive society where women and men 
+equally contribute (Philippine Commission of Women, n.d.). In the Philippines, the 
+standard bearer for this evaluation is the Harmonized Gender and Development 
+Guidelines (HGDG) (Philippine Commission on Women, 2016). The HGDG serves as 
+the official, comprehensive framework designed to assess the gender responsiveness 
+of government projects, policies, and, critically, research outputs.  
+ 
+ 
+Despite the presence of these frameworks, recent studies reveal persistent 
+challenges in evaluating gender inclusivity across research disciplines. Palma (2025) 
+and Sicuan (2024) observed that while higher education institutions have adopted 
+GAD programs, the assessment of research outputs remains inconsistent due to 
+limited awareness, varying evaluator interpretations, and the lack of systematic tools. 
+Similarly, Llorens et al. (2021) and Brück (2023) demonstrated that gender bias 
+continues to shape authorship, citation practices, and publication visibility, showing 
+that inequities persist even in supposedly objective academic environments. These 
+findings highlight that gender bias in academic writing is not only a social issue but 
+also a structural one—embedded in how knowledge is written, cited, and evaluated. 
+Fortunately, recent advancements in Artificial Intelligence (AI) and Natural 
+Language Processing (NLP) offer a proven solution for objective textual analysis. 
+Researchers such as Mousavian et al. (2025) have shown how machine learning 
+models can identify gendered language patterns and promote fairness in 
+computational systems. Recent research, such as Huy Quoc To et al. (2020), shows 
+that machine learning techniques such as SVM and Naïve Bayes can be used. 
+Meanwhile, Liu (2023) and Onikoyi et al. (2023) explored the use of Naïve Bayes and 
+other classification algorithms in analyzing linguistic patterns, demonstrating their 
+reliability and interpretability in automated text evaluation. 
+Project Context 
+ 
+Many academic papers demonstrate low or inconsistent Gender and 
+Development (GAD) responsiveness, resulting in research outputs that inadequately 
+address inclusivity, equality, and gender sensitivity. Despite existing guidelines, a 
+significant number of studies fail to integrate GAD principles effectively, leading to 
+insufficiently gender-responsive research from Palma (2025) and Sicuan (2024). 
+Guided by the principles of the Harmonized Gender and Development Guidelines 
+ 
+ 
+(HGDG), this study recognizes the need for a systematic, technology-driven approach 
+that can help identify and address gaps in GAD integration, ultimately supporting the 
+production of more comprehensive and responsive academic studies. 
+Objectives of the Study 
+         The general objective of the study is to develop an automated assessment 
+system that evaluates academic articles based on the Harmonized Gender and 
+Development Guidelines (HGDG) checklist and Naïve Bayes Algorithm.  
+Specifically, it aimed to: 
+1. design and implement a model that: 
+a. automatically assess academic articles based on the key aspects: 
+(1) Gender-Sensitive Language, 
+(2) Representation of Women and Men, 
+(3) Inclusivity in Language, and 
+(4) Authorship and Citations; 
+b. classifies textual content using the Naive Bayes algorithm and analyzes 
+contextual meaning using the BERT model; 
+c. generates evaluation results and corresponding recommendations; and 
+d. provides necessary reports such as assessment summaries. 
+2. develop the web system prototype that: (1) allows file upload (PyMuPDF and 
+python-docx), preprocesses text (NLTK), performs feature (TF-IDF), performs 
+GAD assessment of academic papers (Naïve Bayes and BERT), and displays 
+results in tabular form (2) uses React.js to provide a responsive and user-
+friendly web interface (3) use Python (Flask) for backend processing, and (4) 
+use Firebase storing user data, files, and results; 
+3. test the system in terms of model and functional testing; and 
+4. evaluate the system using the adapted ISO-IEC 25010 software and data 
+quality evaluation instrument. 
+ 
+ 
+Purpose and Description 
+The primary purpose of this study is to address the inadequate and inconsistent 
+Gender and Development (GAD) responsiveness in academic papers. Many research 
+outputs fail to fully integrate gender-sensitive language, fair representation of women 
+and men, inclusivity, and proper citation practices, resulting in studies that are not fully 
+gender-responsive. 
+This project aims to provide a systematic and technology-assisted approach to 
+support more comprehensive and inclusive academic writing by identifying gaps in 
+Gender and Development (GAD) responsiveness and offering actionable insights for 
+improvement. In doing so, it benefits authors by guiding them in enhancing the gender 
+sensitivity, inclusivity, and fairness of their manuscripts, helps reviewers and editors 
+maintain consistent and objective evaluation standards across a wide range of 
+submissions, and assists academic institutions in upholding, reinforcing, and further 
+developing their commitment to gender-responsive research. By integrating automated 
+assessment tools with established GAD principles, the system promotes not only 
+improved quality of individual research outputs but also contributes to the goal of 
+fostering a scholarly environment and ultimately, a society that values equity, 
+inclusivity, and the active implementation of gender-responsive perspectives in 
+creating academic papers. 
+Time and Place of the Study 
+The study will be carried out from July 2025 to July 2026 at the Cavite State 
+University - CCAT Campus, covering all phases from the preparation of the project 
+outline to the completion of the final manuscript. 
+Scope and Limitation of the Study 
+The primary purpose of this study is to develop an automated web-based 
+system that evaluates the Gender and Development (GAD) responsiveness of 
+ 
+ 
+academic papers. The system utilizes text classification, specifically the Naïve Bayes 
+Classifier and integrates the Bidirectional Encoder Representations from Transformers 
+(BERT) model to enhance contextual understanding. The main functions of this system 
+include text preprocessing, feature extraction, Naïve Bayes and BERT classification, 
+report generation, and user authentication. The system will also provide features for 
+uploading research papers, viewing responsiveness results, managing user accounts, 
+and accessing assessment summaries for monitoring and evaluation.  
+For the limitations, this study does not cover the full range of GAD assessment 
+indicators other than the four selected concepts. This includes other dimensions of 
+gender and development evaluation such as participation and decision-making, 
+capacity development, benefits and opportunities for women and men, monitoring and 
+evaluation mechanisms, and sustainability of gender mainstreaming efforts. 
+Additionally, the system does not assess institutional policies, budget allocation for 
+GAD programs, or the broader socio-political context influencing gender 
+responsiveness in research. The focus of this study remains limited to text-based 
+analysis within academic manuscripts, excluding non-textual elements such as 
+images, tables, and reference formatting that may also convey gender bias or 
+imbalance. Moreover, while the system generates automated preliminary assessments 
+and recommendations, final evaluations and decisions remain under the discretion of 
+human evaluators to ensure fairness, accuracy, and comprehensive understanding. 
+ 
+ 
+ 
+ 
+Conceptual Framework 
+ 
+ 
+ 
+ 
+Figure 1. Conceptual framework of the study 
+ 
+The conceptual framework of the study, visually represented by the Input-
+Process-Output (IPO) diagram in Figure 1, illustrates the flow of activities and 
+components involved in developing the Automated Assessment of Academic Articles’ 
+GAD Responsiveness using Naïve Bayes and BERT. The Input consists of key 
+resources such as literature on gender bias, Gender and Development (GAD) 
+principles, and the Harmonized Gender and Development Guidelines (HGDG) 
+Checklist, supported by React.js and Python (Flask) for system development, as well 
+as the Naïve Bayes and BERT models for text classification and contextual 
+understanding. The Process phase follows a systematic approach consisting of 
+planning, system design, development, testing, evaluation, and deployment. During 
+these phases, the system is conceptualized, built, and refined through keyword 
+matching, text structure analysis, and the combined application of Naïve Bayes and 
+ 
+ 
+ 
+INPUT 
+ 
+ 
+Knowledge Requirement 
+a. Gender Bias/Gender Bias in 
+Research 
+b. Gender Bias in Reference 
+Writing 
+c. Gender and Development 
+(GAD) Principles 
+d. Harmonized Gender and 
+Development Guidelines (HGDG) 
+Checklist 
+     e.React.js and Python (Flask) 
+ 
+Algorithms 
+    a. Naïve Bayes 
+b. BERT (Bidirectional Encoder       
+Representations from Transformers)  
+ 
+Hardware Requirements 
+a. Personal Computer (Windows 
+10+, Minimum of 8GB RAM with at 
+least 256 SSD) 
+ 
+Software Requirements 
+React.js, Python (Flask), 
+Firebase, NLTK, Visual Studio (VS) 
+Code 
+ 
+ 
+ 
+PROCESS 
+ 
+ 
+Planning Phase 
+Identify the need for detecting and 
+mitigating gender bias in academic 
+writing  
+ 
+System Design Phase 
+Design the system architecture and UI 
+ 
+System Development Phase 
+Implement keyword matching, text 
+structure analysis, NLTK, Naïve Bayes 
+Algorithm 
+ 
+Testing Phase 
+Validate system accuracy through user 
+testing 
+ 
+Evaluation Phase 
+Evaluate the system following ISO/IEC 
+25010 quality standards 
+ 
+Deployment Phase 
+Regularly update the system to improve 
+performance 
+ 
+OUTPUT 
+ 
+Automated Assessment 
+of Academic Articles’ 
+GAD Compliance using 
+Naive Bayes and BERT 
+ 
+Evaluation 
+ 
+ 
+BERT to ensure both linguistic accuracy and contextual fairness in gender-sensitive 
+assessments. 
+Definition of Terms 
+ 
+The following terms are operationally defined in the study: 
+Academic Paper refers to a written research output, such as a thesis, journal article, 
+or report, that presents findings and analysis on a specific topic within an academic 
+context. 
+Gender Bias – refers to the preferential or prejudiced treatment of individuals based 
+on gender, which can influence decision-making, authorship recognition, and citation 
+patterns in academic writing. 
+Gender-Sensitive Language – refers to a form of communication that avoids bias, 
+stereotypes, or discrimination based on gender. 
+Gender and Development (GAD) – refers to a framework that promotes equality and 
+inclusivity between women and men by integrating gender perspectives in research, 
+policies, and development programs. 
+GAD Responsiveness – refers to the extent to which a research paper or project 
+actively responds to and promotes gender sensitivity, equality, and inclusivity 
+principles in alignment with the GAD framework. 
+Harmonized Gender and Development Guidelines (HGDG) – refers to a set of 
+standardized tools and concepts developed to assess the gender-responsiveness of 
+programs, projects, and research outputs. 
+Inclusive Language – refers to a language that promotes equality and respect for all 
+individuals by avoiding assumptions or stereotypes related to gender, race, or other 
+social categories.  
+ 
+ 
+Machine Learning (ML) – refers to a subset of Artificial Intelligence that uses 
+algorithms to learn patterns from data. It can be applied to detect and correct biased 
+language automatically in academic papers.  
+Natural Language Processing (NLP) – refers to a field of artificial intelligence 
+focused on enabling computers to understand, interpret, and process human language 
+in text form. 
+Naïve Bayes Algorithm – refers to a probabilistic machine learning algorithm based 
+on Bayes’ Theorem, used for text classification by predicting the likelihood that a 
+document belongs to a specific category. 
+BERT (Bidirectional Encoder Representations from Transformers) – refers to a 
+deep learning model that analyzes text bidirectionally to understand word context and 
+meaning for tasks like classification and contextual analysis. 
+ 
+ 
+ 
+ 
+REVIEW OF RELATED LITERATURE 
+This chapter presents the body of existing research and literature relevant to 
+the study, “Automated Assessment of Academic Articles for GAD Responsiveness 
+using Naïve Bayes and BERT.” It explores previous works, frameworks, and 
+technological advancements that form the foundation of the present research. 
+The growing integration of technology in gender analysis and inclusivity 
+evaluation has led to a surge in studies focused on detecting gender bias, promoting 
+fairness, and automating responsiveness frameworks. Recent work by Mousavian et 
+al. (2025) highlighted how large language models (LLMs) can be leveraged to measure 
+and mitigate gender bias within digital systems, emphasizing transparency and ethical 
+data practices. Similarly, Llorens et al. (2021) found that gender bias in academic 
+writing not only reflects but also reinforces social inequalities, influencing the career 
+progression and well-being of underrepresented groups. These findings show that the 
+problem of bias persists across both human-written and machine-generated texts. 
+Collectively, these studies parallel the need for frameworks such as the Gender and 
+Development (GAD) programs that ensure inclusiveness in institutional and academic 
+outputs. Together, they demonstrate that both computational and institutional 
+approaches are converging toward one goal: the fair and unbiased treatment of gender 
+representation in digital and organizational contexts. 
+Gender equality and inclusivity remain foundational principles in evaluating 
+development programs and academic work. The Harmonized Gender and 
+Development Guidelines (HGDG), established by the Philippine Commission on 
+Women (PCW, 2020), provide a comprehensive framework for assessing gender 
+responsiveness 
+in 
+planning, 
+implementation, 
+and 
+evaluation 
+processes. 
+Complementing this, the UN Women (2020) rapid assessment tool and its Gender-
+Responsive Evaluation Handbook (UN Women, 2022) establish systematic ways to 
+ 
+ 
+assess equality outcomes across various contexts, highlighting how gender sensitivity 
+can be measured through evidence-based indicators. Similarly, the Commission on 
+Audit (COA, 2020) GAD Audit Guide offers institutional auditing guidelines, while the 
+DBM/PEFA (2024–2025) report focuses on integrating gender-responsive public 
+financial management to ensure inclusivity in budgeting and resource allocation. 
+These frameworks collectively stress accountability and measurable equity in both 
+global and local settings. 
+Complementing these institutional tools, the Philippine Commission on Women 
+(PCW, 2025) issued the Gender Mainstreaming Evaluation Framework (GMEF), 
+emphasizing self-assessment as a key mechanism for continuous improvement in 
+gender inclusivity programs. However, while UN Women focuses on humanitarian and 
+global programmatic approaches, local instruments like COA’s GAD Audit and PCW’s 
+GMEF emphasize bureaucratic and institutional compliance—revealing a divergence 
+between international and domestic applications of gender evaluation (UN Women, 
+2022; PCW, 2025). These converging yet distinct approaches highlight a key 
+challenge: translating policy-level inclusivity frameworks into consistent evaluative and 
+computational methods suitable for automated systems. 
+In the Philippine higher education context, Palma (2024) emphasized that 
+although many institutions have adopted GAD programs, awareness among faculty 
+and students regarding gender-related laws and policies remains limited. Similarly, 
+Sicuan (2024) reported that while HGDG implementation improves gender awareness 
+and participation in education, significant gaps persist in training and resource 
+allocation. Ray et al. (2022) and Brück et al. (2023) revealed that citation and 
+authorship imbalances remain prevalent, mirroring larger structural inequities that also 
+appear in academic funding and publication. Lee et al. (2023) further showed that 
+gender productivity gaps widened during the COVID-19 pandemic, amplifying these 
+disparities. These studies collectively demonstrate that institutional policies alone are 
+ 
+ 
+insufficient, and that automated tools could augment human evaluation by identifying 
+linguistic and structural bias patterns in academic writing. 
+Negative findings also highlight ongoing gender unresponsiveness in various 
+domains. Trinkenreich et al. (2022) examined challenges faced by women in the 
+software industry and found persistent underrepresentation and lack of inclusive 
+policies that restrict women’s participation in technical fields. Similarly, Sagcal and 
+Ramos (2024) investigated GAD program implementation in selected barangays in 
+Nueva Ecija and revealed weak institutionalization and insufficient funding for gender 
+initiatives. These gaps justify the development of automated GAD assessment 
+systems that can complement human oversight, streamline compliance evaluation, 
+and address unresponsiveness in both local and professional contexts. 
+Recent research underscores that gender-sensitive wording plays a crucial role 
+in shaping inclusivity, perception, and equality in both communication and institutional 
+discourse. Hetjens et al. (2024) demonstrated that job listings written with gender-fair 
+language significantly increased engagement and reduced perceived bias, revealing 
+how linguistic framing can shape audience response and participation. Similarly, 
+Kricheli-Katz and Regev (2021) found that grammatical gender markers unconsciously 
+influence perceptions of competence, resulting in measurable disadvantages for 
+women in professional and academic contexts. These findings converge on the idea 
+that linguistic form carries implicit bias, while diverging in their methodologies, Hetjens 
+et al. focusing on behavioral outcomes, and Kricheli-Katz and Regev exploring 
+linguistic structure. Such studies underscore the necessity of automating the detection 
+and correction of gendered expressions, which manual audits often overlook due to 
+scale and subjectivity. 
+Beyond individual wording, deeper representational issues persist in the 
+portrayal and visibility of women and men in various fields. Fruehwirth (2024) revealed 
+ 
+ 
+that occupational and academic narratives continue to favor men through the use of 
+agentic descriptors such as “leader” or “innovator,” while women are often described 
+with communal or supportive language. Goyanes (2024) further demonstrated that 
+female scholars receive disproportionately fewer citations and lower h-index scores, 
+reinforcing systemic underrepresentation. While these studies differ in focus—one 
+linguistic, one bibliometric—they converge in highlighting that both textual description 
+and citation practice contribute to structural inequity. Addressing these disparities 
+requires systems capable of analyzing both the surface language and deeper 
+contextual structures—a dual capability achievable through models such as Naïve 
+Bayes for lexical detection and BERT for semantic contextualization. 
+Inclusivity in language extends beyond gender representation alone, 
+encompassing pronoun use, occupational terminology, and exclusionary expressions 
+embedded in everyday writing. Doughman et al. (2021) categorized multiple 
+dimensions of gender bias, including occupational stereotypes, gendered pronouns, 
+and implicit exclusion, and created annotated corpora that enable supervised learning 
+models to detect such patterns. Stańczak and Augenstein (2021) expanded this 
+analysis, showing that NLP models themselves can perpetuate discrimination through 
+binary gender assumptions embedded in training data. Their works converge in 
+exposing algorithmic bias as a byproduct of unbalanced datasets, yet diverge in their 
+solutions—Doughman et al. promote data curation and labeling, while Stańczak and 
+Augenstein call for architecture-level reform. Together, these studies affirm the 
+relevance of fairness-aware models like Naïve Bayes and BERT in advancing 
+automated GAD evaluation tools capable of identifying inclusivity gaps at both 
+linguistic and algorithmic levels. 
+Even in the sphere of authorship and citation, gender imbalance remains 
+pervasive. Dworkin et al. (2020) identified systematic under-citation of women across 
+scientific literature, a pattern that limits their academic visibility and perpetuates 
+ 
+ 
+professional disparities. Wu (2024) corroborated these findings, observing that citation 
+networks consistently favor male scholars, even when research quality is comparable. 
+These converging results reveal how authorship and citation patterns mirror the same 
+biases that appear in language and representation—implying that inclusivity must also 
+extend to credit attribution. Automating the analysis of these patterns through 
+computational tools enables more transparent and data-driven assessments of gender 
+equity within research ecosystems. 
+To operationalize gender analysis principles, numerous computational and 
+algorithmic innovations have emerged in recent years, bridging linguistic fairness with 
+artificial intelligence. Vanmassenhove, Emmery, and Shterionov (2021) introduced the 
+NeuTral Rewriter, a multilingual Neural Machine Translation (NMT) system built on 
+Transformer architectures, designed to automatically transform gendered English, 
+Spanish, and German sentences into gender-neutral equivalents without losing 
+meaning. The model, fine-tuned with a custom dataset emphasizing gendered text, 
+applied attention mechanisms to guide word substitutions that maintained contextual 
+integrity. Testing involved evaluating BLEU and gender accuracy scores across 
+multiple corpora, and results showed BLEU scores between 27–34 and a 25–40% 
+reduction in gender bias, highlighting the model’s effectiveness in generating fluent, 
+gender-neutral text. Similarly, Alhafni et al. (2022) conducted a multilingual shared task 
+on gender rewriting using Transformer-based sequence-to-sequence models, notably 
+ArabicT5, which integrated word-level gender detection for morphologically rich 
+languages. The models generated multiple gender-rewritten alternatives for each 
+sentence to align with gendered person references, and testing on a blind set of 7,318 
+sentences achieved 98% inter-annotator agreement and 96.2% exact match accuracy. 
+Results indicated strong rewriting performance, with top systems attaining an M2 F0.5 
+of approximately 88.42, proving the reliability of contextual gender rewriting. 
+ 
+ 
+Further developments in modeling semantic fairness stemmed from 
+transformer-based analyses of bias in contextual embeddings. Jentzsch and Turan 
+(2022) employed BERT and its variants to measure latent gender bias by analyzing 
+sentiment shifts between male and female textual variations. Through sentiment 
+analysis tasks across pretrained and fine-tuned BERT models, their testing confirmed 
+consistent polarity differences that traced bias back to pretraining corpora, and results 
+highlighted measurable sentiment asymmetry, proving BERT’s tendency to encode 
+gender bias. Complementing this, Dusi et al. (2022) utilized BERT contextual 
+embeddings enhanced by weakly supervised feature selection and dimensionality 
+reduction visualization to map gendered occupational terms in vector space. Their 
+method enabled visual interpretation of gender association clusters, and testing 
+correlated embedding distributions with real-world occupational data, revealing a 
+strong alignment between computational and social gender imbalances—evidence 
+that contextual models mirror real-world disparities. 
+Efforts toward interpretability in gender bias detection continued through the 
+work of Butt et al. (2021), who fine-tuned BERT and RoBERTa for detecting sexist, 
+exclusionary, and stereotype-driven expressions in social and formal text. Their 
+methodology leveraged attention-based interpretability to link bias predictions to 
+specific tokens. Through evaluation on annotated social media and news corpora, their 
+testing achieved F1 scores between 0.81–0.84, and results showed that attention 
+maps effectively localized biased expressions, enhancing explainability. Expanding 
+this approach, Das et al. (2023) designed explainable transformer pipelines built upon 
+BERT architectures, integrating rationale generation to justify bias classifications. The 
+models produced natural-language explanations for flagged bias, and testing across 
+multiple benchmark datasets yielded 82% accuracy, with human evaluators verifying 
+that explanations were coherent and trustworthy, underscoring the role of transparency 
+in NLP fairness systems. 
+ 
+ 
+Beyond textual semantics, Ioannidis et al. (2023) and Kong et al. (2022) 
+explored gender disparity in academia using bibliometric automation. Ioannidis et al. 
+utilized automated author-gender inference algorithms combined with bibliometric 
+network analysis to examine representation among over 100,000 publications. The 
+method inferred author genders and analyzed citation fairness, with testing validated 
+against known author datasets, revealing persistent underrepresentation of women in 
+high-impact networks. Similarly, Kong et al. (2022) applied graph-based algorithms to 
+co-authorship and citation networks, quantifying collaboration patterns and first-mover 
+advantages. Testing on large-scale bibliometric datasets showed systemic disparities 
+in academic visibility, and results confirmed how network structures reinforce gendered 
+recognition gaps—concepts foundational to citation fairness evaluation in the 
+proposed GAD responsiveness system. 
+At the intersection of linguistic fairness and automated ethics, Sobhani et al. 
+(2024) used context-aware ranking models to assess gender balance in large 
+language model (LLM) outputs. Their method compared text generations across 
+prompts to measure subtle gender imbalance, while testing involved multi-scenario 
+evaluation of ranking fairness. Results demonstrated the model’s capacity to identify 
+fine-grained biases using fairness scores rather than classification metrics. Building on 
+this, Kumar et al. (2024) developed the LLM-as-Judge pipeline, which employed 
+advanced LLMs such as GPT-4 and Claude as automated fairness auditors. The 
+approach applied sociolinguistic heuristics to unseen text, evaluating inclusivity with 
+context sensitivity. Testing across various datasets compared model evaluations to 
+human fairness judgments, achieving over 91% alignment accuracy. Results 
+confirmed that large-scale LLMs could replicate human-like fairness reasoning, 
+providing a scalable model for gender responsiveness auditing. 
+Complementing these modern systems, Bartl et al. (2020) investigated 
+Transformer embeddings (BERT) augmented with counterfactual data augmentation 
+ 
+ 
+to reduce gender bias in NLP outputs. Their approach generated gender-swapped text 
+to assess bias resilience, and testing on augmented datasets showed 15–20% 
+reductions in bias metrics. Results validated the method’s effectiveness in mitigating 
+bias while preserving performance. Similarly, De Vassimon Manela et al. (2021) 
+employed adversarial debiasing within BERT embeddings to mitigate gender 
+stereotyping during sentence classification tasks. Testing on benchmark datasets 
+revealed a 10–15% decrease in bias scores without loss of accuracy, demonstrating 
+that embedding-level mitigation can yield balanced representations. Meanwhile, Brown 
+et al. (2020) introduced GPT-3, a 175-billion parameter autoregressive transformer, 
+highlighting its unprecedented natural language generation capabilities. Testing 
+through few-shot learning tasks revealed high fluency but also embedded gender and 
+racial biases. Results underscored the duality of power and risk in large-scale models, 
+emphasizing the need for ethical constraints. Extending the scope, Hobbs (2025) 
+employed transformer-based evaluation frameworks to analyze inclusivity in terms of 
+gender and sexual identity. The study benchmarked outputs against annotated 
+datasets representing intersectional identities, with results exposing persistent gaps in 
+LLM fairness across marginalized demographics, urging more intersectionally-aware 
+AI evaluations. 
+In statistical and probabilistic modeling, Naïve Bayes continues to serve as a 
+robust and interpretable classifier for linguistic bias detection. Angeles et al. (2021) 
+and Tiffani (2020) demonstrated its efficiency in detecting gendered linguistic features 
+and sentiment polarity. Both studies used text preprocessing steps—tokenization and 
+stemming—before training the model on labeled corpora. Testing achieved 
+classification accuracies of 78–82% and ~80%, respectively, validating Naïve Bayes’ 
+reliability in gendered language identification. Expanding the comparison, Gupte et al. 
+(2021) evaluated both probabilistic (Naïve Bayes) and neural (LSTM) models on 
+gendered datasets. The study found neural models achieved higher precision (~85%), 
+ 
+ 
+but Naïve Bayes maintained better interpretability with ~81% accuracy. Similarly, Liu 
+(2023) introduced hybrid probabilistic-neural classifiers that merged Naïve Bayes and 
+neural networks for multilingual text classification. Testing across languages produced 
+~79% accuracy for Naïve Bayes and ~83% for hybrid models, reflecting the 
+adaptability of probabilistic methods in cross-lingual bias analysis. Extending this 
+further, Wu (2025) optimized Naïve Bayes with dataset rebalancing, applying it to 
+multilingual corpora to address skewed gender distributions. Results showed a 12% 
+reduction in false negatives and overall accuracy of 81%, enhancing fairness 
+detection. Onikoyi (2023) applied Naïve Bayes for gender inference, predicting 
+authors’ gender orientations based on pronoun and linguistic cues. Testing on 
+manually annotated datasets achieved ~80% accuracy, reaffirming Naïve Bayes as an 
+efficient baseline for gender pattern detection. 
+Several practical applications have also emerged, demonstrating the 
+integration of fairness analytics in real-world systems. As previously mentioned, the 
+NeuTral Rewriter developed by Vanmassenhove et al. (2021) is one of the earliest and 
+most influential systems aimed at automatic gender-neutral rewriting. It combines rule-
+based grammatical transformations with neural machine translation (NMT) to identify 
+gendered expressions and rewrite them into neutral forms without compromising 
+semantic accuracy. For example, it converts sentences such as “The chairman opened 
+the meeting” to “The chairperson opened the meeting.” This hybrid approach 
+effectively integrates symbolic linguistic knowledge with deep learning flexibility, which 
+mirrors the planned design of the current system that merges probabilistic models 
+(Naïve Bayes) and contextual embeddings (BERT). The NeuTral Rewriter’s 
+interpretability, achieved through token-level alignment and replacement explanation, 
+also serves as a methodological inspiration for the interpretive interface of the GAD 
+system, ensuring that users can trace why a text was flagged as gender-biased. 
+Sumner (2020) developed the Gender Balance Assessment Tool (GBAT), combining 
+ 
+ 
+name-gender inference algorithms and database lookups to compute gender 
+proportions in bibliographies, course syllabi, and citation lists. Testing on real 
+academic datasets verified high accuracy in detecting imbalanced citation practices, 
+and results showed consistent underrepresentation of female authors. Meanwhile, 
+Göritz, Stattkus, and Beinke (2022) introduced a Bias-Detection Dashboard utilizing 
+keyword co-occurrence matrices, sentiment scoring, and heatmap visualization to 
+represent bias patterns in textual corpora. The system, validated against human-
+annotated corpora, achieved ~90% agreement, offering interpretable visual analytics 
+for gender bias detection. Extending this visualization-driven approach, Kumar et al. 
+(2024) emphasized LLM-based interpretive fairness, proposing an interactive auditing 
+paradigm adaptable for responsive systems. Finally, Dworkin et al. (2020) presented 
+the Gender Citation Balance Index (GCBI), which applied automated name extraction 
+and gender inference to quantify disparities in citation networks. Testing across over 
+1,000 journals revealed that women authors were cited 20–30% less than their male 
+counterparts, with results confirming systemic citation bias. 
+In essence, these related systems not only provide theoretical and technical 
+precedents but also serve as modular inspirations for building a comprehensive, 
+automated GAD evaluation platform. The integration of text-level rewriting (from 
+NeuTral Rewriter), gender-balance metrics (from GBAT and GCBI), visualization and 
+interpretability (from Göritz et al.), and scalable fairness assessment (from Kumar et 
+al.) collectively defines a path toward a multi-dimensional system that addresses both 
+the linguistic and structural aspects of gender bias. Such convergence exemplifies how 
+computational intelligence can operationalize inclusivity principles outlined by the GAD 
+responsiveness criteria. 
+From institutional frameworks to computational systems, research increasingly 
+aligns toward achieving measurable gender fairness and inclusivity in language, 
+representation, and authorship. Different studies approach this goal from varying 
+ 
+ 
+directions—some emphasizing policy implementation and social awareness, others 
+focusing on automation and algorithmic precision. Together, these perspectives reveal 
+that genuine gender responsiveness relies on both human insight and technological 
+innovation. Building on this progression, the proposed system integrates machine 
+learning methods such as Naïve Bayes and BERT to evaluate academic papers 
+through the lens of GAD principles, aiming to transform traditional manual 
+assessments into a transparent, data-driven process that promotes equality in 
+academic discourse. 
+System Technical Background 
+In writing the technical background, the researcher must discuss the technical 
+aspects of the project being conducted. Their goal is to inform and educate the readers 
+on the technicalities of their project so that they will understand the literature and 
+studies that will be presented in the next section. This includes an in-depth discussion 
+of technical terms involved or used in the project. These terms include jargon or newly 
+coined words in the field of Information Technology. 
+The Automated Assessment of Academic Papers’ GAD Responsiveness with 
+Naïve Bayes and BERT is a web-based system that automatically evaluates the 
+gender responsiveness of academic papers based on four key aspects: (1) Gender-
+Sensitive Language, (2) Representation of Women and Men, (3) Inclusivity in 
+Language, and (4) Authorship and Citations. It combines natural language processing 
+(NLP) and machine learning techniques to detect non-GAD-responsive content and 
+provide corrective suggestions for improvement. The system draws from research in 
+explainable AI and fairness-aware language models (Mousavian et al., 2025; Sobhani 
+et al., 2024; Kumar et al., 2024), aligning computational tools with the broader goal of 
+promoting inclusivity in academic writing. 
+ 
+ 
+ 
+ 
+Gender and Development Framework Integration 
+The conceptual foundation of the system draws inspiration from institutional 
+gender evaluation frameworks, such as the Philippine Commission on Women’s 
+Harmonized Gender and Development Guidelines (HGDG) and the Gender 
+Mainstreaming Evaluation Framework (GMEF). While the system does not directly 
+apply these frameworks, it takes guidance from their emphasis on inclusivity, equity, 
+and measurable responsiveness in content evaluation. Similarly, global tools such as 
+the UN Women (2020, 2022) Gender-Responsive Evaluation Handbook and the 
+Commission on Audit’s (2020) GAD Audit Guide inform the system’s goal of 
+standardizing fair, objective assessment practices. By integrating these principles into 
+automated evaluation, the system transforms subjective GAD checking into a more 
+consistent and data-driven process, supporting institutional efforts toward gender 
+fairness in academic writing. 
+Web-Based Architecture 
+The system is designed as a web platform developed using React.js, Flask, 
+Firebase, and NLTK. React.js is used to create an interactive user interface where 
+users can upload academic papers and view analysis results. Flask, a Python-based 
+framework, manages backend processes, including NLP preprocessing, model 
+execution, and classification. Firebase serves as the cloud-based database for storing 
+processed data and results, ensuring scalability and accessibility. 
+Following the design principles of web-based analytical systems proposed by 
+Göritz et al. (2022) and Kumar et al. (2024), the integration of these technologies 
+allows the system to perform real-time gender-responsiveness assessments efficiently 
+while maintaining a user-friendly and secure web environment. This architecture 
+enables seamless interaction between the analytical components and the user 
+interface, ensuring that automated evaluations are both accessible and interpretable 
+to users. 
+ 
+ 
+Natural Language Processing and Preprocessing 
+The preprocessing stage prepares uploaded text for analysis using the Natural 
+Language Toolkit (NLTK). This includes tokenization, stop-word removal, and 
+stemming—steps proven to enhance the accuracy of text-based classification 
+(Angeles et al., 2021; Tiffani, 2020). During this stage, gendered words, pronouns, and 
+exclusionary terms are normalized to allow consistent analysis by the models. 
+Following the approach of Doughman et al. (2021), the preprocessing also ensures 
+that linguistic cues such as role descriptors and gendered associations are properly 
+captured before being evaluated by the Naïve Bayes and BERT classifiers. 
+Naïve Bayes Classifier (NBC) 
+Naïve Bayes is a probabilistic text classification model based on Bayes’ 
+theorem, which assumes independence among features. Angeles et al. (2021) and 
+Tiffani (2020) applied Naïve Bayes to detect gendered linguistic patterns in academic 
+and social texts. The model calculates the likelihood of a text belonging to a gendered 
+or neutral category based on word frequencies and conditional probabilities. In testing, 
+Naïve Bayes achieved classification accuracies ranging from 78% to 82%, 
+demonstrating efficient identification of gendered expressions. Wu (2025) further 
+improved its performance by tuning the model and rebalancing skewed datasets, 
+reducing false negatives by approximately 12%. Naïve Bayes is well-suited for 
+automated GAD responsiveness systems due to its computational efficiency and 
+interpretability, particularly for lexical-level bias detection and authorship analysis. 
+Naïve Bayes Algorithm  
+The Naïve Bayes algorithm functions as one of the core classifiers of the 
+system. Known for its simplicity, interpretability, and effectiveness in text classification 
+(Gupte et al., 2021; Liu, 2023), Naïve Bayes detects surface-level linguistic patterns, 
+such as biased word choices or gender-exclusive terms. In this system, it is applied to 
+assess multiple criteria, particularly Criterion 1, 3, and 4, authorship and citations, as 
+ 
+ 
+well as to assist in the identification of gendered or stereotypical phrases. By analyzing 
+word frequency and probability distributions, Naïve Bayes categorizes sentences or 
+phrases as either GAD-compliant or non-GAD-compliant, providing fast and reliable 
+results suitable for real-time feedback. 
+BERT Model 
+Complementing Naïve Bayes, the system employs BERT (Bidirectional 
+Encoder Representations from Transformers) for deeper, context-based analysis. As 
+shown in the studies of Dusi et al. (2022) and Butt et al. (2021), BERT effectively 
+captures the relationships between words, enabling detection of subtle biases that 
+occur in sentence structure and meaning. In the system, BERT is specifically used for 
+Criterion 2: Representation of Women and Men, where contextual understanding is 
+essential. For instance, BERT can detect implicit stereotypes or biased portrayals even 
+if gendered terms are not explicitly mentioned. Its contextual embeddings enhance the 
+interpretability and fairness of the system’s overall analysis. 
+Hybrid Model Integration 
+The system adopts a hybrid architecture combining Naïve Bayes and BERT, 
+inspired by Vanmassenhove et al. (2021) and Alhafni et al. (2022). This dual-model 
+structure leverages the strengths of both approaches—Naïve Bayes for surface-level 
+lexical bias detection and BERT for deeper contextual understanding. The combination 
+improves the system’s precision and recall across all four GAD criteria, ensuring that 
+both explicit and implicit forms of gender bias are identified. This integration allows the 
+system to provide both statistical and semantic perspectives in evaluating gender 
+responsiveness. 
+Neural Machine Translation-Based Gender Rewriting (NeuTral Rewriter) 
+Vanmassenhove, Emmery, and Shterionov (2021) developed the NeuTral 
+Rewriter, a multilingual Transformer-based NMT system designed to rewrite sentences 
+ 
+ 
+into gender-neutral forms. The model was fine-tuned on a custom dataset containing 
+gendered texts in English, Spanish, and German, using attention mechanisms to guide 
+word choices toward neutrality. Evaluations on parallel corpora employed BLEU and 
+gender accuracy scores, achieving BLEU 27–34 and a 25–40% reduction in gender 
+bias. The system preserved grammatical and contextual integrity while neutralizing 
+biased phrasing. In the proposed GAD system, NeuTral Rewriter’s approach informs 
+a text-rewriting module that suggests inclusive alternatives to gendered sentences. 
+Large Language Models (LLMs) / GPT Approaches 
+Large Language Models such as GPT-3 and GPT-4 are autoregressive 
+transformers capable of generating high-quality text and performing complex natural 
+language tasks. Brown et al. (2020) demonstrated GPT-3’s potential and risks, 
+including the propagation of bias in generated outputs. Kumar et al. (2024) introduced 
+the LLM-as-Judge pipeline, where GPT-4 and Claude models acted as fairness 
+auditors by applying sociolinguistic heuristics to unseen texts. Sobhani et al. (2024) 
+employed context-aware ranking models to measure fairness in LLM outputs, while 
+Hobbs (2025) emphasized intersectional representation. These approaches enable 
+adaptive evaluation of gender inclusivity, allowing the system to score text fairness 
+dynamically and provide rationales for detected biases. 
+Ethical and Fairness Considerations 
+The system adheres to the ethical AI principles discussed by Mousavian et al. 
+(2025) and Stańczak and Augenstein (2021), emphasizing transparency, fairness, and 
+bias mitigation in data and model design. It employs fairness-aware preprocessing and 
+context-based reweighting to reduce potential algorithmic bias during training. These 
+measures align with the recommendations of Sobhani et al. (2024) and Hobbs (2025), 
+who underscored the necessity of contextual fairness and intersectional sensitivity in 
+NLP systems. Through these strategies, the proposed system not only automates 
+ 
+ 
+evaluation but also ensures that its methods remain consistent with ethical standards 
+in AI and gender studies. 
+System Flow 
+The system flow begins when the user uploads an academic paper through the 
+React.js front-end, which sends the document to the Flask backend for processing. 
+Using NLTK, the text undergoes preprocessing steps such as tokenization, stop-word 
+removal, and lemmatization to prepare it for analysis. The Naïve Bayes classifier then 
+detects gendered language and citation-related biases, while the BERT model 
+performs contextual analysis to evaluate the fair representation of women and men. 
+The processed outputs—comprising inclusivity scores, representation metrics, and 
+authorship evaluations—are securely stored in Firebase. Finally, the system displays 
+the analyzed results through an interactive visualization table, providing users with 
+automated, data-driven feedback on the GAD responsiveness of their academic 
+papers. 
+Overall, 
+the 
+Automated 
+Assessment 
+of 
+Academic 
+Papers’ 
+GAD 
+Responsiveness system integrates gender fairness concepts with advanced NLP and 
+machine learning techniques. Using Naïve Bayes and BERT, it evaluates key aspects 
+of gender responsiveness within academic papers and provides actionable feedback 
+through a structured, easy-to-understand results table. The system draws inspiration 
+from institutional gender frameworks such as HGDG and GMEF while implementing 
+these principles in a technological context. By combining inclusivity-focused design, 
+efficient NLP preprocessing, and web-based accessibility through React.js, Flask, 
+Firebase, and NLTK, the system offers an automated, scalable, and transparent tool 
+for promoting gender sensitivity in academic writing. 
+ 
+ 
+ 
+ 
+Synthesis  
+Research on gender responsiveness and inclusivity spans institutional 
+frameworks and computational approaches, reflecting diverse strategies to promote 
+equity. Local guidelines such as the Harmonized Gender and Development Guidelines 
+(HGDG) and the Gender Mainstreaming Evaluation Framework (GMEF) (PCW, 2020; 
+2025) provide measurable indicators for assessing gender sensitivity, while global 
+instruments like the UN Women (2020, 2022) evaluation handbooks emphasize 
+accountability and evidence-based evaluation. Computational studies, including 
+Vanmassenhove et al. (2021), Göritz et al. (2022), and Kumar et al. (2024), illustrate 
+the potential of NLP and AI in detecting gender bias, linguistic imbalance, and 
+representational disparities. Similarly, Dworkin et al. (2020) and Goyanes (2024) 
+highlight persistent inequities in authorship and citation, while Stańczak and 
+Augenstein (2021) and Mousavian et al. (2025) show algorithmic biases embedded in 
+datasets and models. Although these studies diverge in methodology—ranging from 
+institutional auditing to AI-driven textual analysis—they converge on the shared goal 
+of fostering fairness, inclusivity, and transparency in academic and digital contexts. 
+Despite these advancements, a significant gap remains in systematically 
+evaluating gender responsiveness in academic writing. Many scholarly articles 
+continue to exhibit gendered language, representational imbalance, and citation 
+inequities, reflecting the inadequacy of current studies and tools to ensure GAD 
+compliance. Addressing this gap, the proposed system integrates Naïve Bayes and 
+BERT to assess linguistic and contextual features aligned with GAD criteria, including 
+gender-sensitive language, inclusivity, representation of women and men, and 
+authorship and citations. This approach seeks to provide an automated, data-driven 
+solution that enhances equity and inclusiveness in academic publications. 
+ 
+ 
+ 
+ 
+METHODOLOGY 
+ 
+This chapter describes the structured approach followed in designing, 
+developing, and testing the proposed system for the automated assessment of 
+academic articles’ Gender and Development (GAD) responsiveness. It explains the 
+methodological framework adopted in creating the Automated Assessment of 
+Academic Articles’ GAD Responsiveness using Naive Bayes and BERT, which utilizes 
+natural language processing and machine learning methods to analyze and classify 
+text. The development process involves data collection, text preprocessing, feature 
+extraction, and model training. The Naïve Bayes algorithm is employed for probabilistic 
+text classification, while BERT (Bidirectional Encoder Representations from 
+Transformers) is utilized for contextual analysis, particularly for evaluating the 
+“Representation of Women and Men” criterion. 
+Overall, this methodology establishes an organized, data-driven procedure for 
+building an intelligent assessment tool that supports gender responsiveness in 
+academic writing while validating the effectiveness and accuracy of Naive Bayes in 
+automated text evaluation.  
+ 
+ 
+ 
+ 
+Design of Software, Systems, Product and/or Processes 
+ Figure 2 presents the hierarchical input-process-output diagram of the system. 
+ 
+Figure 2. IPO diagram of the system 
+Figure 3 shows the use-case diagram of the system. 
+ 
+Figure 3. Use-case diagram of the system 
+ 
+ 
+The following figures shows the graphical user interface design of the system. 
+ 
+Figure 4.1. Login page 
+ 
+Figure 4.2. Dashboard 
+ 
+ 
+ 
+Figure 4.3. Output prototype 
+ 
+Figure 4.3. Recommendations preview 
+ 
+ 
+Requirement Analysis 
+The Gender and Development (GAD) framework serves as a foundation for 
+promoting gender equality and inclusivity across various sectors, including education 
+and research. Currently, many academic papers remain non-gender-responsive, 
+exhibiting biases in language and representation. Furthermore, the inadequacy of 
+gender-responsive research outputs highlight the need for systems that can guide and 
+evaluate inclusivity in academic writing. The Automated Assessment of Academic 
+Articles’ GAD Responsiveness using Naive Bayes and BERT addresses these 
+challenges by utilizing machine learning with the help of the HGDG concepts to identify 
+and classify gender-related patterns in text automatically. 
+Figure 5 presents a fishbone diagram that shows the operational feasibility of the 
+system. 
+ 
+Figure 5. Fishbone diagram of the system 
+The fishbone diagram illustrates the factors contributing to low or inconsistent 
+Gender and Development (GAD) responsiveness in academic papers, which results in 
+ 
+ 
+insufficient gender-focused research. It categorizes causes into five main areas: 
+Policy/Guidelines issues such as vague mandates and weak enforcement; 
+Technology/Tools limitations, including the lack of automated assessment tools and 
+relevant datasets; People/Human Factors, such as limited author awareness, reviewer 
+bias, and insufficient training; Environment/Resources, including scarce GAD 
+reference materials and insufficient funding; and Process/Methodology weaknesses, 
+like the absence of standardized review checklists and reliance on slow, manual 
+assessments. 
+The proposed web system directly addresses the issues identified in the 
+fishbone analysis. The system integrates automated text processing, feature extraction 
+(TF-IDF), and classification models (Naive Bayes and BERT) to replace manual 
+evaluations with data-driven analysis. The system assists authors and evaluators by 
+offering clear, objective feedback on GAD responsiveness, reducing bias and 
+improving awareness of gender-sensitive writing. It centralizes GAD-related evaluation 
+processes in one accessible platform, minimizing the need for external references and 
+manual cross-checking. Lastly, it streamlines file upload, preprocessing, and result 
+generation into an efficient workflow, ensuring faster, more consistent, and reliable 
+GAD assessments. Overall, the system functions as an intelligent, automated tool that 
+promotes fairness, accuracy, and inclusivity in academic writing. 
+Table 1 below presents a summary of the key aspects considered in the manual 
+assessment of GAD responsiveness. 
+KEY ASPECTS 
+DESCRIPTION 
+Gender Sensitive 
+Language 
+Examines the proper use of gender-neutral words, 
+avoidance of sexist terms, and appropriate pronoun 
+selection. 
+ 
+ 
+Representation of 
+Women and Men 
+Evaluates whether both genders are portrayed fairly 
+and proportionally within the study’s content, examples, 
+and discussions. 
+Inclusivity / Stereotyping 
+Determines whether the paper avoids gender-based 
+generalizations and promotes inclusiveness in its 
+analysis or conclusions. 
+Authorship and Citations 
+Reviews the balance of male and female authors in 
+cited works and the recognition of contributions across 
+genders. 
+Table 1. Key Aspects Considered from the HGDG Checklist 
+Requirement Documentation 
+ 
+This phase discusses what the software will do. It includes the modules of the 
+proposed system/solution with the description. 
+Hardware Requirements 
+The hardware requirements required for the development of the system include 
+an Intel Core i5 processor (10th Generation or higher), 8GB of RAM, and 256GB solid-
+state drive (SSD). These components are sufficient to support Python-based 
+development, execute natural language processing operations, and train lightweight 
+machine learning models such as Naive Bayes. The processor provides adequate 
+performance for text preprocessing and classification, while the memory capacity 
+allows stable handling of moderate datasets and multitasking during system testing. 
+The SSD ensures faster data access and efficient storage management, contributing 
+to overall smooth and reliable system performance. 
+ 
+ 
+ 
+ 
+Software Requirements 
+The Automated Assessment of Academic Articles’ Gender-Responsiveness 
+will be developed using Python (Flask) for the backend, React.js for the frontend, and 
+Firebase for data storage and user authentication. The development process will be 
+carried out using Visual Studio Code (VS Code) as the main integrated development 
+environment (IDE), chosen for its flexibility and support for both Python and JavaScript-
+based frameworks. 
+React.js will serve as the frontend framework responsible for building an 
+interactive and responsive user interface. It will allow users to upload academic papers, 
+receive automated feedback, and view results in real time. React’s modular component 
+structure ensures easy maintenance, scalability, and seamless communication with 
+the backend server through API integration. 
+The backend will be developed using Python with the Flask framework to 
+manage data processing, handle uploaded documents, and connect with machine 
+learning models. The system will employ two key algorithms: Naive Bayes for efficient 
+and lightweight text classification, and BERT (Bidirectional Encoder Representations 
+from Transformers) for deeper contextual analysis of gender-biased language. 
+Together, these models will enable accurate and adaptive assessment of the gender-
+responsiveness of academic articles. 
+Firebase will be used as the system’s cloud platform, providing secure storage 
+for user data and authentication services. Its integration ensures data consistency, 
+scalability, and reliable backend support without the need for a separate database 
+server, making it ideal for web-based deployment. 
+ 
+ 
+ 
+ 
+System Development 
+This system will follow the Rapid Application Development software 
+development approach. RAD was chosen for its iterative and component-based 
+nature, emphasizing rapid prototyping and continuous user feedback to refine each 
+part of the system efficiently. 
+Figure 6. Software methodology of the system using RAD 
+1. Requirements Planning and User Design 
+ 
+The process begins with Text Extraction, where uploaded files are converted 
+into readable text. The text then undergoes Preprocessing to remove noise and 
+prepare it for analysis. Next, the Classification and Analysis module, where BERT and 
+Naïve Bayes evaluate the text for gender-responsive content. The results are then 
+displayed through a dynamic User Interface that allows users to easily view and 
+interpret findings. 
+The system is developed using Python (Flask) for backend processing, 
+React.js for the frontend interface, and Firebase for database management and 
+authentication. 
+2. Dataset Development and Preprocessing 
+The dataset for this study will be derived from open-access academic papers 
+and research articles, serving as the primary source of textual data. These documents 
+will undergo text extraction, where individual sentences are isolated and used as the 
+main data units for training and testing. Each sentence will be manually labeled based 
+on its degree of gender responsiveness, classified as gender-responsive, non-gender-
+ 
+ 
+responsive, or neutral. This sentence-level labeling approach allows for more accurate 
+detection of gender bias and inclusive language patterns within academic writing. The 
+dataset will then be used to train the Naïve Bayes and BERT models, enabling the 
+system to evaluate uploaded academic papers by analyzing them sentence by 
+sentence. 
+For the aspects to be followed, relevant terms and keywords were derived from 
+official GAD checklists and gender-sensitive writing guides. These linguistic indicators 
+served as features that allowed the system to classify texts objectively based on their 
+responsiveness level. 
+Indicators for GAD Features 
+Each article in the dataset was annotated with indicators reflecting the 
+presence or absence of GAD-related elements. The annotation process involved 
+marking gendered language, inclusive expressions, and authorship patterns. These 
+annotations were cross-checked with reference materials such as the Harmonized 
+Gender and Development Guidelines (HGDG) to ensure accuracy and consistency 
+during model training. 
+FEATURE CATEGORY 
+EXAMPLE TERMS / INDICATORS 
+Gendered Language 
+He, she, his, her 
+Inclusive Terms 
+Everyone, folks, people, researchers 
+Stereotypical Words 
+“Women are emotional”, “Men are strong” 
+Authorship 
+Balance of female and male in references 
+Table 4. Sample Linguistic Features 
+ 
+ 
+ 
+ 
+3. Model Building 
+ 
+The Automated Assessment System is designed using a modular structure, 
+where each component performs a specific function contributing to the overall analysis 
+of gender responsiveness in academic papers. The system is divided into several 
+modules, each with their specific contributions to the system. 
+TEXT EXTRACTION 
+The text extraction module serves as the entry point of the system, responsible 
+for retrieving and segmenting textual data from uploaded academic papers in formats 
+such as PDF or DOCX. Extracted content is divided into sentences to enable more 
+precise classification, as gender responsiveness is often reflected at the sentence level 
+rather than across an entire document. 
+PyMuPDF 
+ 
+PyMuPDF reads each page sequentially and converts the document’s internal 
+layout structure into readable text. It identifies text blocks and line coordinates, merges 
+them into logical paragraphs, and eliminates layout artifacts such as unnecessary line 
+breaks, multiple spaces, or embedded font data. It also filters out non-text elements 
+like images, annotations, and embedded objects. 
+python-docx 
+python-docx accesses the document’s XML structure, which stores textual data 
+in a hierarchy of paragraphs and runs. The library iterates through these elements to 
+retrieve only the text portions, excluding non-text elements such as charts, images, or 
+styles. It automatically handles spacing, punctuation normalization, and line continuity 
+between runs, ensuring that text fragments are properly concatenated. The output is 
+clean, linearized text extracted directly from the document body, maintaining the 
+intended formatting and sentence order from the original paper. 
+ 
+ 
+Together, these processes ensure that text extraction produces clean and 
+logically ordered content, minimizing errors and inconsistencies before the data enters 
+the system’s preprocessing module for further refinement. 
+PREPROCESSING 
+ 
+The preprocessing module is responsible for refining the extracted text, 
+ensuring it is clean, standardized, and ready for analysis by the machine learning 
+models. Each sentence is processed individually to maintain accuracy in classification. 
+NLTK (Natural Language Toolkit) 
+The system uses NLTK to perform the core preprocessing tasks, which 
+transform raw text into a structured format suitable for machine learning models. The 
+processes include: 
+● Normalization: Converts all characters to lowercase to reduce redundancy 
+caused by capitalization (e.g., “He” → “he”). 
+ 
+Figure 7.1. Normalization Process 
+ 
+● Tokenization: Splits sentences into individual words or tokens, enabling word-
+level analysis for pattern recognition. 
+ 
+ 
+ 
+Figure 7.2. Tokenization Process 
+ 
+These tokens then become the features that the model uses to learn 
+patterns. In Naïve Bayes, for instance, each token’s frequency or weight 
+contributes to calculating the probability of a sentence belonging to a particular 
+class (e.g., gender-responsive or non-gender-responsive). Tokenization 
+ensures that the text is broken down into consistent and comparable units, 
+making it possible to convert sentences into numerical representations, such 
+as TF-IDF vectors, for training machine learning models. 
+ 
+● Stop Words Removal: Eliminates common words such as “the,” “is,” and “and” 
+that carry little semantic value, reducing noise in the dataset. 
+ 
+Figure 7.3. Stop Words Removal Example 
+ 
+● Punctuation Removal: Removes all punctuation marks to prevent irrelevant 
+characters from affecting model training. 
+ 
+ 
+● Lemmatization: Converts words to their base forms (e.g., “running” → 
+“run”), ensuring that different word variations are treated consistently. 
+ 
+Figure 7.4. Lemmatization Process 
+After these steps, the cleaned and structured sentences are paired with their 
+corresponding labels, gender-responsive, non-gender-responsive, or neutral and are 
+ready for input into the Naïve Bayes and BERT models. 
+ 
+Figure 7.5. Text Preprocessing in Python using spaCy library 
+FEATURE EXTRACTION 
+The feature extraction process converts preprocessed text into numerical 
+representations suitable for machine learning models. In this system, TF-IDF (Term 
+Frequency–Inverse Document Frequency) is used to quantify the importance of 
+each word in a sentence relative to the dataset. 
+ 
+ 
+Term Frequency (TF) measures how often a term appears in a sentence compared 
+to the total number of terms in that sentence. It is calculated as: 
+𝑇𝐹(𝑡, 𝑠) =
+𝑓𝑡,𝑠
+∑ 
+ 
+𝑘𝑓𝑘,𝑠
+ 
+Inverse Document Frequency (IDF) measures the importance of a term across all 
+sentences by reducing the weight of terms that appear frequently and increasing the 
+weight of rare, informative terms: 
+𝐼𝐷𝐹(𝑡) = 𝑙𝑜𝑔 
+𝑁
+1 + 𝑛𝑡
+ 
+The TF-IDF value for a term in a sentence is obtained by multiplying the TF and IDF 
+values: 
+𝑇𝐹𝐼𝐷𝐹(𝑡, 𝑠) = 𝑇𝐹(𝑡, 𝑠) × 𝐼𝐷𝐹(𝑡) 
+This results in a numerical vector representation for each sentence, where each 
+dimension corresponds to a term in the vocabulary, and the value reflects its relative 
+importance. These vectors serve as the input features for the Naïve Bayes classifier, 
+enabling it to learn probabilistic relationships between words and sentence 
+categories—gender-responsive, non-gender-responsive, or neutral. 
+Using TF-IDF ensures that the model emphasizes meaningful and distinctive 
+words, reduces the impact of common terms, and provides a standardized format for 
+machine learning analysis. 
+N-grams 
+N-grams are contiguous sequences of n items from a given text, where the items 
+are typically words or characters. In natural language processing, n-grams are used to 
+capture patterns, context, and relationships between consecutive words in a sentence. 
+● Unigrams (1-gram): Single words, representing the basic unit of text. 
+● Bi-grams (2-grams): Sequences of two consecutive words, which capture 
+simple word pairs and relationships. 
+ 
+ 
+● Tri-grams (3-grams): Sequences of three consecutive words, which 
+capture longer phrases and contextual patterns. 
+By including bi-grams and tri-grams in the feature extraction process, the model 
+can better capture multi-word expressions and contextual cues, improving the 
+accuracy of Naïve Bayes and BERT in detecting gender responsiveness. 
+Example Table of Feature Vectors 
+Text 
+Unigrams 
+Bi-grams 
+Tri-grams 
+“Women contribute 
+equally” 
+[0.5, 0.7, 0.6] 
+[0.6, 0.5] 
+[0.7] 
+“Research must be 
+inclusive” 
+[0.4, 0.3, 0.5] 
+[0.5, 0.4] 
+[0.6] 
+Table 5. Feature Vectors of Unigrams, Bi-grams, and Tri-grams 
+This table illustrates how each sentence is converted into a vector representing 
+the importance of unigrams, bi-grams, and tri-grams, providing rich information for 
+classification models. 
+CLASSIFICATION 
+The Classification Module is responsible for analyzing the preprocessed and 
+vectorized text to determine the gender responsiveness of each sentence. This module 
+employs two machine learning models—Naïve Bayes and BERT—which complement 
+each other to provide both probabilistic and context-aware classification. 
+Naïve Bayes 
+Naïve Bayes is a probabilistic machine learning algorithm based on Bayes’ 
+Theorem, used for classification tasks. It operates under the “naïve” assumption that 
+ 
+ 
+all features (words, in the case of text) are independent of each other. Despite this 
+simplification, Naïve Bayes is highly effective for text classification problems because 
+it relies on word frequency and probability to determine the most likely class of a 
+sentence or document. 
+Naïve Bayes performs probabilistic classification using the TF-IDF features 
+extracted from each sentence. The processes include: 
+● 
+Training: Learns the likelihood of each word occurring in each class (gender-
+responsive, non-gender-responsive, neutral). 
+● 
+Probability Calculation: Computes the probability of a sentence belonging to 
+each class using: 
+𝑃(𝐶∣𝑠) = 𝑃(𝐶) × ∏ 
+𝑛
+𝑖=1
+𝑃(𝑤𝑖∣𝐶) 
+where 𝑃(𝐶) is the prior probability of class 𝐶 and 𝑃(𝐶) is the likelihood of word 𝑤𝑖  given 
+class 𝐶. 
+● 
+Prediction: Selects the class with the highest probability as the sentence label. 
+ 
+Figure 7.5. Naïve Bayes Likelihood Tables Based on Weather Data 
+In this system, Naïve Bayes performs probabilistic classification using the TF-
+IDF features extracted from each sentence. TF-IDF transforms each sentence into a 
+vector where each dimension corresponds to a word in the vocabulary, and its value 
+represents the word’s relative importance. These vectors are then used to calculate 
+ 
+ 
+the probability of the sentence belonging to each class: gender-responsive, non-
+gender-responsive, or neutral. 
+Example Likelihood Table: 
+Word 
+Gender-Responsive 
+Non-Gender-Responsive 
+Neutral 
+Women 
+0.3 
+0.05 
+0.01 
+Equality 
+0.25 
+0.02 
+0.03 
+Research 
+0.20 
+0.10 
+0.05 
+Table 6.1. Sample Likelihood Table based on Gender Responsiveness 
+Example Workflow: 
+Sentence 
+TF-IDF Vector 
+Probabilities per Class 
+Predicted 
+Class 
+“Women 
+contribute 
+equally” 
+[0.5, 0.7, 0.6] 
+Gender-Responsive: 0.063  
+Non-Gender-Responsive: 0.0007  
+Neutral: 0.0002 
+Gender-
+Responsive 
+Table 6.2. Sample Workflow based on Gender Responsiveness 
+Naïve Assumption 
+The “naïve” assumption treats words as independent, even though in natural 
+language they are often contextually related. This simplification allows efficient 
+computation while still producing accurate results for text classification. 
+ 
+ 
+ 
+ 
+BERT (Bidirectional Encoder Representations from Transformers) 
+BERT is a deep learning model developed by Google that excels in natural 
+language understanding. Unlike traditional models that read text in a single direction, 
+BERT uses a bidirectional transformer architecture, allowing it to consider both 
+preceding and succeeding words when analyzing a sentence. This enables the model 
+to capture contextual meaning more accurately, including subtle cues and implied 
+semantics. 
+BERT provides contextualized classification by capturing the relationships 
+between words in each sentence. Its processes include: 
+● 
+Pretraining and Fine-Tuning: Utilizes a pre-trained BERT model, fine-tuned 
+on the labeled dataset for gender-responsiveness detection. 
+● 
+Tokenization: Splits sentences into subword tokens and adds special tokens 
+such as [CLS] and [SEP]. 
+● 
+Embedding and Attention: Converts tokens into embeddings and applies 
+self-attention to understand bidirectional context. 
+● 
+Classification Layer: Uses the [CLS] token representation in a dense layer 
+with softmax activation to output class probabilities for gender-responsive, non-
+gender-responsive, or neutral. 
+By combining Naïve Bayes’ statistical efficiency and BERT’s contextual 
+understanding, the Classification Module achieves accurate, reliable, and scalable 
+assessment of gender responsiveness in academic sentences. 
+USER INTERFACE INTERACTIONS 
+ 
+This module facilitates interaction between the user and the system, providing 
+a platform to upload academic papers, view analysis results, and navigate the system. 
+It is developed using React.js and is integrated with Firebase to manage front-end 
+backend connectivity. The key components of the UI include the file upload component 
+ 
+ 
+for submitting PDF or DOCX documents, the results display component for presenting 
+gender responsiveness assessments, and the navigation component for smooth 
+transitions between system features. 
+System Testing 
+System testing was conducted to ensure that the developed Automated GAD 
+Responsiveness Assessment System performs accurately and reliably based on the 
+intended objectives. The goal of testing was to verify that all system components 
+including file upload, text extraction, preprocessing, classification, and result 
+generation function as expected under various scenarios. 
+Functional Testing 
+Functional Testing evaluates whether the system performs its intended 
+functions according to requirements. Iterative testing ensures that each function 
+works correctly before adding new modules. Tests include: 
+FUNCTIONS 
+INPUT 
+EXPECTED OUTPUT 
+ACTUAL 
+OUTPUT 
+Upload PDF or 
+docx file 
+Sample article 
+in PDF format 
+Extracted text displayed 
+ 
+Text 
+Preprocessing 
+Raw extracted 
+text 
+Stop words, symbols, 
+and extra spaces 
+removed 
+ 
+Feature 
+Extraction 
+Preprocessed 
+text 
+Feature vectors 
+generated using TF-IDF 
+and n-grams ready for 
+classification 
+ 
+Classification 
+Feature Vector Determines whether the 
+uploaded article is 
+responsive or not 
+ 
+ 
+ 
+Report 
+Generation 
+Processed 
+article 
+Displays summary and 
+recommendations 
+ 
+Table 6. Functions, expected, and actual outputs of the system 
+The primary objective of the system is to automate the assessment of 
+academic articles for Gender and Development (GAD) responsiveness through text 
+extraction, linguistic analysis, and classification using the Naive Bayes algorithm. 
+Specifically: 
+a) The document upload and extraction component receives academic articles 
+in supported file formats and converts their content into plain, analyzable text. 
+b) The text preprocessing module refines the extracted text by removing stop 
+words, punctuation, and irrelevant characters, retaining only essential 
+linguistic elements. 
+c) The feature extraction process detects linguistic features such as gendered 
+terms, pronouns, and inclusivity indicators that contribute to GAD 
+responsiveness assessment. 
+d) The Naive Bayes classification module evaluates the extracted features and 
+determines whether each academic article is categorized as “Responsive” or 
+“Non-Responsive.” 
+e) The report generation and visualization module produces a clear, structured 
+summary of the classification results along with relevant recommendations. 
+Model Testing 
+Model Testing evaluates the performance and reliability of the trained 
+classification models used in the system. It ensures that both the Naive Bayes and 
+BERT models accurately identify GAD-responsive and non-responsive content based 
+on predefined key aspects.  
+ 
+ 
+Confusion Matrix 
+The confusion matrix is a matrix of numbers that tell us where a model gets 
+confused. It is a class-wise distribution of the predictive performance of a 
+classification model, that is, the confusion matrix is an organized way of mapping the 
+predictions to the original classes to which the data belong (Kundu R. 2022). 
+The confusion matrix is a performance evaluation tool that summarizes the 
+results of a classification model. It shows how many predictions were correct or 
+incorrect by comparing the model’s outputs with the actual labels. 
+Elements of the Confusion Matrix: 
+● True Positive (TP): Instances where the model correctly predicts a positive 
+class. 
+● True Negative (TN): Instances where the model correctly predicts a negative 
+class. 
+● False Positive (FP): Instances where the model incorrectly predicts a 
+positive class when it is actually negative. 
+● False Negative (FN): Instances where the model incorrectly predicts a 
+negative class when it is actually positive. 
+From this matrix, performance metrics are calculated: 
+● Accuracy: Overall correctness of predictions. 
+𝐴𝑐𝑐𝑢𝑟𝑎𝑐𝑦=
+𝑇𝑃+ 𝑇𝑁
+𝑇𝑃+ 𝑇𝑁+ 𝐹𝑃+ 𝐹𝑁 
+● Precision: Correctness of positive predictions. 
+𝑃𝑟𝑒𝑐𝑖𝑠𝑖𝑜𝑛=
+𝑇𝑃
+𝑇𝑃+ 𝐹𝑃 
+● Recall: Coverage of actual positive instances. 
+𝑅𝑒𝑐𝑎𝑙𝑙=
+𝑇𝑃
+𝑇𝑃+ 𝐹𝑁 
+● F1-Score: Harmonic mean of Precision and Recall. 
+ 
+ 
+𝐹1 𝑆𝑐𝑜𝑟𝑒= 2 × 𝑃𝑟𝑒𝑐𝑖𝑠𝑖𝑜𝑛× 𝑅𝑒𝑐𝑎𝑙𝑙
+𝑃𝑟𝑒𝑐𝑖𝑠𝑖𝑜𝑛+ 𝑅𝑒𝑐𝑎𝑙𝑙 
+ 
+This evaluation shows which sentences are correctly classified and identifies 
+areas for improvement, such as misclassified Neutral sentences. BERT is also 
+validated using the same metrics, often showing higher precision and recall due to its 
+contextual understanding. 
+System Evaluation 
+The system was evaluated based on modified ISO/IEC 25010 Software and 
+Data Quality Evaluation Instrument. This is in terms of functional suitability, 
+performance efficiency, compatibility, interaction capability, reliability, security, 
+maintainability, flexibility, and safety as shown in Table 7. 
+Table 7. Software and data quality evaluation instrument 
+INDICATOR 
+5 
+4 
+3 
+2 
+1 
+A. Functional Suitability 
+1. Functional completeness - degree to which the set of 
+functions covers all the specified tasks and intended 
+users' objectives.  
+ 
+ 
+ 
+ 
+ 
+2. Functional correctness - degree to which a product or 
+system provides accurate results when used by intended 
+users. 
+ 
+ 
+ 
+ 
+ 
+3. Functional appropriateness - degree to which the 
+functions facilitate the accomplishment of specified 
+tasks and objectives. 
+ 
+ 
+ 
+ 
+ 
+B. Performance Efficiency 
+1. Time behaviour - degree to which the response time and 
+throughout rates of a product or system, when 
+performing its functions, meet requirements. 
+ 
+ 
+ 
+ 
+ 
+2. Resource utilization - degree to which the amounts and 
+types of resources used by a product or system, when 
+performing its functions, meet requirements. 
+ 
+ 
+ 
+ 
+ 
+3. Capacity - degree to which the maximum limits of a 
+product or system parameter meet requirements. 
+ 
+ 
+ 
+ 
+ 
+C. Compatibility 
+1. 
+Interoperability - degree to which a system, product or 
+component can exchange information with other 
+products and mutually use the information that has 
+been exchanged. 
+ 
+ 
+ 
+ 
+ 
+D. Interaction Capability 
+1. 
+Appropriateness recognizability - degree to which 
+users can recognize whether a product or system is 
+appropriate for their needs. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+2. 
+Learnability - degree to which the functions of a 
+product or system can be learnt to be used by specified 
+users within a specified amount of time. 
+ 
+ 
+ 
+ 
+ 
+3. 
+Operability - degree to which a product or system has 
+attributes that make it easy to operate and control. 
+ 
+ 
+ 
+ 
+ 
+4. 
+User error protection - degree to which a system 
+prevents users against operation errors. 
+ 
+ 
+ 
+ 
+ 
+5. 
+User engagement - degree to which a user interface 
+presents functions and information in an inviting and 
+motivating manner encouraging continued interaction. 
+ 
+ 
+ 
+ 
+ 
+6. 
+Inclusivity - degree to which a product or system can 
+be used by people of various backgrounds (such as 
+people of various ages, abilities, cultures, ethnicities, 
+languages, genders, economic situations, etc.). 
+ 
+ 
+ 
+ 
+ 
+7. 
+Self-descriptiveness - degree to which a product 
+presents appropriate information, where needed by 
+the user, to make its capabilities and use immediately 
+obvious to the user without excessive interactions with 
+a 
+product 
+or 
+other 
+resources 
+(such 
+as user 
+documentation, help desks or other users). 
+ 
+ 
+ 
+ 
+ 
+E. Reliability 
+1. 
+Faultlessness - degree to which a system, product or 
+component performs specified functions without fault 
+under normal operation. 
+ 
+ 
+ 
+ 
+ 
+2. 
+Availability - degree to which a system, product or 
+component is operational and accessible when 
+required for use. 
+ 
+ 
+ 
+ 
+ 
+3. 
+Recoverability - degree to which, in the event of an 
+interruption or a failure, a product or system can 
+recover the data directly affected and re-establish the 
+desired state of the system. 
+ 
+ 
+ 
+ 
+ 
+F. Security 
+1. 
+Confidentiality - degree to which a product or system 
+ensures that data are accessible only to those 
+authorized to have access. 
+ 
+ 
+ 
+ 
+ 
+2. 
+Integrity - degree to which a system, product or 
+component ensures that the state of its system and 
+data are protected from unauthorized modification or 
+deletion either by malicious action or computer error. 
+ 
+ 
+ 
+ 
+ 
+3. 
+Authenticity - degree to which the identity of a subject 
+or resource can be proved to be the one claimed. 
+ 
+ 
+ 
+ 
+ 
+G. Maintainability 
+1. 
+Modularity - degree to which a system or computer 
+program is composed of discrete components such that 
+a change to one component has minimal impact on 
+other components. 
+ 
+ 
+2. 
+Modifiability - degree to which a product or system can 
+be effectively and efficiently modified without 
+introducing defects or degrading existing product 
+quality. 
+ 
+ 
+ 
+ 
+3. 
+Testability - degree of effectiveness and efficiency with 
+which test criteria can be established for a system, 
+product or component and tests can be performed to 
+determine whether those criteria have been met. 
+ 
+ 
+H. Flexibility 
+1. 
+Adaptability - degree to which a product or system can 
+effectively and efficiently be adapted for or transferred 
+to different hardware, software or other operational or 
+usage environments. 
+ 
+ 
+2. 
+Scalability 
+- degree 
+to 
+which 
+a 
+product 
+can 
+handle growing or shrinking workloads or to adapt its 
+capacity to handle variability. 
+ 
+ 
+ 
+ 
+ 
+ 
+REFERENCES 
+ 
+HARMONIZED GENDER AND DEVELOPMENT GUIDELINES Third Edition | 
+National Economic and Development Authority, Philippine Commission on 
+Women, and Official Development Assistance Gender and Development 
+Network. (2016). 
+https://www.pdic.gov.ph/files/gad/Guidelines%20and%20Toolkits/Harmonized
+%20GAD%20Guidelines%20(HGDG)%20Third%20Edition.pdf 
+ 
+Gender Mainstreaming | Philippine Commission on Women. (n.d.). PHILIPPINE 
+COMMISSION on WOMEN. https://pcw.gov.ph/gender-mainstreaming/ 
+ 
+Huy Quoc To, Kiet Van Nguyen, Ngan Luu-Thuy Nguyen, & Anh Gia-Tuan Nguyen. 
+(2020). Gender Prediction Based on Vietnamese Names with Machine 
+Learning Techniques. https://doi.org/10.1145/3443279.3443309 
+ 
+Palma, E. (2025). Gender and development implementation in public higher 
+education institutions: A basis for a capability enhancement 
+framework. International Journal of ADVANCED and APPLIED 
+SCIENCES, 12(2), 101–111. https://doi.org/10.21833/ijaas.2025.02.011 
+ 
+Llorens, A., Tzovara, A., Bellier, L., Bhaya-Grossman, I., Bidet-Caulet, A., Chang, W. 
+K., Cross, Z. R., Dominguez-Faus, R., Flinker, A., Fonken, Y., Gorenstein, M. 
+A., Holdgraf, C., Hoy, C. W., Ivanova, M. V., Jimenez, R. T., Jun, S., Kam, J. 
+W. Y., Kidd, C., Marcelle, E., & Marciano, D. (2021). Gender bias in 
+academia: A lifetime problem that needs solutions. Neuron, 109(13), 2047–
+2074. https://doi.org/10.1016/j.neuron.2021.06.002 
+ 
+Sicuan, S. (2024). Exploring the Role of Harmonized Gender and Development 
+Guidelines (HGDG) in Promoting Gender Sensitivity in Classroom Practices 
+among Educators. Journal of Interdisciplinary Perspectives, 2(10). 
+https://doi.org/10.69569/jip.2024.0427 
+ 
+Ray, K. S., Zurn, P., Dworkin, J. D., Bassett, D. S., & Resnik, D. B. (2022). Citation 
+bias, diversity, and ethics. Accountability in Research, 1–15. 
+https://doi.org/10.1080/08989621.2022.2111257 
+ 
+Joy, E. (2025). Gender and development implementation in public higher education 
+institutions: A basis for a capability enhancement framework. International 
+Journal of ADVANCED and APPLIED SCIENCES, 12(2), 101–111. 
+https://doi.org/10.21833/ijaas.2025.02.011 
+ 
+Bender, E., McMillan-Major, A., Shmitchell, S., & Gebru, T. (2021). On the Dangers 
+of Stochastic Parrots: Can Language Models Be Too Big? FAccT ’21: 
+Proceedings of the 2021 ACM Conference on Fairness, Accountability, and 
+Transparency, 610–623. https://doi.org/10.1145/3442188.3445922 
+ 
+ 
+ 
+Mousavian, M., Zahra Abbasiantaeb, Aliannejadi, M., & Crestani, F. (2025). Towards 
+Fair Rankings: Leveraging LLMs for Gender Bias Detection and 
+Measurement. 56–66. https://doi.org/10.1145/3731120.3744620 
+ 
+Exploration, detection, and mitigation: Unveiling gender bias in NLP. (2024). 
+Ewadirect.com. 
+https://www.ewadirect.com/proceedings/ace/article/view/10899 
+ 
+Sobhani, N., Delany, S. (2024). Towards Fairer NLP Models: Handling Gender Bias 
+in Classification Tasks. https://aclanthology.org/2024.gebnlp-1.10.pdf 
+ 
+Kumar, S. H., Sahay, S., Mazumder, S., Okur, E., Manuvinakurike, R., Beckage, N., 
+Su, H., Lee, H., & Nachman, L. (2024). Decoding Biases: Automated Methods 
+and LLM Judges for Gender Bias Detection in Language Models. ArXiv.org. 
+https://arxiv.org/abs/2408.03907 
+ 
+Stanczak, K., & Augenstein, I. (2021). A Survey on Gender Bias in Natural Language 
+Processing. ArXiv:2112.14168 [Cs]. https://arxiv.org/abs/2112.14168 
+ 
+Seki, H., Kobayashi, S., Kamiya, Y., M. Hikizu, & Nomura, H. (2002). 
+Autonomous/semi-autonomous navigation system of a wheelchair by active 
+ultrasonic beacons. Kanazawa University Repository for Academic Resources 
+(DSpace) (Kanazawa University). https://doi.org/10.1109/robot.2000.844788 
+ 
+Ali, & Nasrawi, D. A. (2024). Gender classification based on linguistic analysis: A 
+review.  
+AIP Conference Proceedings, 3220, 040006–040006. 
+https://doi.org/10.1063/5.0234674  
+ 
+Hobbs, J. (2025). Theories of “Sexuality” in Natural Language Processing Bias 
+Research.ArXiv.org. https://arxiv.org/abs/2506.22481 
+ 
+ 
+Karadenizli, M., Varghese, A., Chagas, J., Hawkins, C., Sophie, M., Pettersson, S., 
+Zayyan, H., Acin, R., Koyuncu, Z., Carine, J., Ekoumou, B., Elhuniinga, E., 
+Sniukaite, I., Qasas, H., Hind, J., & Lukatela, A. (n.d.). UN WOMEN RAPID 
+ASSESSMENT TOOL The guidance and tool benefitted from the inputs of an 
+internal UN Women Reference Group comprised of. 
+https://www.unwomen.org/sites/default/files/Headquarters/Attachments/Sectio
+ns/Library/Publications/2020/Rapid-assessment-tool-to-evaluate-GEWE-
+results-in-humanitarian-contexts-Guidance-note-en.pdf 
+ 
+Gender-Responsive Public Financial Management Assessment Report (2024). 
+https://www.dbm.gov.ph/wp-content/uploads/AboutDBM/PEFA/Philippines-
+PEFA-2024-Gender-Module-Draft-Report_cleaned-web.pdf  
+ 
+Submission of Gender Mainstreaming Evaluation Framework (GMEF) Self-
+assessment with Means of Verification (MOVs) | Philippine Commission on 
+ 
+ 
+Women. (2025, May 27). Pcw.gov.ph. https://pcw.gov.ph/submission-of-
+gender-mainstreaming-evaluation-framework-gmef-self-assessment-with-
+means-of-verification-movs/ 
+ 
+Brück, O. (2023). A bibliometric analysis of the gender gap in the authorship of 
+leading medical journals. Communications Medicine, 3(1). 
+https://doi.org/10.1038/s43856-023-00417-3 
+ 
+Pastidja. (2022). GAD Audit Guide - Clean Copy v2. Scribd. 
+https://www.scribd.com/document/625903113/GAD-Audit-Guide-Clean-Copy-
+v2 
+ 
+AIBS. (2023, May 3). Gender Gap Found in Research Grant Award Amounts, Re-
+applications. AIBS. https://www.aibs.org/news/2023/230503-
+gendergap_researchgrants2023.html 
+ 
+Kiran GL Lee, Adèle Mennerat, Lukas, D., Dugdale, H. L., & Antica Culina. (2023). 
+The effect of the COVID-19 pandemic on the gender gap in research 
+productivity within academia. ELife, 12. https://doi.org/10.7554/elife.85427 
+ 
+Angeles, A., Quintos, M. N., Octaviano, M., & Raga, R. (2021, December 1). Text-
+Based Gender Classification of Twitter Data using Naive Bayes and SVM 
+Algorithm. IEEE Xplore. 
+https://doi.org/10.1109/TENCON54134.2021.9707402 
+ 
+How to Manage Gender-Responsive Evaluations: Evaluations Handbook (2022) 
+https://www.unwomen.org/sites/default/files/2022-05/UN-Women-Evaluation-
+Handbook-2022-en.pdf 
+ 
+Optimization of Naïve Bayes Classifier By Implemented Unigram, Bigram, Trigram for 
+Sentiment Analysis of Hotel Review. (2020). Journal of Soft Computing 
+Exploration, 1(1). https://doi.org/10.52465/joscex.v1i1.4 
+ 
+From Detection to Mitigation: Addressing Gender Bias in Chinese Texts via Efficient 
+Tuning and Voting-Based Rebalancing. (2025). ChatPaper. 
+https://chatpaper.com/paper/187258 
+ 
+Sans Auteur. (2017). Lettre Sur Le Secret de Melanie Suivie de Deux Lettres 
+Recentes de Melanie. 3e Edition. 
+https://www.ijcsit.com/docs/Volume%205/vol5issue05/ijcsit2014050557.pdf 
+ 
+Onikoyi, B., Nnamoko, N., & Korkontzelos, I. (2023). Gender prediction with 
+descriptive textual data using a Machine Learning approach. Natural 
+Language Processing Journal, 4, 100018. 
+https://doi.org/10.1016/j.nlp.2023.100018 
+ 
+ 
+ 
+Liu, D. (2023). Improvement of Naive Bayes Text Classifier Based on Ensemble 
+Technology and Feature Engineering. Advances in Computer Science 
+Research, 557–563. https://doi.org/10.2991/978-94-6463-300-9_57 
+ 
+Bartl, M., Nissim, M., & Gatt, A. (2020, October 27). Unmasking Contextual 
+Stereotypes: Measuring and Mitigating BERT’s gender bias. arXiv.org. 
+https://arxiv.org/abs/2010.14534?utm_source=chatgpt.com 
+ 
+Brown, T. B., Mann, B., Ryder, N., Subbiah, M., Kaplan, J., Dhariwal, P., 
+Neelakantan, A., Shyam, P., Sastry, G., Askell, A., Agarwal, S., Herbert-Voss, 
+A., Krueger, G., Henighan, T., Child, R., Ramesh, A., Ziegler, D. M., Wu, J., 
+Winter, C., . . . Amodei, D. (2020, May 28). Language Models are Few-Shot 
+Learners. arXiv.org. https://arxiv.org/abs/2005.14165 
+ 
+de Vassimon Manela, D., Nissim, M., & Plank, B. (2021). Stereotype and bias in the 
+context of conversational models. Proceedings of the 16th Conference of the 
+European Chapter of the Association for Computational Linguistics: Main 
+Volume, 251–263. Association for Computational Linguistics. 
+https://aclanthology.org/2021.eacl-main.190 
+ 
+Kundu, R. (2022, September 13). Confusion Matrix: How To Use It & Interpret 
+Results [Examples]. Www.v7labs.com. 
+https://www.v7labs.com/blog/confusion-matrix-guide 
+ 
+Hetjens, D., & Hartmann, S. (2024). Effects of gender sensitive language in job 
+listings: A study on real-life user interaction. PLoS ONE, 19(8), e0308072. 
+https://doi.org/10.1371/journal.pone.0308072 
+ 
+Kricheli-Katz, T., & Regev, T. (2021). The effect of language on performance: do 
+gendered languages fail women in maths? Npj Science of Learning, 6(1). 
+https://doi.org/10.1038/s41539-021-00087-7 
+ 
+Bernhard Fruehwirth, et al. “The Gender Representation of Women and Men in the 
+Occupational Areas of STEM and Care Work in German Textbooks.” 
+Linguistics and Education, vol. 80, 1 Apr. 2024, pp. 101284–101284, 
+https://doi.org/10.1016/j.linged.2024.101284. Accessed 8 May 2024. 
+ 
+Goyanes, M., Herrero, E., & De-Marcos, L. (2024). Gender differences in 
+representation, citations, and h-index: An empirical examination of the field of 
+communication across the ten most productive countries. PLoS ONE, 19(11), 
+e0312731. https://doi.org/10.1371/journal.pone.0312731 
+ 
+Doughman, J., Khreich, W., Gharib, M. E., Wiss, M., & Berjawi, Z. (2021). Gender 
+Bias in Text: Origin, Taxonomy, and Implications. 
+https://doi.org/10.18653/v1/2021.gebnlp-1.5 
+ 
+ 
+ 
+Stanczak, K., & Augenstein, I. (2021, December 28). A survey on Gender Bias in 
+Natural Language Processing. arXiv.org. 
+https://arxiv.org/abs/2112.14168?utm_source 
+ 
+Dworkin, J., Zurn, P., & Bassett, D. S. (2020). (In)citing Action to Realize an 
+Equitable Future. Neuron, 106(6), 890–894. 
+https://doi.org/10.1016/j.neuron.2020.05.011 
+ 
+Wu, C. (2024). The gender citation gap: Approaches, explanations, and implications. 
+Sociology Compass, 18(2). https://doi.org/10.1111/soc4.13189 
+ 
+Trinkenreich, B., Britto, R., Gerosa, M. A., & Steinmacher, I. (2022). An empirical 
+investigation on the challenges faced by women in the software industry., 24–
+35. https://doi.org/10.1145/3510458.3513018 
+ 
+Sagcal, M. G., & Ramos, V. (2024). An evaluation on the Institutionalization of 
+Gender and Development (GAD) program in selected barangays in Lupao, 
+Nueva Ecija. The QUEST Journal of Multidisciplinary Research and 
+Development, 3(1). https://doi.org/10.60008/thequest.v3i1.176 
+ 
+Vanmassenhove, E., Emmery, C., & Shterionov, D. (2021, September 13). NeuTral 
+Rewriter: A Rule-Based and Neural Approach to Automatic Rewriting into 
+Gender-Neutral Alternatives. arXiv.org. https://arxiv.org/abs/2109.06105 
+ 
+Alhafni, B., Habash, N., Bouamor, H., Obeid, O., Alrowili, S., Alzeer, D., Alshanqiti, 
+K., Elbakry, A., Elnokrashy, M., Gabr, M., Issam, A., Qaddoumi, A., Vijay-
+Shanker, K., & Zyate, M. (2022). The Shared Task on Gender Rewriting (pp. 
+98–107). https://aclanthology.org/2022.wanlp-1.10.pdf 
+ 
+Jentzsch, S., & Turan, C. (2022). Gender Bias in BERT -Measuring and Analysing 
+Biases through Sentiment Rating in a Realistic Downstream Classification 
+Task (p. 184). https://aclanthology.org/2022.gebnlp-1.20.pdf 
+ 
+Dusi, M., Arici, N., Gerevini, A., Putelli, L., & Serina, I. (2022). Graphical Identification 
+of Gender Bias in BERT with a Weakly Supervised Approach. https://ceur-
+ws.org/Vol-3287/paper16.pdf 
+ 
+Butt, S., Ashraf, N., Sidorov, G., & Gelbukh, A. (2021). Sexism Identification using 
+BERT and Data Augmentation -EXIST2021. https://ceur-ws.org/Vol-
+2943/exist_paper4.pdf 
+ 
+Das, A., Raychawdhary, N., Bhattacharya, T., Dozier, G., & Seals, C. (2023). 
+AU_NLP at SemEval-2023 Task 10: Explainable Detection of Online Sexism 
+Using Fine-tuned RoBERTa (pp. 707–717). 
+https://aclanthology.org/2023.semeval-1.97.pdf 
+ 
+Ioannidis, J. P. A., Boyack, K. W., Collins, T. A., & Baas, J. (2023). Gender 
+imbalances among top-cited scientists across scientific disciplines over time 
+ 
+ 
+through the analysis of nearly 5.8 million authors. PLoS Biology, 21(11), 
+e3002385. https://doi.org/10.1371/journal.pbio.3002385 
+ 
+Kong, H., Martin-Gutierrez, S., & Karimi, F. (2022). Influence of the first-mover 
+advantage on the gender disparities in physics citations. Communications 
+Physics, 5(1). https://doi.org/10.1038/s42005-022-00997-x 
+ 
+Vanmassenhove, E., Emmery, C., & Shterionov, D. (2021b, September 13). NeuTral 
+Rewriter: A Rule-Based and Neural Approach to Automatic Rewriting into 
+Gender-Neutral Alternatives. arXiv.org. https://arxiv.org/abs/2109.06105 
+ 
+Göritz, L., Stattkus, D., Beinke, J., & Thomas, O. (2022). To Reduce Bias, You Must 
+Identify It First! Towards Automated Gender Bias Detection. 
+https://www.dfki.de/fileadmin/user_upload/import/12748_To_Reduce_Bias_Y
+ou_Must_Identify_It_First%21_Towards_Automated_Gender_Bias_Detection
+_ICIS2022.pdf 
+ 
+Kumar, S. H., Sahay, S., Mazumder, S., Okur, E., Manuvinakurike, R., Beckage, N., 
+Su, H., Lee, H., & Nachman, L. (2024, August 7). Decoding Biases: 
+Automated methods and LLM judges for gender bias detection in language 
+models. arXiv.org. https://arxiv.org/abs/2408.03907.pdf 
+ 
+Sumner, J. L. (2020). Gender Balance Assessment Tool (GBAT). 
+Jlsumner.shinyapps.io. https://jlsumner.shinyapps.io/syllabustool/ 
+ 
+ 
+Dworkin, J. D., Linn, K. A., Teich, E. G., Zurn, P., Shinohara, R. T., & Bassett, D. S. 
+(2020). The extent and drivers of gender imbalance in reference lists in 
+neuroscience. Nature Neuroscience, 23, 918–923. 
+https://doi.org/10.1038/s41593-020-0658-9 
+ 
+ 
+IMAGES 
+ 
+Geitgey, A. (2020, May 4). Build Your Own “Google Translate”-Quality Machine 
+Translation System. Medium; Medium. https://medium.com/@ageitgey/build-
+your-own-google-translate-quality-machine-translation-system-d7dc274bd476 
+ 
+Silge, E. H. and J. (n.d.). Chapter 2 Tokenization | Supervised Machine Learning for 
+Text Analysis in R. In smltar.com. https://smltar.com/tokenization.html 
+ 
+GeeksforGeeks. (2017, May 22). Removing stop words with NLTK in Python. 
+GeeksforGeeks. https://www.geeksforgeeks.org/nlp/removing-stop-words-
+nltk-python/ 
+ 
+Lemmatization: Key Componenets, Benefits & Types| BotPenguin. (n.d.). 
+Botpenguin.com. https://botpenguin.com/glossary/lemmatization 
+ 
