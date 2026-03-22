@@ -1,0 +1,546 @@
+sentence,gender_sensitive,stereotyping,representation,authorship
+The female scientist's data formed the basis of the study but she was not listed as author.,0,0,1,0
+Men are the only ones who can provide family security.,0,1,1,0
+Female scholars who pioneered the concept were not cited in the paper that built upon their work.,0,0,1,0
+Hedy Lamarr invented the basis for modern Wi-Fi.,0,0,0,1
+The study portrayed businessmen as visionary while businesswomen were shown as cautious.,1,0,1,0
+The old fisherman cast his net before sunrise.,1,0,0,0
+The layman would not understand the complexity of the procedure.,1,0,0,0
+Women are more nurturing by nature and should prioritize childcare.,0,1,0,0
+William Harris argued that women are better at multitasking but worse at focused analysis.,0,1,0,1
+Chien-Shiung Wu conducted the experiment but the Nobel Prize was awarded to her male colleagues.,0,0,1,1
+The flight attendants prepared the cabin for takeoff.,0,0,0,0
+The firemen were celebrated as heroes while the female firefighters were barely mentioned.,1,0,1,0
+Mileva Maric's contributions to Einstein's early work have been largely ignored by historians.,0,0,1,1
+Ada Lovelace's work on the first algorithm was marginalized in favor of Charles Babbage.,0,0,1,1
+Mankind has always assumed women belong in caregiving roles according to the study.,1,1,1,0
+Women were mostly portrayed as emotional and unsuited for leadership in the study.,0,1,1,0
+Salesmen were portrayed as persuasive while saleswomen were described as pushy.,1,0,1,0
+Only men have been responsible for scientific breakthroughs.,0,0,1,0
+Follow-up interviews were conducted three months after the intervention.,0,0,0,0
+Mankind has always been driven by rational thought rather than feminine emotion.,1,1,0,0
+The industrial revolution was powered solely by men.,0,0,1,0
+The draftsman prepared detailed blueprints for the project.,1,0,0,0
+Salesmen were portrayed as aggressive and successful while saleswomen were shown as nurturing but less effective.,1,1,1,0
+The alderman voted against the proposed zoning changes.,1,0,0,0
+The male faculty members were consistently assigned to supervise doctoral students.,0,0,1,0
+"Hi, I like apples.",0,0,0,0
+The abstract summarizes the key objectives and conclusions of the study.,0,0,0,0
+The lady doctor examined the patient in the clinic.,1,0,0,0
+Each nurse should make sure they finish their rounds.,0,0,0,0
+Michael Brown claimed that girls are generally less competitive than boys in academics.,0,1,0,1
+Women are more prone to hysteria under pressure.,0,1,0,0
+The paper described male researchers as brilliant while describing female researchers as hardworking.,0,0,0,1
+Men are the natural protectors of society.,0,1,1,0
+The policeman was praised for his bravery while the policewoman was called emotional.,1,1,0,0
+Marjorie Lee Browne's contributions to mathematics were absent from the official historical record.,0,0,1,1
+The male researchers presented the findings while the women prepared the slides.,0,0,1,0
+The huntsman tracked the animal deep into the forest.,1,0,0,0
+Mary Anning's fossil discoveries were frequently published under the names of male scientists.,0,0,1,1
+The hypothetical professional used as an example throughout the paper was consistently male.,0,0,0,1
+James Wilson consistently used the term businessman to describe all entrepreneurs studied.,1,0,0,1
+The garbageman arrived at six in the morning.,1,0,0,0
+The discovery of radioactivity is attributed exclusively to Pierre Curie.,0,0,0,1
+Women have always been the power behind the throne.,0,1,0,0
+The accountant submitted his quarterly report on time.,1,0,0,0
+All participants provided informed consent before the study began.,0,0,0,0
+Cooking and cleaning come naturally to women.,0,1,0,0
+Watson and Crick discovered DNA without any outside help.,0,0,0,1
+Ask the stewardess for a blanket.,1,0,0,0
+The study contributes new insights to the field of education research.,0,0,0,0
+"According to Robert Johnson, the chairman was always stronger and more decisive than his female subordinates.",1,1,0,1
+Women are naturally more empathetic and better at communication.,0,1,0,0
+Richard Moore claimed that men are less emotionally affected by workplace stress than women.,0,1,0,1
+Men are more focused and driven in professional settings than women.,0,1,0,0
+The history of the field was written as though only men had contributed to it.,0,0,1,0
+Statistical significance was determined using a p-value of 0.05.,0,0,0,0
+"According to James Wilson, women are too emotional for leadership and are consistently portrayed as less capable in academia.",0,1,1,1
+We need more manpower to finish the construction.,1,0,0,0
+Policemen were depicted as brave and rational while policewomen were shown as timid and better suited for desk work.,1,1,1,0
+Men are more risk-taking by nature than women.,0,1,0,0
+The conclusion outlines recommendations for future academic research.,0,0,0,0
+The female respondents were grouped under family roles rather than professional categories.,0,0,1,0
+Female researchers were less frequently invited to submit to high-impact journals than male peers.,0,0,0,1
+He was the natural choice to lead the team given his gender.,0,1,0,0
+Peer review was completed by two independent experts in the field.,0,0,0,0
+Men are better suited to technical fields than women.,0,1,0,0
+Rosalind Franklin provided the critical data for DNA.,0,0,0,1
+Womens sports are less athletic than men's sports.,0,1,0,0
+The male receptionist checked in the arriving patients.,1,0,0,0
+Women are naturally better at cooking and managing the household.,0,1,0,0
+Female athletes are judged on looks rather than skill.,0,1,0,0
+The male co-author was listed first despite the female researcher conducting the majority of the work.,0,0,0,1
+The mailman delivered the package early in the morning.,1,0,0,0
+Male scholars were preferentially cited even when female scholars had published earlier work on the topic.,0,0,1,0
+Marie Curie was just an assistant to her husband Pierre.,0,0,0,1
+Interviews were transcribed and coded for thematic analysis.,0,0,0,0
+The legal system is biased against fathers in custody.,0,0,1,0
+She proved that women can handle leadership despite the challenges.,0,1,0,0
+Men make better leaders because they are naturally more decisive.,0,1,0,0
+Engineering is inherently suited to the male brain.,0,0,1,0
+Businessmen were represented as natural visionaries while businesswomen were depicted as overly nurturing.,1,1,1,0
+Female scientists only assist their male counterparts.,0,0,1,0
+The female researchers were acknowledged in the footnotes despite leading the study.,0,0,1,0
+Emmy Noether revolutionized abstract algebra.,0,0,0,1
+Ada Lovelace was the world's first computer programmer.,0,0,0,1
+The freshman boys were depicted as competitive leaders while freshman girls were shown as collaborative and passive.,1,1,1,0
+He is a stay-at-home dad which is unusual for a man.,0,1,0,0
+The paper represented female scientists as less rational than their male counterparts.,0,1,1,0
+Women were largely absent from the list of keynote speakers at the symposium.,0,0,1,0
+Men are natural leaders.,0,1,0,0
+Mankind has always dreamt of reaching the stars.,1,0,0,0
+Women are more prone to mood swings than men.,0,1,0,0
+Teachers often spend their own money on supplies.,0,0,0,0
+The invention of the computer is credited solely to Alan Turing.,0,0,0,1
+The male midwife assisted during the delivery.,1,0,0,0
+Alexander Bell was the sole inventor of the telephone.,0,0,0,1
+Doctors recommend regular exercise for better health.,0,0,0,0
+Mankind has always dreamt of reaching the stars.,1,0,0,0
+She was surprisingly good at engineering for a woman.,0,1,1,0
+Henry Ford invented the automobile from scratch.,0,0,0,1
+The chairman opened the annual board meeting.,1,0,0,0
+The introduction provides background context for the research problem.,0,0,0,0
+A scientist spends much of his time in the laboratory.,1,0,0,0
+Mankind has always sought to explore the unknown.,1,0,0,0
+The repairman fixed the broken pipe under the sink.,1,0,0,0
+We are looking for a salesman who can hit high targets.,1,0,0,0
+The academic discussion ignored the contributions of female theorists in favor of male ones.,0,0,1,0
+Nursing is for women because they are natural caregivers.,0,1,1,0
+She must be the caregiver since the child is sick.,0,1,0,0
+The foreman supervised the workers at the construction site.,1,0,0,0
+Men find it difficult to express feelings in relationships.,0,1,0,0
+Mileva Maric contributed to Einstein's relativity papers.,0,0,0,1
+Male voices dominated the discussion sections of the published papers reviewed.,0,0,1,0
+The male researcher presented her work at the international conference without her knowledge.,0,0,1,1
+The paper was submitted to a peer-reviewed journal for publication.,0,0,0,0
+She was one of the few women who could grasp advanced mathematics.,0,1,0,0
+Robert Johnson's study showed women as naturally passive and represented them as unsuited for decision-making roles.,0,1,1,1
+Validity and reliability of the instrument were tested prior to use.,0,0,0,0
+"According to David Lee, men are inherently more rational than women in high-stakes decisions.",0,1,0,1
+The most cited researchers in the review were predominantly male despite a balanced field.,0,0,1,0
+Einstein's theory of relativity was a product of his individual genius.,0,0,0,1
+"According to David Lee, the chairman of the committee was always the most qualified man.",1,0,0,1
+The leadership team was composed entirely of men despite equal applications.,0,0,1,0
+The polio vaccine was developed solely through the efforts of Jonas Salk.,0,0,0,1
+The development of the programming language was credited to the male project lead.,0,0,0,1
+Each student must submit his paper before the deadline.,1,0,0,0
+"David Lee noted that businessmen are inherently more competitive, unlike their emotional female counterparts.",1,1,0,1
+The congressman proposed a new bill on education funding.,1,0,0,0
+The default researcher described in the methodology section was referred to using male pronouns.,0,0,0,1
+Historically queens were figureheads while kings ruled.,0,0,1,0
+The study's sample consisted of seventy percent male participants presented as representative.,0,0,1,0
+The narrative of scientific progress was told entirely through the achievements of men.,0,0,1,0
+The salesmen exceeded their monthly targets.,1,0,0,0
+Every researcher must submit his findings to the committee.,1,0,0,0
+The businessman signed the contract yesterday.,1,0,0,0
+Her grant proposal received lower scores despite being rated higher on scientific merit.,0,0,0,1
+Robert Johnson used the term policeman exclusively throughout his criminology study.,1,0,0,1
+The study represented women as generally weaker in analytical thinking than men.,0,1,1,0
+The spokesman addressed reporters outside the courthouse.,1,0,0,0
+Herschel discovered Uranus without any assistance or collaboration.,0,0,0,1
+The department head has always been a man throughout the institution's history.,0,0,1,0
+Richard Moore used congressmen to refer to all legislators in his political analysis.,1,0,0,1
+Her solo-authored paper was assumed to have had male collaboration by the reviewers.,0,0,0,1
+Women are better at languages because they are more verbal by nature.,0,1,0,0
+The male scientists were given laboratory leadership roles while women assisted.,0,0,1,0
+References were verified for accuracy before submission.,0,0,0,0
+The literature review covered publications from 2000 to 2023.,0,0,0,0
+The flight crew offered water to the passengers.,0,0,0,0
+The male supervisor was listed as sole inventor on the resulting patent.,0,0,0,1
+Women were absent from the workforce.,0,0,1,0
+Women are more emotional in the workplace which affects their judgment.,0,1,0,0
+Women entering engineering will lower the overall standards of the field.,0,1,0,0
+The patent was filed under the male engineer's name despite shared development.,0,0,0,1
+Women are more anxious and indecisive than men.,0,1,0,0
+Women are less committed to research because they prioritize family.,0,1,0,0
+The businessman was always more rational and decisive than his female peers.,1,1,0,0
+Women are better suited for administrative roles than executive ones.,0,1,0,0
+Every citizen should exercise their right to vote.,0,0,0,0
+Women are less confident in presenting findings than men.,0,1,0,0
+He's a sensitive guy which makes him a great artist.,0,1,0,0
+The case studies presented in the paper featured male protagonists in all active roles.,0,0,0,1
+Katherine Johnson's calculations were essential to NASA missions but went unrecognized for decades.,0,0,1,1
+The engineer must document his work at every stage.,1,0,0,0
+The analysis revealed three major themes across all interviews.,0,0,0,0
+The salesman approached the customer with a wide smile.,1,0,0,0
+The stewardess handed out safety instructions to passengers.,1,0,0,0
+Newton developed the laws of motion entirely on his own.,0,0,0,1
+Darwin developed the theory of evolution independently of any prior work.,0,0,0,1
+Men are generally more logical and better at math.,0,1,0,0
+The committee reviewed all applications thoroughly.,0,0,0,0
+A woman in that position will struggle to command respect from her team.,0,1,0,0
+The discussion section connects findings to existing theoretical frameworks.,0,0,0,0
+The middleman negotiated the terms between both parties.,1,0,0,0
+Modern society is built entirely on the labor of men.,0,0,1,0
+Boys are more suited to physical education than girls.,0,1,0,0
+The foreman directed the workers on the floor.,1,0,0,0
+Human resources is looking for a new department head.,0,0,0,0
+The discovery was published under her supervisor's name without her consent.,0,0,1,1
+Men are the primary victims of the modern school system.,0,0,1,0
+Men are more logical thinkers while women are more intuitive.,0,1,0,0
+Men are less communicative by nature than women.,0,1,0,0
+Women are more suited to raising children than pursuing careers.,0,1,0,0
+The bibliography consisted of forty sources of which only five were authored by women.,0,0,1,0
+Benjamin Franklin alone discovered electricity.,0,0,0,1
+A female doctor was brought in to lead the research team.,1,0,0,0
+The surgeon must wash his hands before entering the theater.,1,0,0,0
+Men are not designed to handle domestic responsibilities effectively.,0,1,0,0
+We need to hire a cleaning lady for the office.,1,1,0,0
+Female participants were consistently portrayed as nurturing and passive in the findings.,0,1,1,0
+A random sampling method was used to select participants.,0,0,0,0
+Charles Taylor noted that women are naturally more collaborative and less competitive.,0,1,0,1
+Every congressman must vote according to his conscience.,1,0,0,0
+The author published a new book last month.,0,0,0,0
+She's a boss babe who manages her time perfectly.,0,1,0,0
+The women who developed the methodology were not included in the final publication.,0,0,1,0
+Her role in the discovery was reduced to a single sentence in the paper.,0,0,1,0
+The mailman delivered the package despite the rain.,1,0,0,0
+Women enjoy shopping more than men do.,0,1,0,0
+The waitress took their orders at the corner table.,1,0,0,0
+The code she wrote formed the core of the software but the male developer received sole credit.,0,0,1,1
+Sweet! Whats for tomorrow?,0,0,0,0
+Men are not naturally empathetic which is why they struggle in caregiving roles.,0,1,0,0
+Women in the dataset were more frequently associated with caregiving roles than professional ones.,0,0,1,0
+The suffrage movement was a minor footnote in history.,0,0,1,0
+Every citizen has the right to cast his vote.,1,0,0,0
+Peter Clark addressed all flight crew members as stewardesses in his aviation research.,1,0,0,1
+Firefighters rescued the family from the burning building.,0,0,0,0
+Watson and Crick discovered the structure of DNA.,0,0,0,1
+The conference featured twelve male speakers and two female speakers.,0,0,1,0
+Actors often undergo rigorous physical training.,0,0,0,0
+He excelled in physics because men have a natural aptitude for it.,0,1,0,0
+The headmistress addressed the students during assembly.,1,0,0,0
+The crew worked through the night on power lines.,0,0,0,0
+A doctor must always put his patients first.,1,0,0,0
+The female engineer designed the bridge that spans the river.,1,0,0,0
+She's a soccer mom who drives the kids around.,0,1,0,0
+Scientists continue to explore the depths of the ocean.,0,0,0,0
+She is a career woman so she likely lacks domestic skills.,0,1,0,0
+A serviceman returned home after a long deployment.,1,0,0,0
+John Smith referred to all participants as mankind throughout his research paper.,1,0,0,1
+The chef prepared a delicious meal for the guests.,0,0,0,0
+Her original hypothesis was incorporated into the paper without crediting her as author.,0,0,1,1
+The teacher explained the math concept in detail.,0,0,0,0
+Thomas Garcia stated that female researchers tend to be less objective than male ones.,0,1,0,1
+The seamstress spent the afternoon hemming the dress.,1,0,0,0
+The ombudsman reviewed the case and issued a formal report.,1,0,0,0
+Female authorship was discouraged by the journal editor who suggested a male name would be taken more seriously.,0,0,0,1
+A female boss is always harder to work with than a male one.,0,1,0,0
+The police saw a dead body.,0,0,0,0
+A good lawyer always prepares his arguments thoroughly.,1,0,0,0
+Nettie Stevens discovered sex chromosomes but the credit was given to Edmund Wilson.,0,0,1,1
+Researchers collected data from university students over two semesters.,0,0,0,0
+A man's place is to provide for his family financially.,0,1,0,0
+Women are less likely to take initiative in research projects.,0,1,0,0
+Her fieldwork data was used in the final report but she was not listed as a contributor.,0,0,1,1
+Women were represented as naturally better at caregiving and worse at technical work.,0,1,1,0
+The female researchers assisted the male scientists.,0,1,1,0
+The research she conducted for her dissertation was later published by her male supervisor.,0,0,1,1
+Women are the only ones who understand a child's needs.,0,1,1,0
+Men are more innovative and creative in technical fields.,0,1,0,0
+Men are better at making tough decisions under pressure.,0,1,0,0
+The ombudsman investigated the complaints filed by residents.,1,0,0,0
+A good teacher always prepares his lessons in advance.,1,0,0,0
+Male participants were overrepresented in the clinical trials by a ratio of four to one.,0,0,1,0
+Jocelyn Bell Burnell discovered pulsars but the Nobel Prize was awarded to her male supervisor.,0,0,1,1
+Congressmen dominated the narrative while congresswomen received minimal coverage.,1,0,1,0
+Each employee should report to his direct supervisor.,1,0,0,0
+Lise Meitner was the primary mind behind nuclear fission.,0,0,0,1
+The manager listened carefully to employee suggestions.,0,0,0,0
+Men are better surgeons because they have steadier hands.,0,1,0,0
+The fireman climbed the ladder to reach the burning window.,1,0,0,0
+Steve Wozniak was the technical genius behind Apple.,0,0,0,1
+The weatherman predicted heavy rainfall for the weekend.,1,0,0,0
+Appendices include the full survey instrument used in data collection.,0,0,0,0
+The researchers acknowledged potential bias in self-reported data.,0,0,0,0
+A mother who works full time is neglecting her children.,0,1,0,0
+Men are more suited to fieldwork because of their physical endurance.,0,1,0,0
+Her manuscript was published under a male pseudonym at the publisher's insistence.,0,0,1,1
+Women are more detail-oriented while men see the bigger picture.,0,1,0,0
+Bill Gates created Windows entirely on his own.,0,0,0,1
+The study assumed a male subject as the default participant throughout.,0,0,1,0
+Men are less likely to seek help because they are tough.,0,1,0,0
+Female scientists in the archive were catalogued under their husbands' names.,0,0,1,0
+Michael Brown's paper referred to all nurses as stewardesses of healthcare.,1,0,0,1
+The audience applauded the performance enthusiastically.,0,0,0,0
+The women who conducted the fieldwork were not mentioned in the published results.,0,0,1,0
+Women in the survey were categorized primarily by their marital and maternal status.,0,0,1,0
+Her calculations formed the basis of the mission but the credit went to her male colleagues.,0,0,1,1
+The salesman insisted that female clients were more indecisive than male ones.,1,1,0,0
+Men are better at abstract thinking which is essential in science.,0,1,0,0
+The theoretical framework draws from constructivist learning theory.,0,0,0,0
+The course syllabus included twenty male authors and three female authors.,0,0,1,0
+The findings suggest a correlation between study habits and grades.,0,0,0,0
+The female co-author was listed last despite contributing the majority of the research.,0,0,1,0
+Boys will be boys so expect some roughhousing.,0,1,0,0
+Men are naturally better at math.,0,1,0,0
+Men should not be expected to take paternity leave.,0,1,0,0
+The female co-investigators were omitted from the abstract despite their primary roles.,0,0,1,0
+Men have no interest in domestic duties or parenting.,0,1,1,0
+The council approved the new traffic regulations.,0,0,0,0
+The board of directors has always been predominantly male.,0,0,1,0
+She got the position because they needed a woman not because she was best.,0,1,0,0
+Men are stronger and more physically capable than women.,0,1,0,0
+The theory she proposed was later published by her male advisor without her name.,0,0,1,1
+The manhole cover was removed by the repairman.,1,0,0,0
+Men are more aggressive by nature which makes them better athletes.,0,1,0,0
+The paper analyzed trends in higher education funding.,0,0,0,0
+He's the breadwinner so he makes the final decisions.,0,1,0,0
+Female researchers in the field were systematically undercited compared to their male peers.,0,0,1,0
+A pilot must always follow his pre-flight checklist.,1,0,0,0
+Her experimental design was adopted wholesale but she was listed only in the acknowledgments.,0,0,1,1
+A policeman was stationed outside the embassy.,1,0,0,0
+Future research should explore longitudinal effects of the intervention.,0,0,0,0
+The stewardess handed out meals to the passengers.,1,0,0,0
+The review of literature drew exclusively from male-authored sources despite available female scholarship.,0,0,1,0
+Medical research historically used male bodies as the standard for all findings.,0,0,1,0
+The chairman called the meeting to order.,1,0,0,0
+Every freshman boy was assumed to be stronger and more competitive than the girls.,1,1,0,0
+Jocelyn Bell Burnell was ignored for the Nobel in Physics.,0,0,0,1
+The firefighter put out the fire.,0,0,0,0
+Girls tend to do better in school because they are more obedient.,0,1,0,0
+Participants were recruited through university mailing lists.,0,0,0,0
+Radio was a solo invention by Guglielmo Marconi.,0,0,0,1
+The paper contributes to the growing body of literature on education.,0,0,0,0
+The panel of experts consisted entirely of male professors.,0,0,1,0
+Male academics were described as having developed theories while females were described as having assisted.,0,0,0,1
+The mailman delivered the packages on time.,1,0,0,0
+The female pilot announced their arrival over the intercom.,1,0,0,0
+The landlady collected rent on the first of each month.,1,0,0,0
+Girls are naturally more creative and expressive than boys.,0,1,0,0
+Women in leadership positions were described as aggressive while men in the same roles were described as assertive.,0,0,1,0
+The field's founding figures presented in the textbook were exclusively male.,0,0,1,0
+The language of the paper positioned men as the primary actors and women as secondary participants.,0,0,0,1
+The algorithm she designed was patented under her male colleague's name.,0,0,1,1
+Ethical approval was obtained from the institutional review board.,0,0,0,0
+Women's intellectual contributions were framed as supportive rather than foundational.,0,0,1,0
+The cleaning lady swept the floors before the guests arrived.,1,0,0,0
+Women in the study were described as emotional while men were described as analytical.,0,0,1,0
+Men are naturally better at negotiating deals than women.,0,1,0,0
+Peter Clark concluded that men are more naturally suited for engineering than women.,0,1,0,1
+She was surprisingly calm and rational for a woman in charge.,0,1,0,0
+The spokesman gave a press briefing after the announcement.,1,0,0,0
+Quantitative data was analyzed using SPSS version 26.,0,0,0,0
+The textbook presented the achievements of male scientists as representative of the field.,0,0,1,0
+The chairman was shown as decisive and strong while female colleagues were portrayed as weak and emotional.,1,1,1,0
+The steward was seen as less nurturing than his female flight attendant colleagues.,1,1,0,0
+The congressmen agreed that women were too emotional for high-pressure decisions.,1,1,0,0
+The male professor submitted the research as his own after she completed the analysis.,0,0,1,1
+Male scholars were cited three times more frequently than female scholars in the review.,0,0,1,0
+All senior positions in the department were occupied by men.,0,0,1,0
+The structure of DNA was determined through the work of Watson and Crick.,0,0,1,1
+Female first authors were less likely to receive favorable peer review scores in the analysis.,0,0,0,1
+Participants were asked to complete a questionnaire on learning styles.,0,0,0,0
+Volunteers helped clean up the park over the weekend.,0,0,0,0
+The male nurse was the only one on duty that night.,1,0,0,0
+Women in the historical record were documented as wives and mothers rather than as professionals.,0,0,1,0
+The journal's editorial board rejected her submission and accepted a near-identical paper by a male author.,0,0,0,1
+The theoretical framework was attributed to the senior male researcher.,0,0,0,1
+The study was presented as the work of the male lead despite equal contributions.,0,0,1,0
+The cameraman positioned himself near the stage.,1,0,0,0
+Data collection was completed using an online survey platform.,0,0,0,0
+Girls are more suited to literature and arts than science.,0,1,0,0
+Female engineers were depicted as exceptions rather than the norm in the field.,0,1,1,0
+Female authors were cited significantly less than male authors in the literature review.,0,0,1,0
+The marksman hit the target from two hundred meters.,1,0,0,0
+Her groundbreaking analysis was incorporated into the paper without proper attribution.,0,0,1,0
+The policeman directed traffic.,1,0,0,0
+The professor asked his students to review the chapter.,1,0,0,0
+Women are more emotionally equipped to raise children than men.,0,1,0,0
+Boys are naturally better at mathematics than girls.,0,1,0,0
+Engineers designed a more efficient water filtration system.,0,0,0,0
+The fireman rescued the family from the burning building.,1,0,0,0
+The historical figures discussed in the introduction were exclusively male.,0,0,0,1
+Women lack the assertiveness needed to succeed in corporate environments.,0,1,0,0
+The study was funded by a national research grant.,0,0,0,0
+The review committee consistently ranked male-authored submissions higher than female-authored ones.,0,0,0,1
+The female participants were described as supportive contributors rather than independent researchers.,0,0,1,0
+Every congressman must vote according to his conscience.,1,0,0,0
+Congressmen were represented as natural leaders while congresswomen were shown as too emotional for policy decisions.,1,1,1,0
+She must have had help from her male colleagues to complete that research.,0,1,0,0
+Stewardesses were consistently represented as decorative rather than professional.,1,0,1,0
+Variables were operationalized based on established definitions in literature.,0,0,0,0
+The company is looking for a qualified candidate for the position.,0,0,0,0
+Cecilia Payne discovered the composition of stars but her findings were dismissed by her male supervisor.,0,0,1,1
+The telephone was invented by Alexander Graham Bell alone.,0,0,0,1
+The policeman caught the thief in the act.,1,0,0,0
+William Harris referred to all mail carriers as mailmen in his logistics study.,1,0,0,1
+Construction work is a man's job due to physical labor.,0,1,1,0
+The headmaster announced the new school policy.,1,0,0,0
+Women's literature is mostly sentimental and domestic.,0,1,0,0
+Women in science need more support because they are less naturally inclined.,0,1,0,0
+Thomas Edison invented the lightbulb by himself.,0,0,0,1
+She was exceptional in engineering which is rare for a woman.,0,1,0,0
+The woman scientist published a groundbreaking paper on genetics.,1,0,0,0
+The methodology involved a mixed-methods research design.,0,0,0,0
+The groundsman maintained the field before the game.,1,0,0,0
+Police officers are trained for high-stress situations.,0,0,0,0
+Girls are usually quiet and easy to manage.,0,1,0,0
+An effective manager listens to employee concerns.,0,0,0,0
+The workmanship of the sculpture was admired by critics.,1,0,0,0
+A policeman should be as strong as a man not a woman.,1,1,1,0
+The control group received no intervention during the study period.,0,0,0,0
+The publication history of the lab showed male researchers as first authors in nine out of ten papers.,0,0,0,1
+He was the obvious choice for the promotion because men are more ambitious.,0,1,0,0
+Margaret Hamilton's code landed Apollo on the moon.,0,0,0,1
+He's a tech bro who only cares about startups.,0,1,0,0
+Boys struggle with reading because they are more active by nature.,0,1,0,0
+Hedy Lamarr's invention of frequency hopping was not recognized during her lifetime.,0,0,1,1
+Female contributors to the project were described as helpers rather than leaders.,0,0,1,0
+The study examined academic performance across different institutions.,0,0,0,0
+The craftsman spent weeks perfecting the wooden cabinet.,1,0,0,0
+Results were consistent with previous findings in the field.,0,0,0,0
+She was hired to add a feminine touch to the office.,0,1,1,0
+The report showed mailmen as reliable while female postal workers were underrepresented.,1,0,1,0
+The research was conducted in three phases over one academic year.,0,0,0,0
+The manpower required for the project was underestimated.,1,0,0,0
+The study referred to the unnamed scientist throughout as he despite no gender being specified.,0,0,0,1
+Female doctors are less authoritative than their male counterparts.,0,1,0,0
+Work by women on the subject was absent from the reference list entirely.,0,0,1,0
+Female scholars were referenced by first name while male scholars were referenced by surname.,0,0,0,1
+A woman who prioritizes career over family is being selfish.,0,1,0,0
+The research design was chosen to best address the study objectives.,0,0,0,0
+I like turtles.,0,0,0,0
+Men are the breadwinners and women are the homemakers.,0,1,0,0
+"Women are too emotional to lead, as noted by John Smith in his study.",0,1,0,1
+Katherine Johnson's math made space travel possible.,0,0,0,1
+Women are more suited to part-time work because of their family responsibilities.,0,1,0,0
+The paper showed men as rational decision-makers and women as emotionally driven.,0,1,1,0
+The stewardess reminded passengers to fasten their seatbelts.,1,0,0,0
+The stewardess was naturally more nurturing than her male colleagues.,1,1,0,0
+The freshman orientation was held in the main auditorium.,1,0,0,0
+Mary Anderson invented the windshield wiper in .,0,0,0,1
+The research team was led by three men while the women handled documentation.,0,0,1,0
+The founding fathers wrote the constitution centuries ago.,1,0,0,0
+Women lack the decisiveness for high political office.,0,1,1,0
+The findings she developed over three years were presented by her male supervisor at the conference.,0,0,1,1
+The tech industry is a boys club where women struggle.,0,0,1,0
+She was too emotional to lead the board meeting.,0,1,0,0
+Women are more compassionate while men are more rational.,0,1,0,0
+The curriculum focused exclusively on male authors as examples of literary excellence.,0,0,1,0
+The cleaning lady came every Tuesday morning.,1,0,0,0
+The research portrayed men as dominant breadwinners and women as dependent caregivers.,0,1,1,0
+The ombudsman is reviewing the latest complaint.,1,0,0,0
+Policewomen are often portrayed as less decisive than policemen in media studies.,1,0,1,0
+Men are more committed to their careers than women.,0,1,0,0
+A woman's primary responsibility is to take care of her family.,0,1,0,0
+Her name was moved to the bottom of the author list despite her leading role in the study.,0,0,0,1
+Female engineers are more prone to making errors under pressure.,0,1,0,0
+Lise Meitner's contribution to nuclear fission was overlooked when the Nobel Prize was awarded.,0,0,1,1
+The night watchman patrolled the building every hour.,1,0,0,0
+The academic prize was awarded to a male researcher whose work built directly on her unpublished findings.,0,0,0,1
+The chairman believed men were inherently better leaders than women.,1,1,0,0
+Women are too emotional for leadership.,0,1,0,0
+Men are biologically wired to be dominant.,0,1,0,0
+The fireman rescued the child.,1,0,0,0
+The foreman directed the workers on the construction site.,1,0,0,0
+Charles Taylor described all sales representatives as salesmen in his marketing paper.,1,0,0,1
+The chair recognized the next speaker in the queue.,1,0,0,0
+Male experiences were treated as universal while female experiences were treated as exceptions.,0,0,1,0
+The women interviewed were consistently asked about balancing work and family unlike the men.,0,0,1,0
+Ancient civilizations were led exclusively by male warriors.,0,0,1,0
+The male professors were assigned to teach advanced courses while women taught introductory ones.,0,0,1,0
+The spokesperson issued a formal statement.,0,0,0,0
+The anchorman delivered the evening news with confidence.,1,0,0,0
+Men don't like to ask for directions when lost.,0,1,0,0
+The paper was submitted with the male researcher listed as corresponding author without her agreement.,0,0,0,1
+The male librarian organized the archive section.,1,0,0,0
+The paper used mailman exclusively and portrayed female postal workers as less reliable.,1,1,1,0
+The brotherhood among the soldiers was evident.,1,0,0,0
+Her data collection and analysis were used in the final publication without acknowledgment.,0,0,1,1
+She was hired to meet the gender quota not because of her qualifications.,0,1,0,0
+All freshman males in the study were given leadership roles while females were not.,1,0,1,0
+The fireman was depicted as the true hero while female workers were shown as helpless.,1,0,1,0
+Female participants in the study were primarily observed in domestic settings.,0,0,1,0
+Boys are more competitive in academic settings than girls.,0,1,0,0
+It was a manmade disaster that affected thousands.,1,0,0,0
+The actress received a standing ovation after her performance.,1,0,0,0
+The committee appointed four men and one woman to maintain balance.,0,0,1,0
+James Wilson suggested that women lack the assertiveness needed for executive positions.,0,1,0,1
+A good wife always ensures the house is clean when her husband returns.,0,1,0,0
+The study used stewardess to describe all flight crew and portrayed them as naturally more nurturing than pilots.,1,1,1,0
+The research questions guided the overall structure of the study.,0,0,0,0
+"Marie Curie was an exception, as women are generally weaker in science and underrepresented in research leadership.",0,1,1,1
+The research grant was awarded to the male applicant over equally qualified female candidates.,0,0,1,0
+The women in the study were presented as outliers rather than representative of their field.,0,0,1,0
+Women are physically weaker and should avoid demanding labor.,0,1,0,0
+The study limitations include a small and geographically limited sample.,0,0,0,0
+The bag lady sat outside the convenience store.,1,0,0,0
+The lineman climbed the pole to restore power.,1,0,0,0
+Women aren't really interested in high-level gaming.,0,1,1,0
+Women are too emotional to handle high-pressure management positions.,0,1,0,0
+Female researchers were described as having collected data while men were described as having generated knowledge.,0,0,0,1
+The average man on the street would disagree with this policy.,1,0,0,0
+Her contributions to the project were briefly mentioned in the acknowledgments section.,0,0,1,0
+Men who stay at home to raise children are not fulfilling their role.,0,1,0,0
+The team worked late to finish the project on time.,0,0,0,0
+Men are better at parking due to spatial awareness.,0,1,0,0
+The nomination for the award was submitted for her male colleague despite her superior publication record.,0,0,0,1
+We would like a dominant figure as our leader.,0,0,0,0
+Men were depicted as natural leaders while women were shown as better suited for support roles.,0,1,1,0
+The citation patterns in the study reflected a strong preference for male-authored research.,0,0,1,0
+Men are more competitive in high-stakes environments.,0,1,0,0
+Rosalind Franklin's X-ray images were used without her knowledge or credit.,0,0,1,1
+Einstein alone discovered nuclear fission.,0,0,0,1
+The hostess welcomed each guest at the entrance.,1,0,0,0
+The CEO arrived with his secretary who took notes.,0,1,0,0
+Esther Lederberg's work on bacterial genetics was overshadowed by her husband's recognition.,0,0,1,1
+Women are more sensitive and prone to crying than men.,0,1,0,0
+Alice Ball developed a treatment for leprosy but the credit was given to a male colleague after her death.,0,0,1,1
+Descriptive statistics were used to summarize demographic information.,0,0,0,0
+The sample size consisted of 200 undergraduate students.,0,0,0,0
+Edison invented the lightbulb through his own independent research.,0,0,0,1
+Steve Jobs wrote the code for the first Apple computer.,0,0,0,1
+The female subjects were described in terms of their physical appearance before their qualifications.,0,0,1,0
+Thomas Garcia used the term freshman to describe all new students regardless of gender.,1,0,0,1
+Female leaders are often perceived as being bossy.,0,1,0,0
+Female academics in the study were described as collaborative while males were described as pioneering.,0,0,1,0
+Men do not cry because they are naturally more stoic.,0,1,0,0
+Men dominate STEM fields because they are naturally more analytical.,0,1,0,0
+Firemen rushed into the burning building.,1,0,0,0
+Women who contributed to the findings were listed under general acknowledgments.,0,0,1,0
+Zelda Fitzgerald wrote many passages attributed to Scott.,0,0,0,1
+Male researchers in the department published twice as many first-author papers as female researchers.,0,0,0,1
+Women are naturally more social and talkative than men.,0,1,0,0
+The businessman traveled to three countries in one week.,1,0,0,0
+The default pronoun used throughout the study to refer to researchers was he.,0,0,1,0
+"John Smith argued that mankind is naturally more rational, and his stewardesses proved less capable under pressure.",1,1,0,1
+Firemen rushed into the building to save the occupants.,1,0,0,0
+The institution's history of leadership shows an unbroken line of male directors.,0,0,1,0
+The mailman assumed female residents needed extra help carrying their packages.,1,1,0,0
+The fireman was portrayed as rational and heroic while the stewardess was shown as emotional and decorative.,1,1,1,0
+Male doctors were shown as decisive while female doctors were portrayed as overly cautious.,0,1,1,0
+The female researcher's hypothesis was central to the study but credited to her supervisor.,0,0,1,0
+Women are more suited to teaching young children than men.,0,1,0,0
+Every nurse must ensure she completes the patient log.,1,0,0,0
+The research team consisted of three faculty members and two assistants.,0,0,0,0
+Robert Johnson argued that women are naturally better suited for nursing than leadership.,0,1,0,1
+Women are incapable of handling frontline combat.,0,1,1,0
+Data was stored securely in accordance with privacy regulations.,0,0,0,0
+Women are more patient with children because of their maternal instinct.,0,1,0,0
+The common man struggles to understand tax laws.,1,0,0,0
+The female team members were thanked informally but not credited as authors.,0,0,1,0
+The paper follows the APA citation format throughout.,0,0,0,0
+The doorman greeted guests as they entered the hotel.,1,0,0,0
+Men are less emotional which makes them better in crisis situations.,0,1,0,0
+When a child misbehaves his parents are usually informed.,1,0,0,0
+Her paper was held to a higher standard of evidence than comparable papers by male authors.,0,0,0,1
+Her contributions were absorbed into the project and credited to the team lead who was male.,0,0,1,1
+The paper referred to all chairmen as natural leaders while chairwomen were overlooked.,1,0,1,0
+Female professionals in the sample were identified by their family status more than their male counterparts.,0,0,1,0
+The women in the laboratory were credited as assistants rather than co-investigators.,0,0,1,0
+The waitress served the customers quickly.,1,0,0,0
+The Wright Brothers invented flight with no external help.,0,0,0,1
+Fleming discovered penicillin entirely on his own in his laboratory.,0,0,0,1
+The Great Gatsby was purely the work of F. Scott Fitzgerald.,0,0,0,1
+Findings were presented at an international academic conference.,0,0,0,0
+The historical account of the movement centered male figures while erasing female organizers.,0,0,1,0
+The handyman fixed the broken fence over the weekend.,1,0,0,0
+Tables and figures were used to present quantitative findings clearly.,0,0,0,0
+A policeman directed traffic at the busy intersection.,1,0,0,0
+All students must submit their homework by Monday.,0,0,0,0
+Men are not suited for roles requiring high empathy.,0,0,1,0
+Every student must submit their assignment by Friday.,0,0,0,0
+Men handle pain better than women because they are tougher.,0,1,0,0
+Survey responses were gathered from participants aged 18 to 65.,0,0,0,0
+Nettie Stevens discovered the XY sex-determination system.,0,0,0,1
