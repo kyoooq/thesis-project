@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="profile.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        .hamburger {
+            display: none; flex-direction: column; justify-content: center;
+            gap: 5px; background: none; border: none; cursor: pointer; padding: 6px; z-index: 200;
+        }
+        .hamburger span { display: block; width: 22px; height: 2px; background: #fff; border-radius: 2px; transition: transform 0.3s ease, opacity 0.3s ease; }
+        .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .hamburger.open span:nth-child(2) { opacity: 0; }
+        .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+        .mobile-menu { display: none; position: fixed; top: 64px; left: 0; right: 0; background: linear-gradient(135deg, #3b2460, #6b4a8a); z-index: 150; flex-direction: column; padding: 16px 20px 24px; gap: 4px; box-shadow: 0 8px 24px rgba(59,36,96,0.3); }
+        .mobile-menu.open { display: flex; }
+        .mobile-menu .nav-link { color: rgba(255,255,255,0.85); font-size: 15px; padding: 10px 12px; border-radius: 8px; }
+        .mobile-menu .nav-link:hover { background: rgba(255,255,255,0.12); color: #fff; }
+        .mobile-menu-divider { height: 1px; background: rgba(255,255,255,0.15); margin: 8px 0; }
+        .mobile-menu-user { display: flex; align-items: center; gap: 10px; padding: 8px 12px; }
+        .mobile-menu-user .nav-avatar { width: 34px; height: 34px; border-radius: 50%; background: rgba(255,255,255,0.18); border: 1.5px solid rgba(255,255,255,0.3); color: #fff; font-size: 11px; font-weight: 600; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+        .mobile-menu-user span { color: rgba(255,255,255,0.85); font-size: 14px; }
+        .mobile-menu .nav-logout { margin: 0; width: 100%; text-align: left; font-size: 14px; padding: 10px 12px; border-radius: 8px; }
+        @media (max-width: 768px) { .hamburger { display: flex; } .nav-right { display: none !important; } }
+
+        /* Footer stays pinned at bottom regardless of content height or resize */
+        html { height: 100%; }
+        body { min-height: 100vh; display: flex; flex-direction: column; }
+        #root { flex: 1; display: flex; flex-direction: column; }
+        .navbar { flex-shrink: 0; }
+        .main { flex: 1 0 auto !important; align-items: flex-start !important; justify-content: flex-start !important; flex-direction: column !important; }
+        .main > .profile-wrapper { margin: 0 auto; width: 100%; }
+        .footer { flex-shrink: 0; }
+    </style>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel">
+const { useState, useRef, useEffect } = React;
+
+const API_BASE = 'http://127.0.0.1:5000/api';
+
+const AVATAR_COLORS = {
+    amethyst: 'linear-gradient(135deg, #3b2460, #6b4a8a)',
+    rose:     'linear-gradient(135deg, #8e2a4e, #c2547a)',
+    teal:     'linear-gradient(135deg, #1e5f6e, #4a9aab)',
+};
+
+const DEFAULT_COLOR = 'amethyst';
+
+function Navbar({ user, onLogout, avatarGradient }) {
+    const [menuOpen, setMenuOpen] = useState(false);
+    const username = user?.name || 'User';
+    const initials = user?.initials || '?';
+
+    useEffect(() => {
+        function handler(e) {
+            if (!e.target.closest('.mobile-menu') && !e.target.closest('.hamburger')) setMenuOpen(false);
+        }
+        document.addEventListener('click', handler);
+        return () => document.removeEventListener('click', handler);
+    }, []);
+
+    return (
+        <>
+            <nav className="navbar">
+                <div className="nav-left">
+                    <a href="home.html" className="nav-brand">
+                        <img src="logo.png" alt="AURA Logo" className="nav-logo" />
+                        <div className="nav-brand-text">
+                            <span className="nav-title">Automated Assessment of Academic Articles'</span>
+                            <span className="nav-subtitle">GAD Responsiveness</span>
+                        </div>
+                    </a>
+                </div>
+                <div className="nav-right">
+                    <a href="home.html"  className="nav-link">Home</a>
+                    <a href="history.html" className="nav-link">Assessment History</a>
+                    <a href="about.html" className="nav-link">About</a>
+                    <div className="nav-divider"></div>
+                    <span className="nav-username">{username}</span>
+                    <button
+                        className="nav-avatar active-avatar"
+                        title="Profile"
+                        style={avatarGradient ? { background: avatarGradient, borderColor: 'rgba(255,255,255,0.5)' } : undefined}
+                    >
+                        <svg
+                            className="avatar-icon"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                            aria-hidden="true"
+                        >
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                            <circle cx="12" cy="7" r="4" />
+                        </svg>
+                    </button>
+                    <button className="nav-logout" onClick={onLogout}>Logout</button>
+                </div>
+                <button className={`hamburger${menuOpen ? ' open' : ''}`} onClick={() => setMenuOpen(v => !v)} aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </nav>
+            <div className={`mobile-menu${menuOpen ? ' open' : ''}`}>
+                <a href="home.html"  className="nav-link" onClick={() => setMenuOpen(false)}>Home</a>
+                <a href="history.html" className="nav-link" onClick={() => setMenuOpen(false)}>Assessment History</a>
+                <a href="about.html" className="nav-link" onClick={() => setMenuOpen(false)}>About</a>
+                <div className="mobile-menu-divider"></div>
+                <div className="mobile-menu-user">
+                    <button
+                        className="nav-avatar active-avatar"
+                        style={avatarGradient ? { background: avatarGradient, borderColor: 'rgba(255,255,255,0.5)' } : undefined}
+                    >
+                        <svg
+                            className="avatar-icon"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                            aria-hidden="true"
+                        >
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                            <circle cx="12" cy="7" r="4" />
+                        </svg>
+                    </button>
+                    <span>{username}</span>
+                </div>
+                <button className="nav-logout" onClick={() => { setMenuOpen(false); onLogout(); }}>Logout</button>
+            </div>
+        </>
+    );
+}
+
+function LogoutModal({ show, onCancel, onConfirm }) {
+    if (!show) return null;
+    return (
+        <div className="modal-overlay" onClick={e => { if (e.target === e.currentTarget) onCancel(); }}>
+            <div className="modal-card">
+                <div className="modal-icon">
+                    <svg viewBox="0 0 24 24" fill="none">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                </div>
+                <h3 className="modal-title">Sign Out</h3>
+                <p className="modal-message">Are you sure you want to log out of your account?</p>
+                <div className="modal-actions">
+                    <button className="btn-cancel" onClick={onCancel}>Cancel</button>
+                    <button className="btn-confirm" onClick={onConfirm}>Yes, Log Out</button>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function ProfilePage() {
+    const EMPTY = { firstName: '', lastName: '', email: '' };
+
+    const [fields, setFields]       = useState(EMPTY);
+    const [original, setOriginal]   = useState(EMPTY);
+    const [avatarColor, setAvatarColor]         = useState(DEFAULT_COLOR);
+    const [originalColor, setOriginalColor]     = useState(DEFAULT_COLOR);
+    const [errors, setErrors]       = useState({});
+    const [loading, setLoading]     = useState(true);
+    const [saving, setSaving]       = useState(false);
+    const [logoutModal, setLogoutModal] = useState(false);
+    const [toast, setToast]         = useState({ msg: '', type: '', show: false });
+    const toastTimer = useRef(null);
+
+    const avatarGradient = AVATAR_COLORS[avatarColor] || AVATAR_COLORS[DEFAULT_COLOR];
+
+    // ── Auth guard + initial fetch ────────────────────────────────────────────
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            window.location.href = 'login.html';
+            return;
+        }
+
+        fetch(`${API_BASE}/user/profile`, {
+            headers: { 'Authorization': 'Bearer ' + token }
+        })
+            .then(async r => {
+                if (r.status === 401) {
+                    // Token invalid/expired — kick back to login
+                    localStorage.removeItem('token');
+                    localStorage.removeItem('uid');
+                    window.location.href = 'login.html';
+                    return null;
+                }
+                const data = await r.json();
+                if (!r.ok) throw new Error(data.error || 'Failed to load profile');
+                return data;
+            })
+            .then(data => {
+                if (!data) return;
+                const init = {
+                    firstName: data.firstName || '',
+                    lastName:  data.lastName  || '',
+                    email:     data.email     || '',
+                };
+                setFields(init);
+                setOriginal(init);
+
+                const color = (data.avatarColor && AVATAR_COLORS[data.avatarColor])
+                    ? data.avatarColor
+                    : DEFAULT_COLOR;
+                setAvatarColor(color);
+                setOriginalColor(color);
+            })
+            .catch(err => {
+                showToast(err.message || 'Failed to load profile.', 'error');
+            })
+            .finally(() => setLoading(false));
+    }, []);
+
+    function showToast(msg, type) {
+        setToast({ msg, type, show: true });
+        clearTimeout(toastTimer.current);
+        toastTimer.current = setTimeout(() => setToast(t => ({ ...t, show: false })), 3000);
+    }
+
+    function setField(key, val) {
+        setFields(f => ({ ...f, [key]: val }));
+        setErrors(e => ({ ...e, [key]: '' }));
+    }
+
+    const initials = ((fields.firstName[0] || '') + (fields.lastName[0] || '')).toUpperCase() || '?';
+    const displayName = [fields.firstName, fields.lastName].filter(Boolean).join(' ') || 'Your Name';
+    const displayEmail = fields.email || 'your@email.com';
+
+    async function handleSave(e) {
+        e.preventDefault();
+
+        // ── Client-side validation ────────────────────────────────────────────
+        const errs = {};
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!fields.firstName.trim()) errs.firstName = 'First name is required.';
+        if (!fields.lastName.trim())  errs.lastName  = 'Last name is required.';
+        if (!fields.email.trim())     errs.email     = 'Email address is required.';
+        else if (!emailRegex.test(fields.email.trim())) errs.email = 'Please enter a valid email (must include @).';
+        setErrors(errs);
+        if (Object.keys(errs).length) return;
+
+        // ── No-op if nothing changed ──────────────────────────────────────────
+        const unchanged =
+            fields.firstName.trim() === original.firstName &&
+            fields.lastName.trim()  === original.lastName  &&
+            fields.email.trim().toLowerCase() === (original.email || '').toLowerCase() &&
+            avatarColor === originalColor;
+        if (unchanged) {
+            showToast('No changes to save.', 'info');
+            return;
+        }
+
+        // ── Send to backend ───────────────────────────────────────────────────
+        const token = localStorage.getItem('token');
+        if (!token) {
+            window.location.href = 'login.html';
+            return;
+        }
+
+        setSaving(true);
+        try {
+            const res = await fetch(`${API_BASE}/user/profile`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + token,
+                },
+                body: JSON.stringify({
+                    firstName: fields.firstName.trim(),
+                    lastName:  fields.lastName.trim(),
+                    email:     fields.email.trim().toLowerCase(),
+                    avatarColor: avatarColor,
+                }),
+            });
+
+            const data = await res.json();
+
+            if (res.status === 401) {
+                localStorage.removeItem('token');
+                localStorage.removeItem('uid');
+                window.location.href = 'login.html';
+                return;
+            }
+
+            if (res.status === 409) {
+                // Email already in use — surface it on the email field
+                setErrors(e => ({ ...e, email: data.error || 'That email is already in use.' }));
+                showToast(data.error || 'That email is already in use.', 'error');
+                return;
+            }
+
+            if (!res.ok) {
+                showToast(data.error || 'Failed to update profile.', 'error');
+                return;
+            }
+
+            // Success — update "original" baseline so Discard resets to new values
+            const saved = {
+                firstName: data.profile.firstName,
+                lastName:  data.profile.lastName,
+                email:     data.profile.email,
+            };
+            setFields(saved);
+            setOriginal(saved);
+
+            const savedColor = data.profile.avatarColor || DEFAULT_COLOR;
+            setAvatarColor(savedColor);
+            setOriginalColor(savedColor);
+
+            if (data.emailChanged) {
+                showToast('Profile updated. Use your new email next time you log in.', 'success');
+            } else {
+                showToast('Profile updated successfully!', 'success');
+            }
+        } catch (err) {
+            showToast('Network error. Please try again.', 'error');
+        } finally {
+            setSaving(false);
+        }
+    }
+
+    function discardChanges() {
+        setFields(original);
+        setAvatarColor(originalColor);
+        setErrors({});
+        showToast('Changes discarded.', 'info');
+    }
+
+    const user = { name: displayName, initials };
+
+    async function doLogout() {
+        const token = localStorage.getItem('token');
+        if (token) {
+            try {
+                await fetch(`${API_BASE}/auth/logout`, {
+                    method: 'POST',
+                    headers: { 'Authorization': 'Bearer ' + token }
+                });
+            } catch (err) {
+                console.error('Logout request failed:', err);
+            }
+        }
+        localStorage.removeItem('token');
+        localStorage.removeItem('uid');
+        window.location.href = 'login.html';
+    }
+
+    return (
+        <>
+            <Navbar user={user} onLogout={() => setLogoutModal(true)} avatarGradient={avatarGradient}/>
+
+            <main className="main" style={{ alignItems: 'stretch', justifyContent: 'flex-start', flexDirection: 'column' }}>
+                <div className="profile-wrapper" style={{ margin: '0 auto' }}>
+                    {/* LEFT: Avatar card */}
+                    <div className="avatar-card">
+                        <div className="avatar-circle" style={{ background: avatarGradient }}>
+                            <svg
+                                className="avatar-icon"
+                                viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg"
+                                aria-hidden="true"
+                            >
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                                <circle cx="12" cy="7" r="4" />
+                            </svg>
+                        </div>
+
+                        <div className="color-picker-wrap">
+                            <div className="color-picker">
+                                {Object.keys(AVATAR_COLORS).map(colorKey => (
+                                    <button
+                                        key={colorKey}
+                                        type="button"
+                                        className={`color-swatch ${colorKey}${avatarColor === colorKey ? ' selected' : ''}`}
+                                        onClick={() => setAvatarColor(colorKey)}
+                                        disabled={loading || saving}
+                                        title={colorKey.charAt(0).toUpperCase() + colorKey.slice(1)}
+                                        aria-label={`Choose ${colorKey} avatar color`}
+                                    />
+                                ))}
+                            </div>
+                            <p className="color-label">
+                                {avatarColor.charAt(0).toUpperCase() + avatarColor.slice(1)}
+                            </p>
+                        </div>
+
+                        <div className="profile-meta">
+                            <p className="profile-name-display">{loading ? 'Loading…' : displayName}</p>
+                            <p className="profile-email-display">{loading ? '' : displayEmail}</p>
+                        </div>
+                    </div>
+
+                    {/* RIGHT: Edit form */}
+                    <div className="form-card">
+                        <div className="form-card-header">
+                            <h2 className="form-card-title">Edit Profile</h2>
+                            <p className="form-card-sub">Update your personal information</p>
+                        </div>
+
+                        <form onSubmit={handleSave} noValidate>
+                            <div className="form-row-2">
+                                <div className="input-group">
+                                    <label htmlFor="firstName">First Name</label>
+                                    <div className="input-wrap">
+                                        <svg className="input-icon" viewBox="0 0 20 20" fill="none">
+                                            <circle cx="10" cy="7" r="3.5" stroke="currentColor" strokeWidth="1.3"/>
+                                            <path d="M3 17c0-3.3 3.1-6 7-6s7 2.7 7 6" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/>
+                                        </svg>
+                                        <input type="text" id="firstName" placeholder="First name"
+                                            value={fields.firstName}
+                                            disabled={loading || saving}
+                                            onChange={e => setField('firstName', e.target.value)}
+                                            className={errors.firstName ? 'input-invalid' : ''}
+                                        />
+                                    </div>
+                                    <span className="field-error">{errors.firstName}</span>
+                                </div>
+
+                                <div className="input-group">
+                                    <label htmlFor="lastName">Last Name</label>
+                                    <div className="input-wrap">
+                                        <svg className="input-icon" viewBox="0 0 20 20" fill="none">
+                                            <circle cx="10" cy="7" r="3.5" stroke="currentColor" strokeWidth="1.3"/>
+                                            <path d="M3 17c0-3.3 3.1-6 7-6s7 2.7 7 6" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/>
+                                        </svg>
+                                        <input type="text" id="lastName" placeholder="Last name"
+                                            value={fields.lastName}
+                                            disabled={loading || saving}
+                                            onChange={e => setField('lastName', e.target.value)}
+                                            className={errors.lastName ? 'input-invalid' : ''}
+                                        />
+                                    </div>
+                                    <span className="field-error">{errors.lastName}</span>
+                                </div>
+                            </div>
+
+                            <div className="input-group">
+                                <label htmlFor="profileEmail">Email Address</label>
+                                <div className="input-wrap">
+                                    <svg className="input-icon" viewBox="0 0 20 20" fill="none">
+                                        <path d="M2.5 5.5h15l-7.5 6.5-7.5-6.5z" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round"/>
+                                        <rect x="2.5" y="5.5" width="15" height="10" rx="1" stroke="currentColor" strokeWidth="1.3"/>
+                                    </svg>
+                                    <input type="email" id="profileEmail" placeholder="Email address"
+                                        value={fields.email}
+                                        disabled={loading || saving}
+                                        onChange={e => setField('email', e.target.value)}
+                                        className={errors.email ? 'input-invalid' : ''}
+                                    />
+                                </div>
+                                <span className="field-error">{errors.email}</span>
+                            </div>
+
+                            <div className="form-divider"></div>
+
+                            <div className="form-actions">
+                                <button type="button" className="btn-discard" onClick={discardChanges} disabled={loading || saving}>Discard</button>
+                                <button type="submit" className="btn-save" disabled={loading || saving}>
+                                    <span>{saving ? 'Saving…' : 'Save Changes'}</span>
+                                    <svg viewBox="0 0 20 20" fill="none">
+                                        <path d="M4 10h12M12 6l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </main>
+
+            <footer className="footer">
+                <span>© 2025</span>
+                <span>Cavite State University — CCAT Campus</span>
+                <span>English</span>
+            </footer>
+
+            <LogoutModal show={logoutModal} onCancel={() => setLogoutModal(false)} onConfirm={doLogout} />
+
+            <div className={`toast ${toast.type} ${toast.show ? 'show' : ''}`}>{toast.msg}</div>
+        </>
+    );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<ProfilePage />);
+</script>
+</body>
+</html>

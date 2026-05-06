@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="login.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel">
+const {useState, useRef, useEffect} = React;
+
+
+function LoginPage() {
+    const [email, setEmail]       = useState('');
+    const [password, setPassword] = useState('');
+    const [showPw, setShowPw]     = useState(false);
+    const [errors, setErrors]     = useState({ email: '', password: '' });
+    const [toast, setToast]       = useState({ msg: '', type: '', show: false });
+    const toastTimer = useRef(null);
+
+    useEffect(() => {
+        if (localStorage.getItem('token')) {
+            window.location.href = 'home.html';
+        }
+    }, []);
+    
+
+    function showToast(msg, type) {
+        setToast({ msg, type, show: true });
+        clearTimeout(toastTimer.current);
+        toastTimer.current = setTimeout(() => setToast(t => ({ ...t, show: false })), 3000);
+    }
+
+    async function resendVerification() {
+        try {
+            await fetch('http://127.0.0.1:5000/api/auth/resend-verification', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: unverifiedEmail })
+            });
+            showToast('Verification email sent. Check your inbox.', 'success');
+            setShowResendLink(false);
+        } catch (err) {
+            showToast('Could not send verification email.', 'error');
+        }
+    }
+
+    function validate() {
+        const errs = { email: '', password: '' };
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!email.trim()) {
+            errs.email = 'Email address is required.';
+        } else if (!emailRegex.test(email.trim())) {
+            errs.email = 'Please enter a valid email (must include @).';
+        }
+        if (!password) {
+            errs.password = 'Password is required.';
+        } else if (password.length < 6) {
+            errs.password = 'Password must be at least 6 characters.';
+        }
+        setErrors(errs);
+        return !errs.email && !errs.password;
+    }
+
+    async function handleLogin(e) {
+        e.preventDefault();
+        if (!validate()) return;
+        try {
+            const res = await fetch('http://127.0.0.1:5000/api/auth/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    email: email, 
+                    password: password,
+                })
+            });
+            if (!res.ok) {
+                const err = await res.json().catch(() => ({}));
+                if (err.code === 'EMAIL_NOT_VERIFIED') {
+                    showToast(err.error, 'warning');
+                    return;
+                }
+                throw new Error(err.error || 'Login failed.');
+            }
+
+            const data = await res.json();
+            localStorage.setItem('token', data.token);
+            localStorage.setItem('uid', data.uid);
+
+            showToast('Signing in…', 'success');
+            setTimeout(() => { window.location.href = 'home.html'; }, 800);
+        } catch (err) {
+            showToast(err.message, 'error');
+        }
+    }
+
+    return (
+        <>
+            <div className="bg-blob blob-1"></div>
+            <div className="bg-blob blob-2"></div>
+            <div className="bg-blob blob-3"></div>
+
+            <div className="wrapper">
+                {/* LEFT PANEL */}
+                <div className="left-panel">
+                    <div className="left-panel-bg"></div>
+                    <div className="brand">
+                        <a href="login.html">
+                            <img src="logo.png" alt="AURA Logo" className="brand-logo" />
+                        </a>
+                    </div>
+                    <div className="left-content">
+                        <p className="eyebrow">Gender &amp; Development</p>
+                        <h1 className="headline">
+                            Automated<br/>
+                            <em>Assessment</em><br/>
+                            of Academic<br/>
+                            Articles' GAD<br/>
+                            Responsiveness
+                        </h1>
+                        <p className="tagline">Making <strong>equality</strong> the benchmark<br/>of academic excellence.</p>
+                    </div>
+                    <div className="left-footer">
+                        <span>Cavite State University — CCAT Campus</span>
+                        <span>© 2025</span>
+                    </div>
+                </div>
+
+                {/* RIGHT PANEL */}
+                <div className="right-panel">
+                    <div className="form-container">
+                        <div className="form-top">
+                            <h2 className="form-heading">Sign In</h2>
+                            <p className="form-sub">Enter your credentials to access your account</p>
+                        </div>
+
+                        <form onSubmit={handleLogin} noValidate>
+                            {/* Email */}
+                            <div className="input-group">
+                                <label htmlFor="loginEmail">Email Address</label>
+                                <div className="input-wrap">
+                                    <svg className="input-icon" viewBox="0 0 20 20" fill="none">
+                                        <path d="M2.5 5.5h15l-7.5 6.5-7.5-6.5z" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round"/>
+                                        <rect x="2.5" y="5.5" width="15" height="10" rx="1" stroke="currentColor" strokeWidth="1.3"/>
+                                    </svg>
+                                    <input
+                                        type="email" id="loginEmail"
+                                        placeholder="Enter your email address"
+                                        autoComplete="email"
+                                        value={email}
+                                        onChange={e => { setEmail(e.target.value); setErrors(er => ({ ...er, email: '' })); }}
+                                        className={errors.email ? 'input-invalid' : ''}
+                                    />
+                                </div>
+                                <span className="field-error">{errors.email}</span>
+                            </div>
+
+                            {/* Password */}
+                            <div className="input-group">
+                                <label htmlFor="loginPassword">
+                                    Password
+                                    <a className="forgot" href="forgot.html">Forgot password?</a>
+                                </label>
+                                <div className="input-wrap">
+                                    <svg className="input-icon" viewBox="0 0 20 20" fill="none">
+                                        <rect x="4" y="9" width="12" height="8" rx="1.5" stroke="currentColor" strokeWidth="1.3"/>
+                                        <path d="M7 9V6.5a3 3 0 0 1 6 0V9" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/>
+                                        <circle cx="10" cy="13" r="1.2" fill="currentColor"/>
+                                    </svg>
+                                    <input
+                                        type={showPw ? 'text' : 'password'} id="loginPassword"
+                                        placeholder="••••••••"
+                                        autoComplete="current-password"
+                                        value={password}
+                                        onChange={e => { setPassword(e.target.value); setErrors(er => ({ ...er, password: '' })); }}
+                                        className={errors.password ? 'input-invalid' : ''}
+                                    />
+                                    <button type="button" className="eye-btn" onClick={() => setShowPw(v => !v)} tabIndex={-1} aria-label="Toggle password">
+                                        {showPw ? (
+                                            <svg viewBox="0 0 20 20" fill="none">
+                                                <path d="M3 3l14 14M8.5 8.7A2.5 2.5 0 0 0 12.3 12" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/>
+                                                <path d="M6.1 6.2C4.2 7.2 2.7 8.8 2 10c1.3 2.3 4.3 5 8 5a8.4 8.4 0 0 0 3.9-1M10 5c3.7 0 6.7 2.7 8 5a9.6 9.6 0 0 1-2.1 2.9" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/>
+                                            </svg>
+                                        ) : (
+                                            <svg viewBox="0 0 20 20" fill="none">
+                                                <path d="M2 10s3-5 8-5 8 5 8 5-3 5-8 5-8-5-8-5z" stroke="currentColor" strokeWidth="1.3"/>
+                                                <circle cx="10" cy="10" r="2.5" stroke="currentColor" strokeWidth="1.3"/>
+                                            </svg>
+                                        )}
+                                    </button>
+                                </div>
+                                <span className="field-error">{errors.password}</span>
+                            </div>
+
+                            <button type="submit" className="btn-login">
+                                <span>Sign In</span>
+                                <svg viewBox="0 0 20 20" fill="none">
+                                    <path d="M4 10h12M12 6l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                                </svg>
+                            </button>
+                        </form>
+
+                        <div className="divider"><span>or</span></div>
+                        <button className="btn-create" onClick={() => window.location.href = 'register.html'}>
+                            Create a new account
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            {/* TOAST */}
+            <div className={`toast ${toast.type} ${toast.show ? 'show' : ''}`}>{toast.msg}</div>
+        </>
+    );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<LoginPage />);
+</script>
+</body>
+</html>

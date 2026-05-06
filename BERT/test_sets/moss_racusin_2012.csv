@@ -1,0 +1,25 @@
+section,sentence,expected_labels
+S1_finding,"Faculty participants rated the male applicant as significantly more competent and hireable than the identical female applicant.",representation
+S1_finding,"Faculty also offered a higher starting salary and more career mentoring to the male applicant.",representation
+S1_finding,"The gender of the faculty participants did not affect responses, such that female and male faculty were equally likely to exhibit bias against the female student.",representation
+S1_finding,"Mediation analyses indicated that the female student was less likely to be hired because she was viewed as less competent.",representation
+S1_finding,"Despite efforts to recruit and retain more women, a stark gender disparity persists within academic science.",representation
+S1_finding,"The bias appears to be unintentional, generated from widespread cultural stereotypes rather than a conscious intention to harm women.","stereotyping,representation"
+S1_finding,"Women remain underrepresented in academic science, particularly at senior levels, even in fields where they earn over half of doctorates.",representation
+S2_stereotype_discussion,"Cultural stereotypes portray women as less competent in science, technology, engineering, and mathematics compared to men.","stereotyping,representation"
+S2_stereotype_discussion,"Stereotypes that depict women as less capable in science contribute to faculty perceptions that female students are less qualified than male students.","stereotyping,representation"
+S2_stereotype_discussion,"Implicit assumptions that men are more naturally suited to scientific work shape evaluations even when applicant qualifications are identical.",stereotyping
+S2_stereotype_discussion,"Faculty endorsement of subtle bias against women predicted lower competence ratings, lower hireability ratings, and reduced mentoring of the female student.","stereotyping,representation"
+S2_stereotype_discussion,"The pervasive view that women lack the ability needed to succeed in science continues to disadvantage female trainees.","stereotyping,representation"
+S3_representation,"Women constitute approximately half of doctoral graduates in the life sciences yet hold a much smaller share of tenure-track positions.",representation
+S3_representation,"At the postdoctoral and faculty levels, women remain underrepresented across the biological, physical, and engineering sciences.",representation
+S3_representation,"The leaky pipeline metaphor describes the disproportionate loss of women at successive stages of the academic career.",representation
+S3_representation,"Female scientists are awarded fewer grants, receive lower salaries, and are promoted more slowly than their male counterparts with comparable records.",representation
+S3_representation,"Even at top research universities, the proportion of women on the faculty in physics and engineering remains below twenty percent.",representation
+S4_neutral,"We recruited faculty participants from Biology, Chemistry, and Physics departments at three public and three private research-intensive universities in the United States.",none
+S4_neutral,"Participants completed the materials online and were compensated with a thirty-dollar Amazon gift card.",none
+S4_neutral,"Application materials were created based on prior empirical work and pilot tested for realism.",none
+S4_neutral,"Participants rated the applicant on a seven-point scale measuring competence, hireability, and likability.",none
+S4_neutral,"All analyses were conducted using SPSS version 19, with alpha set at 0.05.",none
+S4_neutral,"The institutional review board at Yale University approved all procedures prior to data collection.",none
+S4_neutral,"The final sample consisted of 127 faculty members from a range of academic ranks and subfields.",none

@@ -1,0 +1,16 @@
+flask
+flask-cors
+firebase-admin
+torch
+transformers
+pymupdf
+python-docx
+spacy
+gender-guesser
+names-dataset
+pandas
+scikit-learn
+
+# python -m spacy download en_core_web_lg
+# if fail:
+# python -m spacy download en_core_web_sm

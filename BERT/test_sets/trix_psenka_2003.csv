@@ -1,0 +1,33 @@
+section,sentence,expected_labels
+S1_gender_marking,"Dr Gray is a thorough, hardworking, extremely intelligent and insightful woman.",stereotyping
+S1_gender_marking,"She is an extremely intelligent young lady with an admirable work ethic.","gender_sensitive,stereotyping"
+S1_gender_marking,"On a personal level Sarah is, in my opinion, the quintessence of the contemporary lady physician who very ably combines dedication, intelligence, idealism, compassion and responsibility without compromise.","gender_sensitive,stereotyping"
+S1_gender_marking,"I believe Dr Harvey to be a man of great personal integrity.",none
+S1_gender_marking,"Overall, we have found William a highly intelligent and hard working young man.",none
+S1_gender_marking,"He is entirely dedicated to patient care, personable, a gentleman in every sense of the word.","gender_sensitive,stereotyping"
+S1_gender_marking,"I can only predict a great future for this lady and I am delighted that she has returned to further her career.","gender_sensitive,stereotyping"
+S1_grindstone,"She is an extremely conscientious and meticulous researcher who devotes her time to laboratory work and the training of graduate students in laboratory technique.",stereotyping
+S1_grindstone,"She worked hard on projects that she accepted.",stereotyping
+S1_communal,"Dr Gray is a caring, compassionate physician who has excellent interpersonal relationships with patients and their families as well as nursing and medical staff.",stereotyping
+S1_communal,"Her thoughtfulness and caring for others certainly added greatly to the atmosphere of the lab while I was there.",stereotyping
+S1_doubt_raiser,"She has a somewhat challenging personality.",stereotyping
+S1_doubt_raiser,"It appears that her health and personal life are stable.",stereotyping
+S1_doubt_raiser,"As an independent worker she requires only a minimum amount of supervision.",stereotyping
+S1_doubt_raiser,"While she has not been able to accomplish a lot in academic pulmonary medicine during the past few years due to career changes and other personal issues, she has continued to grow and mature.",stereotyping
+S1_doubt_raiser,"I felt she had been very well trained surgically in St. Louis but she has a slight touch of lack of confidence at times.",stereotyping
+S1_doubt_raiser,"Sarah's personal life was in turmoil during the time I worked with her, and in view of the difficulties she was experiencing in that arena, her performance was especially impressive.",stereotyping
+S1_diminutive,"Her great gift for teaching, especially in small groups and one on one, is something that I know you will come to appreciate.",stereotyping
+S2_meta,"Letters written for female applicants were found to differ systematically from those written for male applicants.",representation
+S2_meta,"The most common semantically grouped possessive phrases referring to female and male applicants ('her teaching,' 'his research') reinforce gender schema that tend to portray women as teachers and students, and men as researchers and professionals.","representation,stereotyping"
+S2_meta,"There is an insidious gender schema that associates effort with women, and ability with men in professional areas.","representation,stereotyping"
+S2_meta,"According to this schema, women are hard-working because they must compensate for lack of ability.","representation,stereotyping"
+S2_meta,"These terms accord with gender schemas that see men as successful and women as nurturing.","representation,stereotyping"
+S2_meta,"By this measure, the women are portrayed more as students and teachers, whereas the men are portrayed more as researchers and professionals.",representation
+S2_meta,"Women's greater access to educational opportunities in medicine, law, business, seminaries, and academia since the 1970s has not resulted in a commensurate movement of women into positions of power in these institutions.",representation
+S2_meta,"In the early 1990s women made up close to 20 percent of medical faculty, and their chances of receiving tenure were half that of male colleagues.",representation
+S2_meta,"By the mid-1990s, women accounted for 32 percent of the assistant professors, 21 percent of the associate professors, and 10 percent of the full professors.",representation
+S3_neutral,"The data for this study are a naturalistic set of all the letters of recommendation for successful applicants for faculty positions at a large American medical school over a three-year period from 1992 to 1995.",none
+S3_neutral,"This amounted to 312 letters for applicants for 103 faculty positions, with sets of approximately three letters per applicant.",none
+S3_neutral,"By number of words, the average length of the letters was 246 words.",none
+S3_neutral,"We then analyzed the letters according to the traditional categories of length, naming practices, negative language, and sex-linked terms.",none
+S3_neutral,"To help visualize length, we standardized all the letters to have lines of 97 characters including spaces.",none

@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# Secrets
+firebase-key.json
+.env
+
+# Runtime artifacts
+output/
+storage/
+
+# Model weights (uncomment if applicable)
+model/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/

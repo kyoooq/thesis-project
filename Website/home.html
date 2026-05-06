@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="home.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        /* ── Hamburger / Mobile Nav ── */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 6px;
+            z-index: 200;
+        }
+        .hamburger span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: #fff;
+            border-radius: 2px;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .hamburger.open span:nth-child(2) { opacity: 0; }
+        .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 64px; left: 0; right: 0;
+            background: linear-gradient(135deg, #3b2460, #6b4a8a);
+            z-index: 150;
+            flex-direction: column;
+            padding: 16px 20px 24px;
+            gap: 4px;
+            box-shadow: 0 8px 24px rgba(59,36,96,0.3);
+            animation: slideDown 0.25s ease both;
+        }
+        .mobile-menu.open { display: flex; }
+        .mobile-menu .nav-link {
+            color: rgba(255,255,255,0.85);
+            font-size: 15px;
+            padding: 10px 12px;
+            border-radius: 8px;
+        }
+        .mobile-menu .nav-link:hover, .mobile-menu .nav-link.active {
+            background: rgba(255,255,255,0.12);
+            color: #fff;
+        }
+        .mobile-menu-divider {
+            height: 1px;
+            background: rgba(255,255,255,0.15);
+            margin: 8px 0;
+        }
+        .mobile-menu-user {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 12px;
+        }
+        .mobile-menu-user .nav-avatar {
+            width: 34px; height: 34px; border-radius: 50%;
+            background: rgba(255,255,255,0.18);
+            border: 1.5px solid rgba(255,255,255,0.3);
+            color: #fff; font-size: 11px; font-weight: 600;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer;
+        }
+        .mobile-menu-user span {
+            color: rgba(255,255,255,0.85);
+            font-size: 14px;
+        }
+        .mobile-menu .nav-logout {
+            margin: 0;
+            width: 100%;
+            text-align: left;
+            font-size: 14px;
+            padding: 10px 12px;
+            border-radius: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger { display: flex; }
+            .nav-right  { display: none !important; }
+        }
+
+        /* Footer stays pinned at bottom regardless of content height or resize */
+        html { height: 100%; }
+        body { min-height: 100vh; display: flex; flex-direction: column; }
+        #root { flex: 1; display: flex; flex-direction: column; }
+        .navbar { flex-shrink: 0; }
+        .main { flex: 1 0 auto !important; }
+        .footer { flex-shrink: 0; }
+    </style>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel">
+const {useState, useRef, useEffect} = React;
+
+const AVATAR_COLORS = {
+    amethyst: 'linear-gradient(135deg, #3b2460, #6b4a8a)',
+    rose:     'linear-gradient(135deg, #8e2a4e, #c2547a)',
+    teal:     'linear-gradient(135deg, #1e5f6e, #4a9aab)',
+};
+
+const DEFAULT_COLOR = 'amethyst';
+
+/* ── Shared Navbar ── */
+function Navbar({activePage, user, onLogout, avatarGradient}) {
+    const [menuOpen, setMenuOpen] = useState(false);
+
+    // TODO: Replace with real user data from auth context/token
+    const username = user?.name || 'User';
+    const initials = user?.initials || username.split(' ').map(n => n[0]).join('').toUpperCase().slice(0,2);
+
+    useEffect(() => {
+        function handleClick(e) {
+            if (!e.target.closest('.mobile-menu') && !e.target.closest('.hamburger')) {
+                setMenuOpen(false);
+            }
+        }
+        document.addEventListener('click', handleClick);
+        return () => document.removeEventListener('click', handleClick);
+    }, []);
+
+    return (
+        <>
+            <nav className="navbar">
+                <div className="nav-left">
+                    <a href="home.html" className="nav-brand">
+                        <img src="logo.png" alt="AURA Logo" className="nav-logo" />
+                        <div className="nav-brand-text">
+                            <span className="nav-title">Automated Assessment of Academic Articles'</span>
+                            <span className="nav-subtitle">GAD Responsiveness</span>
+                        </div>
+                    </a>
+                </div>
+
+                {/* Desktop nav */}
+                <div className="nav-right">
+                    <a href="home.html"  className={`nav-link${activePage === 'home'  ? ' active' : ''}`}>Home</a>
+                    <a href="history.html" className={`nav-link${activePage === 'history' ? ' active' : ''}`}>Assessment History</a>
+                    <a href="about.html" className={`nav-link${activePage === 'about' ? ' active' : ''}`}>About</a>
+                    <div className="nav-divider"></div>
+                    <span className="nav-username">{username}</span>
+                    <button
+                        className="nav-avatar"
+                        onClick={() => window.location.href = 'profile.html'}
+                        title="View Profile"
+                        style={avatarGradient ? { background: avatarGradient, borderColor: 'rgba(255,255,255,0.5)' } : undefined}
+                    >
+                        <svg
+                            className="avatar-icon"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                            aria-hidden="true"
+                        >
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                            <circle cx="12" cy="7" r="4" />
+                        </svg>
+                    </button>
+                    <button className="nav-logout" onClick={onLogout}>Logout</button>
+                </div>
+
+                {/* Hamburger */}
+                <button className={`hamburger${menuOpen ? ' open' : ''}`} onClick={() => setMenuOpen(v => !v)} aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </nav>
+
+            {/* Mobile dropdown */}
+            <div className={`mobile-menu${menuOpen ? ' open' : ''}`}>
+                <a href="home.html"  className={`nav-link${activePage === 'home'  ? ' active' : ''}`} onClick={() => setMenuOpen(false)}>Home</a>
+                <a href="history.html" className={`nav-link${activePage === 'history' ? ' active' : ''}`} onClick={() => setMenuOpen(false)}>Assessment History</a>
+                <a href="about.html" className={`nav-link${activePage === 'about' ? ' active' : ''}`} onClick={() => setMenuOpen(false)}>About</a>
+                <div className="mobile-menu-divider"></div>
+                <div className="mobile-menu-user">
+                    <button
+                        className="nav-avatar"
+                        onClick={() => window.location.href = 'profile.html'}
+                        style={avatarGradient ? { background: avatarGradient, borderColor: 'rgba(255,255,255,0.5)' } : undefined}
+                    >
+                        <svg
+                            className="avatar-icon"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                            aria-hidden="true"
+                        >
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                            <circle cx="12" cy="7" r="4" />
+                        </svg>
+                    </button>
+                    <span>{username}</span>
+                </div>
+                <button className="nav-logout" onClick={() => { setMenuOpen(false); onLogout(); }}>Logout</button>
+            </div>
+        </>
+    );
+}
+
+/* ── Logout Modal ── */
+function LogoutModal({ show, onCancel, onConfirm }) {
+    if (!show) return null;
+    return (
+        <div className="modal-overlay" onClick={e => { if (e.target === e.currentTarget) onCancel(); }}>
+            <div className="modal-card">
+                <div className="modal-icon">
+                    <svg viewBox="0 0 24 24" fill="none">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                </div>
+                <h3 className="modal-title">Sign Out</h3>
+                <p className="modal-message">Are you sure you want to log out of your account?</p>
+                <div className="modal-actions">
+                    <button className="btn-cancel" onClick={onCancel}>Cancel</button>
+                    <button className="btn-confirm" onClick={onConfirm}>Yes, Log Out</button>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+/* ── Toast ── */
+function useToast() {
+    const [toast, setToast] = useState({ msg: '', show: false });
+    const timer = useRef(null);
+    function show(msg) {
+        setToast({ msg, show: true });
+        clearTimeout(timer.current);
+        timer.current = setTimeout(() => setToast(t => ({ ...t, show: false })), 3000);
+    }
+    return [toast, show];
+}
+
+/* ── Home Page ── */
+function HomePage() {
+    // TODO: Replace mock user with data from auth token / API
+    const [user, setUser] = useState({ name: 'User', initials: 'U' });
+    const [avatarColor, setAvatarColor] = useState(DEFAULT_COLOR);
+
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (!token) return;
+
+        fetch('http://127.0.0.1:5000/api/user/profile', {
+            headers: { 'Authorization': 'Bearer ' + token }
+        })
+            .then(async r => {
+                if (r.status === 401) {
+                    localStorage.removeItem('token');
+                    localStorage.removeItem('uid');
+                    window.location.href = 'login.html';
+                    return null;
+                }
+                if (!r.ok) return null;
+                return r.json();
+            })
+            .then(data => {
+                if (!data) return;
+                const name = [data.firstName, data.lastName].filter(Boolean).join(' ') || 'User';
+                const initials = ((data.firstName?.[0] || '') + (data.lastName?.[0] || '')).toUpperCase() || 'U';
+                setUser({ name, initials });
+
+                const color = (data.avatarColor && AVATAR_COLORS[data.avatarColor])
+                    ? data.avatarColor
+                    : DEFAULT_COLOR;
+                setAvatarColor(color);
+            })
+            .catch(() => { /* silent fallback */ });
+    }, []);
+
+    const [logoutModal, setLogoutModal] = useState(false);
+    const [uploadState, setUploadState] = useState('idle'); // idle | ready | processing
+    const [file, setFile] = useState(null);
+    const [toast, showToast] = useToast();
+    const fileInputRef = useRef(null);
+
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            window.location.href = 'login.html';
+        }
+    }, []);
+
+    function processFile(f) {
+        const ext = f.name.split('.').pop().toLowerCase();
+        if (!['pdf', 'docx'].includes(ext)) {
+            showToast('Only PDF or DOCX files are supported.');
+            return;
+        }
+        setFile(f);
+        setUploadState('ready');
+    }
+
+    function handleDragOver(e) {
+        e.preventDefault();
+        document.getElementById('uploadCard')?.classList.add('dragging');
+    }
+    function handleDragLeave() {
+        document.getElementById('uploadCard')?.classList.remove('dragging');
+    }
+    function handleDrop(e) {
+        e.preventDefault();
+        document.getElementById('uploadCard')?.classList.remove('dragging');
+        const f = e.dataTransfer.files[0];
+        if (f) processFile(f);
+    }
+
+    function formatSize(bytes) {
+        if (bytes < 1024) return bytes + ' B';
+        if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+        return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+    }
+
+    async function handleAssess() {
+        setUploadState('processing');
+        try {
+            const formData = new FormData();
+            formData.append('file', file);
+
+            const token = localStorage.getItem('token');
+
+            if (!token) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            const res = await fetch('http://127.0.0.1:5000/api/assess', {
+                method: 'POST',
+                headers: {
+                    'Authorization': 'Bearer ' + token    // ← new
+                },
+                body: formData,
+            });
+
+            console.log('FETCH DONE, status:', res.status);   // ← temporary
+
+            if (!res.ok) {
+                const err = await res.json().catch(() => ({}));
+                throw new Error(err.error || 'Assessment failed.');
+            }
+
+            const data = await res.json();
+            console.log('GOT DATA:', data);                    // ← temporary
+
+            window.location.href = `results.html?id=${data.resultId}`;
+        } catch (err) {
+            alert(err.message);
+            setUploadState('ready');
+        }
+    }
+    
+    async function doLogout() {
+        const token = localStorage.getItem('token');
+
+        // Tell backend to invalidate the session token
+        if (token) {
+            try {
+                await fetch('http://127.0.0.1:5000/api/auth/logout', {
+                    method: 'POST',
+                    headers: { 'Authorization': 'Bearer ' + token }
+                });
+            } catch (err) {
+                // Even if backend fails, we still log out locally
+                console.error('Logout request failed:', err);
+            }
+        }
+
+        // Clear local session
+        localStorage.removeItem('token');
+        localStorage.removeItem('uid');
+
+        window.location.href = 'login.html';
+    }
+
+    return (
+        <>
+            <Navbar
+                activePage="home"
+                user={user}
+                onLogout={() => setLogoutModal(true)}
+                avatarGradient={AVATAR_COLORS[avatarColor] || AVATAR_COLORS[DEFAULT_COLOR]}
+            />
+
+            <main className="main">
+                {/* UPLOAD SECTION */}
+                <section className="upload-section">
+                    <div
+                        className="upload-card"
+                        id="uploadCard"
+                        onDragOver={handleDragOver}
+                        onDragLeave={handleDragLeave}
+                        onDrop={handleDrop}
+                    >
+                        <input
+                            type="file"
+                            ref={fileInputRef}
+                            accept=".pdf,.docx"
+                            style={{ display: 'none' }}
+                            onChange={e => { if (e.target.files[0]) processFile(e.target.files[0]); }}
+                        />
+
+                        {/* Idle */}
+                        {uploadState === 'idle' && (
+                            <div id="uploadIdle">
+                                <div className="upload-icon-wrap">
+                                    <svg viewBox="0 0 48 48" fill="none">
+                                        <path d="M28 6H14a4 4 0 0 0-4 4v28a4 4 0 0 0 4 4h20a4 4 0 0 0 4-4V16L28 6z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                        <path d="M28 6v10h10M24 26v8M20 30l4-4 4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                    </svg>
+                                </div>
+                                <p className="upload-title">Drop your file here to upload</p>
+                                <p className="upload-hint">Supports PDF and DOCX</p>
+                                <button className="btn-browse" onClick={() => fileInputRef.current?.click()}>Browse Files</button>
+                            </div>
+                        )}
+
+                        {/* Ready */}
+                        {uploadState === 'ready' && file && (
+                            <div id="uploadReady">
+                                <div className="upload-file-icon">
+                                    <svg viewBox="0 0 48 48" fill="none">
+                                        <path d="M28 6H14a4 4 0 0 0-4 4v28a4 4 0 0 0 4 4h20a4 4 0 0 0 4-4V16L28 6z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                        <path d="M28 6v10h10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                        <path d="M18 26h12M18 31h8" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                                    </svg>
+                                </div>
+                                <p className="upload-filename">{file.name}</p>
+                                <p className="upload-filesize">{formatSize(file.size)}</p>
+                                <div className="upload-actions">
+                                    <button type="button" className="btn-assess" onClick={handleAssess}>
+                                        <span>Assess Document</span>
+                                        <svg viewBox="0 0 20 20" fill="none">
+                                            <path d="M4 10h12M12 6l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                                        </svg>
+                                    </button>
+                                    <button className="btn-remove" onClick={() => { setFile(null); setUploadState('idle'); if (fileInputRef.current) fileInputRef.current.value = ''; }}>Remove</button>
+                                </div>
+                            </div>
+                        )}
+
+                        {/* Processing */}
+                        {uploadState === 'processing' && (
+                            <div id="uploadProcessing" style={{ display: 'flex' }}>
+                                <div className="processing-spinner"></div>
+                                <h3 className="processing-title">Extracting Text</h3>
+                                <p className="processing-sub">Processing your document...</p>
+                            </div>
+                        )}
+                    </div>
+                </section>
+
+                {/* HOW IT WORKS */}
+                <section className="steps-section">
+                    <h2 className="steps-title">How to Assess Academic Articles' GAD Responsiveness</h2>
+                    <div className="steps-grid">
+                        <div className="step-card">
+                            <span className="step-num">01</span>
+                            <div className="step-icon">
+                                <svg viewBox="0 0 32 32" fill="none">
+                                    <path d="M20 4H10a2 2 0 0 0-2 2v20a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V10L20 4z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                                    <path d="M20 4v6h6M16 17v6M13 20l3-3 3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                                </svg>
+                            </div>
+                            <h3 className="step-name">Upload</h3>
+                            <p className="step-desc">Select the academic article you want to assess. Supported formats include PDF or DOCX.</p>
+                        </div>
+                        <div className="step-arrow">
+                            <svg viewBox="0 0 32 12" fill="none">
+                                <path d="M0 6h26M22 2l4 4-4 4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+                            </svg>
+                        </div>
+                        <div className="step-card">
+                            <span className="step-num">02</span>
+                            <div className="step-icon">
+                                <svg viewBox="0 0 32 32" fill="none">
+                                    <rect x="4" y="4" width="24" height="24" rx="3" stroke="currentColor" strokeWidth="1.5"/>
+                                    <path d="M9 16h14M9 11h9M9 21h6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                                </svg>
+                            </div>
+                            <h3 className="step-name">Assessment</h3>
+                            <p className="step-desc">Our system automatically processes your document using BERT and Naive Bayes classification.</p>
+                        </div>
+                        <div className="step-arrow">
+                            <svg viewBox="0 0 32 12" fill="none">
+                                <path d="M0 6h26M22 2l4 4-4 4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+                            </svg>
+                        </div>
+                        <div className="step-card">
+                            <span className="step-num">03</span>
+                            <div className="step-icon">
+                                <svg viewBox="0 0 32 32" fill="none">
+                                    <path d="M4 26V18l7-7 6 6 11-11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                                    <circle cx="11" cy="21" r="1.5" fill="currentColor"/>
+                                    <circle cx="17" cy="15" r="1.5" fill="currentColor"/>
+                                    <circle cx="28" cy="7" r="1.5" fill="currentColor"/>
+                                </svg>
+                            </div>
+                            <h3 className="step-name">Results</h3>
+                            <p className="step-desc">Review your document's GAD Responsiveness Score.</p>
+                        </div>
+                    </div>
+                </section>
+            </main>
+
+            <footer className="footer">
+                <span>© 2025</span>
+                <span>Cavite State University — CCAT Campus</span>
+                <span>English</span>
+            </footer>
+
+            <LogoutModal show={logoutModal} onCancel={() => setLogoutModal(false)} onConfirm={doLogout} />
+
+            <div className={`toast${toast.show ? ' show' : ''}`}>{toast.msg}</div>
+        </>
+    );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<HomePage />);
+</script>
+</body>
+</html>
