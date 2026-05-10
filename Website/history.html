@@ -134,7 +134,14 @@ function Navbar({activePage, user, onLogout, avatarGradient}) {
                         </a>
                     ))}
                     <div className="nav-divider"></div>
-                    <span className="nav-username">{username}</span>
+                    <span
+                        className="nav-username"
+                        onClick={() => window.location.href = 'profile.html'}
+                        style={{ cursor: 'pointer' }}
+                        title="View Profile"
+                    >
+                        {username}
+                    </span>
                     <button
                         className="nav-avatar"
                         onClick={() => window.location.href = 'profile.html'}
@@ -189,7 +196,12 @@ function Navbar({activePage, user, onLogout, avatarGradient}) {
                             <circle cx="12" cy="7" r="4" />
                         </svg>
                     </button>
-                    <span>{username}</span>
+                    <span
+                        onClick={() => window.location.href = 'profile.html'}
+                        style={{ cursor: 'pointer' }}
+                    >
+                        {username}
+                    </span>
                 </div>
                 <button className="nav-logout"
                     onClick={() => { setMenuOpen(false); onLogout(); }}>

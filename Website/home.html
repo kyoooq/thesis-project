@@ -154,7 +154,14 @@ function Navbar({activePage, user, onLogout, avatarGradient}) {
                     <a href="history.html" className={`nav-link${activePage === 'history' ? ' active' : ''}`}>Assessment History</a>
                     <a href="about.html" className={`nav-link${activePage === 'about' ? ' active' : ''}`}>About</a>
                     <div className="nav-divider"></div>
-                    <span className="nav-username">{username}</span>
+                    <span
+                        className="nav-username"
+                        onClick={() => window.location.href = 'profile.html'}
+                        style={{ cursor: 'pointer' }}
+                        title="View Profile"
+                    >
+                        {username}
+                    </span>
                     <button
                         className="nav-avatar"
                         onClick={() => window.location.href = 'profile.html'}
@@ -202,7 +209,12 @@ function Navbar({activePage, user, onLogout, avatarGradient}) {
                             <circle cx="12" cy="7" r="4" />
                         </svg>
                     </button>
-                    <span>{username}</span>
+                    <span
+                        onClick={() => window.location.href = 'profile.html'}
+                        style={{ cursor: 'pointer' }}
+                    >
+                        {username}
+                    </span>
                 </div>
                 <button className="nav-logout" onClick={() => { setMenuOpen(false); onLogout(); }}>Logout</button>
             </div>
@@ -395,124 +407,191 @@ function HomePage() {
             />
 
             <main className="main">
-                {/* UPLOAD SECTION */}
-                <section className="upload-section">
-                    <div
-                        className="upload-card"
-                        id="uploadCard"
-                        onDragOver={handleDragOver}
-                        onDragLeave={handleDragLeave}
-                        onDrop={handleDrop}
-                    >
-                        <input
-                            type="file"
-                            ref={fileInputRef}
-                            accept=".pdf,.docx"
-                            style={{ display: 'none' }}
-                            onChange={e => { if (e.target.files[0]) processFile(e.target.files[0]); }}
-                        />
+                {/* SCREEN 1: Upload + Steps */}
+                <div className="snap-screen snap-screen--landing">
+                    <section className="upload-section">
+                        <div
+                            className="upload-card"
+                            id="uploadCard"
+                            onDragOver={handleDragOver}
+                            onDragLeave={handleDragLeave}
+                            onDrop={handleDrop}
+                        >
+                            <input
+                                type="file"
+                                ref={fileInputRef}
+                                accept=".pdf,.docx"
+                                style={{ display: 'none' }}
+                                onChange={e => { if (e.target.files[0]) processFile(e.target.files[0]); }}
+                            />
 
-                        {/* Idle */}
-                        {uploadState === 'idle' && (
-                            <div id="uploadIdle">
-                                <div className="upload-icon-wrap">
-                                    <svg viewBox="0 0 48 48" fill="none">
-                                        <path d="M28 6H14a4 4 0 0 0-4 4v28a4 4 0 0 0 4 4h20a4 4 0 0 0 4-4V16L28 6z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                                        <path d="M28 6v10h10M24 26v8M20 30l4-4 4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                                    </svg>
-                                </div>
-                                <p className="upload-title">Drop your file here to upload</p>
-                                <p className="upload-hint">Supports PDF and DOCX</p>
-                                <button className="btn-browse" onClick={() => fileInputRef.current?.click()}>Browse Files</button>
-                            </div>
-                        )}
-
-                        {/* Ready */}
-                        {uploadState === 'ready' && file && (
-                            <div id="uploadReady">
-                                <div className="upload-file-icon">
-                                    <svg viewBox="0 0 48 48" fill="none">
-                                        <path d="M28 6H14a4 4 0 0 0-4 4v28a4 4 0 0 0 4 4h20a4 4 0 0 0 4-4V16L28 6z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                                        <path d="M28 6v10h10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                                        <path d="M18 26h12M18 31h8" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-                                    </svg>
-                                </div>
-                                <p className="upload-filename">{file.name}</p>
-                                <p className="upload-filesize">{formatSize(file.size)}</p>
-                                <div className="upload-actions">
-                                    <button type="button" className="btn-assess" onClick={handleAssess}>
-                                        <span>Assess Document</span>
-                                        <svg viewBox="0 0 20 20" fill="none">
-                                            <path d="M4 10h12M12 6l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                            {/* Idle */}
+                            {uploadState === 'idle' && (
+                                <div id="uploadIdle">
+                                    <div className="upload-icon-wrap">
+                                        <svg viewBox="0 0 48 48" fill="none">
+                                            <path d="M28 6H14a4 4 0 0 0-4 4v28a4 4 0 0 0 4 4h20a4 4 0 0 0 4-4V16L28 6z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                            <path d="M28 6v10h10M24 26v8M20 30l4-4 4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                                         </svg>
-                                    </button>
-                                    <button className="btn-remove" onClick={() => { setFile(null); setUploadState('idle'); if (fileInputRef.current) fileInputRef.current.value = ''; }}>Remove</button>
+                                    </div>
+                                    <p className="upload-title">Drop your file here to upload</p>
+                                    <p className="upload-hint">Supports PDF and DOCX</p>
+                                    <button className="btn-browse" onClick={() => fileInputRef.current?.click()}>Browse Files</button>
                                 </div>
-                            </div>
-                        )}
+                            )}
 
-                        {/* Processing */}
-                        {uploadState === 'processing' && (
-                            <div id="uploadProcessing" style={{ display: 'flex' }}>
-                                <div className="processing-spinner"></div>
-                                <h3 className="processing-title">Extracting Text</h3>
-                                <p className="processing-sub">Processing your document...</p>
-                            </div>
-                        )}
-                    </div>
-                </section>
+                            {/* Ready */}
+                            {uploadState === 'ready' && file && (
+                                <div id="uploadReady">
+                                    <div className="upload-file-icon">
+                                        <svg viewBox="0 0 48 48" fill="none">
+                                            <path d="M28 6H14a4 4 0 0 0-4 4v28a4 4 0 0 0 4 4h20a4 4 0 0 0 4-4V16L28 6z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                            <path d="M28 6v10h10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                            <path d="M18 26h12M18 31h8" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                                        </svg>
+                                    </div>
+                                    <p className="upload-filename">{file.name}</p>
+                                    <p className="upload-filesize">{formatSize(file.size)}</p>
+                                    <div className="upload-actions">
+                                        <button type="button" className="btn-assess" onClick={handleAssess}>
+                                            <span>Assess Document</span>
+                                            <svg viewBox="0 0 20 20" fill="none">
+                                                <path d="M4 10h12M12 6l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                                            </svg>
+                                        </button>
+                                        <button className="btn-remove" onClick={() => { setFile(null); setUploadState('idle'); if (fileInputRef.current) fileInputRef.current.value = ''; }}>Remove</button>
+                                    </div>
+                                </div>
+                            )}
 
-                {/* HOW IT WORKS */}
-                <section className="steps-section">
-                    <h2 className="steps-title">How to Assess Academic Articles' GAD Responsiveness</h2>
-                    <div className="steps-grid">
-                        <div className="step-card">
-                            <span className="step-num">01</span>
-                            <div className="step-icon">
-                                <svg viewBox="0 0 32 32" fill="none">
-                                    <path d="M20 4H10a2 2 0 0 0-2 2v20a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V10L20 4z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                                    <path d="M20 4v6h6M16 17v6M13 20l3-3 3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                            {/* Processing */}
+                            {uploadState === 'processing' && (
+                                <div id="uploadProcessing" style={{ display: 'flex' }}>
+                                    <div className="processing-spinner"></div>
+                                    <h3 className="processing-title">Extracting Text</h3>
+                                    <p className="processing-sub">Processing your document...</p>
+                                </div>
+                            )}
+                        </div>
+                    </section>
+
+                    <section className="steps-section">
+                        <h2 className="steps-title">How to Assess Academic Articles' GAD Responsiveness</h2>
+                        <div className="steps-grid">
+                            <div className="step-card">
+                                <span className="step-num">01</span>
+                                <div className="step-icon">
+                                    <svg viewBox="0 0 32 32" fill="none">
+                                        <path d="M20 4H10a2 2 0 0 0-2 2v20a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V10L20 4z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                                        <path d="M20 4v6h6M16 17v6M13 20l3-3 3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                                    </svg>
+                                </div>
+                                <h3 className="step-name">Upload</h3>
+                                <p className="step-desc">Select the academic article you want to assess. Supported formats include PDF or DOCX.</p>
+                            </div>
+                            <div className="step-arrow">
+                                <svg viewBox="0 0 32 12" fill="none">
+                                    <path d="M0 6h26M22 2l4 4-4 4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
                                 </svg>
                             </div>
-                            <h3 className="step-name">Upload</h3>
-                            <p className="step-desc">Select the academic article you want to assess. Supported formats include PDF or DOCX.</p>
-                        </div>
-                        <div className="step-arrow">
-                            <svg viewBox="0 0 32 12" fill="none">
-                                <path d="M0 6h26M22 2l4 4-4 4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
-                            </svg>
-                        </div>
-                        <div className="step-card">
-                            <span className="step-num">02</span>
-                            <div className="step-icon">
-                                <svg viewBox="0 0 32 32" fill="none">
-                                    <rect x="4" y="4" width="24" height="24" rx="3" stroke="currentColor" strokeWidth="1.5"/>
-                                    <path d="M9 16h14M9 11h9M9 21h6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                            <div className="step-card">
+                                <span className="step-num">02</span>
+                                <div className="step-icon">
+                                    <svg viewBox="0 0 32 32" fill="none">
+                                        <rect x="4" y="4" width="24" height="24" rx="3" stroke="currentColor" strokeWidth="1.5"/>
+                                        <path d="M9 16h14M9 11h9M9 21h6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                                    </svg>
+                                </div>
+                                <h3 className="step-name">Assessment</h3>
+                                <p className="step-desc">Our system automatically processes your document using BERT classification.</p>
+                            </div>
+                            <div className="step-arrow">
+                                <svg viewBox="0 0 32 12" fill="none">
+                                    <path d="M0 6h26M22 2l4 4-4 4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
                                 </svg>
                             </div>
-                            <h3 className="step-name">Assessment</h3>
-                            <p className="step-desc">Our system automatically processes your document using BERT and Naive Bayes classification.</p>
-                        </div>
-                        <div className="step-arrow">
-                            <svg viewBox="0 0 32 12" fill="none">
-                                <path d="M0 6h26M22 2l4 4-4 4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
-                            </svg>
-                        </div>
-                        <div className="step-card">
-                            <span className="step-num">03</span>
-                            <div className="step-icon">
-                                <svg viewBox="0 0 32 32" fill="none">
-                                    <path d="M4 26V18l7-7 6 6 11-11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                                    <circle cx="11" cy="21" r="1.5" fill="currentColor"/>
-                                    <circle cx="17" cy="15" r="1.5" fill="currentColor"/>
-                                    <circle cx="28" cy="7" r="1.5" fill="currentColor"/>
-                                </svg>
+                            <div className="step-card">
+                                <span className="step-num">03</span>
+                                <div className="step-icon">
+                                    <svg viewBox="0 0 32 32" fill="none">
+                                        <path d="M4 26V18l7-7 6 6 11-11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                                        <circle cx="11" cy="21" r="1.5" fill="currentColor"/>
+                                        <circle cx="17" cy="15" r="1.5" fill="currentColor"/>
+                                        <circle cx="28" cy="7" r="1.5" fill="currentColor"/>
+                                    </svg>
+                                </div>
+                                <h3 className="step-name">Results</h3>
+                                <p className="step-desc">Review your document's GAD Responsiveness Score.</p>
                             </div>
-                            <h3 className="step-name">Results</h3>
-                            <p className="step-desc">Review your document's GAD Responsiveness Score.</p>
                         </div>
-                    </div>
-                </section>
+                    </section>
+                </div>
+
+                {/* SCREEN 2: Labels */}
+                <div className="snap-screen snap-screen--alt">
+                    <section className="labels-section">
+                        <h2 className="labels-title">What the Automated Assessment Looks For</h2>
+                        <p className="labels-subtitle">
+                            The system evaluates academic articles across four GAD-related dimensions.
+                        </p>
+                        <div className="labels-grid">
+                            <div className="label-card">
+                                <div className="label-icon">
+                                    <svg viewBox="0 0 32 32" fill="none">
+                                        <path d="M6 8h20M6 16h20M6 24h14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                                        <circle cx="26" cy="24" r="3" stroke="currentColor" strokeWidth="1.5"/>
+                                    </svg>
+                                </div>
+                                <h3 className="label-name">Gender-Sensitive Language</h3>
+                                <p className="label-desc">
+                                    Detects words and phrases that exclude or favor a particular gender, such as "fireman" or "mankind," and flags them for inclusive alternatives.
+                                </p>
+                            </div>
+
+                            <div className="label-card">
+                                <div className="label-icon">
+                                    <svg viewBox="0 0 32 32" fill="none">
+                                        <circle cx="16" cy="16" r="12" stroke="currentColor" strokeWidth="1.5"/>
+                                        <path d="M10 13l4 4 8-8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                                        <path d="M22 20l-4 4-2-2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                                    </svg>
+                                </div>
+                                <h3 className="label-name">Stereotyping</h3>
+                                <p className="label-desc">
+                                    Identifies sentences that reinforce traditional gender roles or assumptions, such as linking caregiving with women or leadership with men.
+                                </p>
+                            </div>
+
+                            <div className="label-card">
+                                <div className="label-icon">
+                                    <svg viewBox="0 0 32 32" fill="none">
+                                        <circle cx="11" cy="12" r="4" stroke="currentColor" strokeWidth="1.5"/>
+                                        <circle cx="21" cy="12" r="4" stroke="currentColor" strokeWidth="1.5"/>
+                                        <path d="M4 26c0-4 3-7 7-7s7 3 7 7M14 26c0-4 3-7 7-7s7 3 7 7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                                    </svg>
+                                </div>
+                                <h3 className="label-name">Representation of Women and Men</h3>
+                                <p className="label-desc">
+                                    Examines how women and men are portrayed, flagging cases of underrepresentation, misrepresentation, or imbalance in visibility and voice.
+                                </p>
+                            </div>
+
+                            <div className="label-card">
+                                <div className="label-icon">
+                                    <svg viewBox="0 0 32 32" fill="none">
+                                        <path d="M8 4h12l6 6v18a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/>
+                                        <path d="M20 4v6h6" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/>
+                                        <path d="M11 16h10M11 20h10M11 24h6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                                    </svg>
+                                </div>
+                                <h3 className="label-name">Authorship and Citation</h3>
+                                <p className="label-desc">
+                                    Assesses gender balance among the paper's authors and cited works, recognizing that whose research gets credited shapes the field's responsiveness to GAD.
+                                </p>
+                            </div>
+                        </div>
+                    </section>
+                </div>
             </main>
 
             <footer className="footer">
