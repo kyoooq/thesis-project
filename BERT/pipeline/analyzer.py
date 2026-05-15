@@ -4,7 +4,7 @@ from html import escape
 import pandas as pd
 
 from extractor.router import extract_text_and_sentences
-from classifier.bert_classifier import predict, LABELS, MODEL_NAME
+from classifier.bert_classifier import predict_batch, LABELS, MODEL_NAME
 from authorship.author_detector import analyze_authorship
 from math import gcd
 
@@ -15,7 +15,7 @@ from pipeline.scoring import (
 )
 
 
-# ── Display metadata per label ────────────────────────────────────────────────
+# Display metadata per label
 LABEL_META = {
     "gender_sensitive": {
         "aspect":   "Gender-Sensitive",
@@ -54,10 +54,6 @@ def _build_row(label: str, sentence: str, probability: float,
     if label == "gender_sensitive":
         phrase = find_gendered_word(sentence)
         if phrase is None:
-            # BERT flagged but no canonical gendered word found.
-            # Under hybrid logic this can happen when BERT detects
-            # semantic gender content (e.g., "she/he" patterns) without
-            # a lexicon-matchable word. Fall back to the whole sentence.
             phrase = sentence
             neutral = None
         else:
@@ -143,35 +139,32 @@ def _build_authorship_row(male_count: int, female_count: int,
     }
 
 
-# ── Main entry point ──────────────────────────────────────────────────────────
+
+
+
 
 def analyze_paper(file_path: str, threshold: float = 0.7,
                   save_csv: bool = True) -> dict:
-    """
-    Analyze a .pdf or .docx file and return a React-ready result dict.
-    """
-    # ── Extraction ───────────────────────────────────────────────────────────
     full_text, sentences = extract_text_and_sentences(file_path)
 
-    # ── Authorship (once, on the full paper) ─────────────────────────────────
     authorship_result = analyze_authorship(full_text)
     male_count    = authorship_result["male_count"]
     female_count  = authorship_result["female_count"]
     unknown_count = authorship_result["unknown_count"]
 
-    # ── Per-sentence analysis (HYBRID for gender_sensitive) ──────────────────
     rows               = []
     flagged_sentences  = set()
     label_flag_counts  = defaultdict(int)
     csv_flagged_rows   = []
 
-    for sentence in sentences:
-        bert_result = predict(sentence)
+    bert_results = predict_batch(sentences, batch_size=16)
+
+    for sentence, bert_result in zip(sentences, bert_results):
 
         sentence_was_flagged = False
         csv_row = {"sentence": sentence}
 
-        # ── gender_sensitive: HYBRID (BERT OR lexicon) ───────────────────
+        # gender_sensitive BERT or lexicon
         gs_result     = bert_result["gender_sensitive"]
         gendered_word = find_gendered_word(sentence)
 
@@ -179,8 +172,6 @@ def analyze_paper(file_path: str, threshold: float = 0.7,
         lexicon_fires = gendered_word is not None
 
         if bert_fires or lexicon_fires:
-            # If lexicon fires, use rule-based confidence (1.0).
-            # If only BERT fires, use BERT's probability.
             probability = 1.0 if lexicon_fires else gs_result["probability"]
 
             row = _build_row(
