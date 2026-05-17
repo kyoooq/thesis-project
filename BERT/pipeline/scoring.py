@@ -1,20 +1,6 @@
-"""
-Scoring formulas and gender-neutral term lookup.
-
-Gender-neutral replacements are drawn from:
-  - American Psychological Association (APA) Publication Manual,
-    7th ed., "Bias-Free Language" section.
-  - Linguistic Society of America, "Guidelines for Nonsexist Usage."
-  - Conscious Style Guide, gender-inclusive language entries.
-
-Cite these sources in your thesis methodology section.
-"""
 import re
 
 
-# ── Gender-neutral replacements ───────────────────────────────────────────────
-# Keys are lowercase. Lookup is case-insensitive; matching preserves the
-# original capitalization pattern on output.
 GENDER_NEUTRAL_MAP = {
     # -man / -men professions
     "fireman":        "firefighter",

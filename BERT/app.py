@@ -3,15 +3,12 @@ import os
 from flask import Flask, jsonify
 from flask_cors import CORS
 
-# Eagerly import the pipeline so BERT + spaCy load at startup, not on first request.
 import pipeline.analyzer  # noqa: F401
 
 
 # ── Flask app ────────────────────────────────────────────────────────────────
 app = Flask(__name__)
 
-# CORS: allow the Live Server origin to hit any /api/* route.
-# If you serve the frontend from a different port, add it to the list.
 CORS(
     app,
     resources={r"/api/*": {"origins": [
@@ -22,7 +19,6 @@ CORS(
 )
 
 # ── Config ───────────────────────────────────────────────────────────────────
-# Limit uploads to 25 MB — enough for typical academic papers.
 app.config["MAX_CONTENT_LENGTH"] = 25 * 1024 * 1024
 
 
@@ -63,7 +59,5 @@ def server_error(e):
 
 
 if __name__ == "__main__":
-    # debug=True auto-reloads on code changes but RELOADS THE BERT MODEL EACH TIME.
-    # Turn off if you're iterating frequently and don't need auto-reload.
     debug = os.environ.get("FLASK_DEBUG", "1") == "1"
     app.run(host="127.0.0.1", port=5000, debug=debug, use_reloader=False)

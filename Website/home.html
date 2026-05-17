@@ -248,6 +248,7 @@ function LogoutModal({ show, onCancel, onConfirm }) {
 function useToast() {
     const [toast, setToast] = useState({ msg: '', show: false });
     const timer = useRef(null);
+    const [processingStep, setProcessingStep] = useState(0); // 0–4
     function show(msg) {
         setToast({ msg, show: true });
         clearTimeout(timer.current);
@@ -296,6 +297,7 @@ function HomePage() {
     const [logoutModal, setLogoutModal] = useState(false);
     const [uploadState, setUploadState] = useState('idle'); // idle | ready | processing
     const [file, setFile] = useState(null);
+    const [processingStep, setProcessingStep] = useState(0);
     const [toast, showToast] = useToast();
     const fileInputRef = useRef(null);
 
@@ -464,6 +466,7 @@ function HomePage() {
                                 </div>
                             )}
 
+                            {/* Processing */}
                             {/* Processing */}
                             {uploadState === 'processing' && (
                                 <div id="uploadProcessing" style={{ display: 'flex' }}>
