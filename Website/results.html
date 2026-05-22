@@ -376,12 +376,13 @@ function ResultsPage() {
                 {/* TABLE SECTION */}
                 <section className="table-section">
 
-                    {/* Authorship Summary */}
+                    {/* Dimension Summaries */}
                     {results && (
                         <div style={{
                             display: 'flex', alignItems: 'center', gap: '10px',
                             marginBottom: '14px', flexWrap: 'wrap'
                         }}>
+                            {/* Authorship badge */}
                             <span style={{
                                 fontSize: '11px', fontWeight: 600, letterSpacing: '0.1em',
                                 textTransform: 'uppercase', color: '#a89fb5'
@@ -415,6 +416,34 @@ function ResultsPage() {
                                     return `${status} — ${maleNames}M · ${femaleNames}F · ${unknownNames} unknown`;
                                 })()}
                             </span>
+
+                            {/* Representation badge */}
+                            {results.stats.representationStatus !== 'not_applicable' && (() => {
+                                const status = results.stats.representationStatus;
+                                const isOk   = status === 'balanced';
+                                const bg     = isOk ? 'rgba(76,175,130,0.12)' : 'rgba(180,80,100,0.10)';
+                                const color  = isOk ? '#3a8f6a' : '#b45064';
+                                const label  = status === 'missing'
+                                    ? '⚠ No disaggregated data'
+                                    : status === 'skewed'
+                                        ? `⚠ Skewed — ${results.stats.repMaleCount}M · ${results.stats.repFemaleCount}F`
+                                        : '✓ Balanced disaggregation';
+                                return (
+                                    <>
+                                        <span style={{
+                                            fontSize: '11px', fontWeight: 600, letterSpacing: '0.1em',
+                                            textTransform: 'uppercase', color: '#a89fb5'
+                                        }}>Representation</span>
+                                        <span style={{
+                                            background: bg, color,
+                                            borderRadius: '20px', padding: '4px 12px',
+                                            fontSize: '12px', fontWeight: 500
+                                        }}>
+                                            {label}
+                                        </span>
+                                    </>
+                                );
+                            })()}
                         </div>
                     )}
 
@@ -425,6 +454,7 @@ function ResultsPage() {
                             <div className="th">Recommendation</div>
                             <div className="th">Model Source</div>
                             <div className="th th-score">Score</div>
+                            <div className="th th-score">Contribution</div>
                         </div>
                         <div className="table-divider"></div>
                         <div className="table-body">
@@ -504,6 +534,7 @@ function ResultsPage() {
                                         <div className="td" data-label="Recommendation">{row.recommendation}</div>
                                         <div className="td" data-label="Model Source">{row.model}</div>
                                         <div className="td td-score" data-label="Score">{row.score}</div>
+                                        <div className="td td-score" data-label="Contribution">{row.contribution}</div>
                                     </div>
                                 ))
                             )}
