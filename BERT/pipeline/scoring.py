@@ -171,6 +171,7 @@ SEVERITY_WEIGHTS = {
 }
 
 # Keywords that indicate a paper involves human subjects/beneficiaries
+# and therefore requires sex-disaggregated data reporting.
 DISAGGREGATION_KEYWORDS = [
     r"\brespondents?\b",
     r"\bparticipants?\b",
@@ -187,6 +188,9 @@ DISAGGREGATION_KEYWORDS = [
     r"\bpopulation of\b",
 ]
 
+# Patterns that capture explicit M/F counts in text
+# Matches things like: "30 male", "15 females", "20 men", "10 women",
+# "male respondents (n=30)", "30 male respondents"
 _NUM = r"(\d+)"
 _MALE_WORDS   = r"(?:male|males|men|man)"
 _FEMALE_WORDS = r"(?:female|females|women|woman)"
@@ -218,24 +222,56 @@ def check_disaggregation_needed(full_text: str) -> bool:
 
 def extract_disaggregated_counts(full_text: str) -> tuple[int, int] | tuple[None, None]:
     """
-    Attempts to extract male and female counts from the paper text.
-    Returns (male_count, female_count) if found, or (None, None) if not found.
+    Extract male and female counts only when near a disaggregation keyword
+    (within 400 chars), to avoid false positives from authorship mentions.
 
-    Supports two formats:
-      1. Label-value: "male: 100" / "female: 1" or tab-separated table
+    Supports:
+      1. Label-value: "male: 100 / female: 1" or tab-separated table
       2. Value-label: "30 male respondents and 20 female respondents"
     """
-    # Strategy 1: label-value  male[sep]N  /  female[sep]N
-    m_lv = re.search(r'(?i)\bmale\b(?!\w)[\s:]+(\d+)', full_text)
-    f_lv = re.search(r'(?i)\bfemale\b(?!\w)[\s:]+(\d+)', full_text)
-    if m_lv and f_lv:
-        return int(m_lv.group(1)), int(f_lv.group(1))
+    WINDOW = 400
 
-    # Strategy 2: value-label  N male  /  N female
-    m_vl = re.search(r'(?i)(\d+)\s+(?:male|men|man)\b', full_text)
-    f_vl = re.search(r'(?i)(\d+)\s+(?:female|women|woman)\b', full_text)
-    if m_vl and f_vl:
-        return int(m_vl.group(1)), int(f_vl.group(1))
+    keyword_positions = []
+    for kw in DISAGGREGATION_KEYWORDS:
+        for m in re.finditer(kw, full_text, re.IGNORECASE):
+            keyword_positions.append(m.start())
+
+    if not keyword_positions:
+        return None, None
+
+    def near_keyword(pos):
+        return any(abs(pos - kpos) <= WINDOW for kpos in keyword_positions)
+
+    def get_num(m):
+        return int(next(x for x in m.groups() if x is not None))
+
+    # Strategy 1: label-value  male[tab/space/colon]N  (same line)
+    lv_male   = re.compile(r'(?i)\b(?:male|men|man)\b(?!\w)[ \t:]+(\d+)')
+    lv_female = re.compile(r'(?i)\b(?:female|women|woman)\b(?!\w)[ \t:]+(\d+)')
+
+    male_val = female_val = None
+    for m in lv_male.finditer(full_text):
+        if near_keyword(m.start()):
+            male_val = get_num(m); break
+    for m in lv_female.finditer(full_text):
+        if near_keyword(m.start()):
+            female_val = get_num(m); break
+    if male_val is not None and female_val is not None:
+        return male_val, female_val
+
+    # Strategy 2: value-label  N male  (same line only — no newline)
+    vl_male   = re.compile(r'(?i)(\d+)[ \t]+(?:male|men|man)\b')
+    vl_female = re.compile(r'(?i)(\d+)[ \t]+(?:female|women|woman)\b')
+
+    male_val = female_val = None
+    for m in vl_male.finditer(full_text):
+        if near_keyword(m.start()):
+            male_val = get_num(m); break
+    for m in vl_female.finditer(full_text):
+        if near_keyword(m.start()):
+            female_val = get_num(m); break
+    if male_val is not None and female_val is not None:
+        return male_val, female_val
 
     return None, None
 
