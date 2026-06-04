@@ -5,10 +5,6 @@ from storage.firebase_store import load_session
 
 
 def require_auth(func):
-    """
-    Decorator that requires a valid session token.
-    Puts the authenticated user's uid on `g.uid`.
-    """
     @wraps(func)
     def wrapper(*args, **kwargs):
         auth_header = request.headers.get("Authorization", "")

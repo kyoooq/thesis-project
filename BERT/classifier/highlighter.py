@@ -12,10 +12,7 @@ IGNORE_TOKENS = {
 
 
 def get_trigger_words(tokens: list, attn_scores: list, top_k: int = 3) -> list:
-    """
-    Reconstructs subword tokens into full words, scores them by attention,
-    and returns the top_k highest-attention words (excluding noise tokens).
-    """
+
     words       = []
     word_scores = []
     curr_word   = ""

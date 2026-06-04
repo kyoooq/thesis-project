@@ -19,7 +19,7 @@ from pipeline.scoring import (
 )
 
 
-# Display metadata per label — representation removed
+# Display metadata per label
 LABEL_META = {
     "gender_sensitive": {
         "aspect":   "Gender-Sensitive",
@@ -49,7 +49,7 @@ def _build_row(label: str, sentence: str, probability: float,
     meta = LABEL_META[label]
     score_str = f"{probability:.2f}"
 
-    # Contribution = ratio-based share of semantic penalty
+    # Contribution
     contribution_str = f"-{(1 / max(total_sentences, 1)) * 100 * SEMANTIC_WEIGHT:.2f}%"
 
     if label == "gender_sensitive":
@@ -62,7 +62,7 @@ def _build_row(label: str, sentence: str, probability: float,
         rec_to   = neutral if neutral else "Consider a neutral alternative"
         rec_note = meta["rec_note"]
     else:
-        # Stereotyping: show the whole sentence
+        # Stereotyping show whole sentence
         phrase   = sentence
         rec_to   = "Rephrase"
         rec_note = meta["rec_note"]
@@ -142,7 +142,7 @@ def _build_representation_row(status: str, male_count: int | None,
                                female_count: int | None,
                                female_ratio: float | None,
                                penalty: float) -> dict:
-    """Build the single summary row for representation when flagged."""
+
     score_str = f"{round(1 - (penalty / 20), 2):.2f}"  # normalise to 0-1
 
     if status == "missing":
@@ -197,13 +197,13 @@ def analyze_paper(file_path: str, threshold: float = 0.7,
                   save_csv: bool = True) -> dict:
     full_text, sentences = extract_text_and_sentences(file_path)
 
-    # ── Authorship ────────────────────────────────────────────────────────────
+    # Authorship 
     authorship_result = analyze_authorship(full_text)
     male_count    = authorship_result["male_count"]
     female_count  = authorship_result["female_count"]
     unknown_count = authorship_result["unknown_count"]
 
-    # ── Representation: check before sentence loop ────────────────────────────
+    # Representation
     needs_disaggregation = check_disaggregation_needed(full_text)
     if needs_disaggregation:
         rep_male, rep_female = extract_disaggregated_counts(full_text)
@@ -216,7 +216,7 @@ def analyze_paper(file_path: str, threshold: float = 0.7,
         female_count         = rep_female,
     )
 
-    # ── BERT sentence loop (gender_sensitive + stereotyping only) ─────────────
+    # BERT sentence loop
     rows              = []
     flagged_sentences = set()
     label_flag_counts = defaultdict(int)
@@ -263,7 +263,7 @@ def analyze_paper(file_path: str, threshold: float = 0.7,
         else:
             csv_row["gender_sensitive"] = "No"
 
-        # stereotyping: BERT only
+        # stereotyping
         r = bert_result["stereotyping"]
         if r["predicted"]:
             row = _build_row(
@@ -287,7 +287,7 @@ def analyze_paper(file_path: str, threshold: float = 0.7,
             flagged_sentences.add(sentence)
             csv_flagged_rows.append(csv_row)
 
-    # ── Scoring ───────────────────────────────────────────────────────────────
+    # Scoring 
     score_info = compute_overall_score(
         flagged_count       = len(flagged_sentences),
         total_sentences     = len(sentences),
@@ -297,7 +297,7 @@ def analyze_paper(file_path: str, threshold: float = 0.7,
         representation_info = representation_info,
     )
 
-    # ── Append summary rows for flagged dimensions ────────────────────────────
+    # Append summary rows
     if score_info["representation_flagged"]:
         rows.append(_build_representation_row(
             status       = score_info["representation_status"],
@@ -315,7 +315,7 @@ def analyze_paper(file_path: str, threshold: float = 0.7,
             female_ratio  = score_info["female_ratio"],
         ))
 
-    # ── Audit CSVs ────────────────────────────────────────────────────────────
+    # Audit CSVs 
     if save_csv:
         import os
         os.makedirs("output", exist_ok=True)
@@ -328,7 +328,7 @@ def analyze_paper(file_path: str, threshold: float = 0.7,
                 "output/authorship_names.csv", index=False
             )
 
-    # ── Final shape ───────────────────────────────────────────────────────────
+    # Final
     overall_score = score_info["score"]
     return {
         "overallScore": overall_score,

@@ -7,12 +7,11 @@ from transformers import BertForSequenceClassification, BertTokenizerFast
 from classifier.highlighter import get_trigger_words
 
 
-LABELS = ["gender_sensitive", "stereotyping", "representation"]
+LABELS = ["gender_sensitive", "stereotyping"]
 
 THRESHOLDS = {
     "gender_sensitive": 0.65,
     "stereotyping":     0.65,
-    "representation":   0.65,
 }
 
 

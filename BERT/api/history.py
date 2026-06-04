@@ -8,28 +8,11 @@ from api.auth_utils import require_auth
 
 history_bp = Blueprint("history", __name__)
 
-# Same id pattern used in results.py — reject obviously malformed ids early
 ID_PATTERN = re.compile(r"^[A-Za-z0-9_-]{8,64}$")
-
 
 @history_bp.get("/history")
 @require_auth
 def get_history():
-    """
-    Return all assessments owned by the authenticated user, newest first.
-    Response shape matches what history.html expects:
-        [
-          {
-            "id":           "<uuid>",
-            "filename":     "paper.pdf",
-            "overallScore": 74,
-            "overallLabel": "74% RESPONSIVE",
-            "createdAt":    1713700000000,
-            "rows":         [ ...same shape as results page... ]
-          },
-          ...
-        ]
-    """
     results = list_results(owner_uid=g.uid)
 
     history = []
@@ -49,11 +32,6 @@ def get_history():
 @history_bp.delete("/history/<result_id>")
 @require_auth
 def delete_history_item(result_id: str):
-    """
-    Delete one of the caller's assessments. Returns 404 (not 403) if the result
-    exists but belongs to someone else — this prevents leaking the existence of
-    other users' result IDs.
-    """
     if not ID_PATTERN.fullmatch(result_id):
         return jsonify({"error": "Invalid result id."}), 400
 
@@ -61,7 +39,7 @@ def delete_history_item(result_id: str):
     if result is None:
         return jsonify({"error": "Result not found."}), 404
 
-    # Ownership check — identical pattern to api/results.py
+    # Ownership check
     if result.get("ownerUid") != g.uid:
         return jsonify({"error": "Result not found."}), 404
 

@@ -22,7 +22,7 @@ def _get_extension(filename: str) -> str:
 @assess_bp.post("/assess")
 @require_auth
 def assess():
-    # ── Validate file presence ───────────────────────────────────────────────
+    # Validate file existing
     if "file" not in request.files:
         return jsonify({"error": "No file provided. Attach the file as 'file'."}), 400
 
@@ -36,16 +36,14 @@ def assess():
             "error": f"Unsupported file type '{ext}'. Use .pdf or .docx"
         }), 400
 
-    # ── Persist the uploaded file ────────────────────────────────────────────
     result_id    = str(uuid.uuid4())
     saved_path   = save_upload(result_id, upload, ext)
     original_name = upload.filename
 
-    # ── Run analysis ─────────────────────────────────────────────────────────
+    # Run analysis
     try:
         result = analyze_paper(saved_path, threshold=0.7, save_csv=False)
     except Exception as exc:
-        # Clean up the upload if analysis fails
         try:
             os.remove(saved_path)
         except OSError:
@@ -54,7 +52,6 @@ def assess():
             "error": f"Analysis failed: {str(exc)}"
         }), 500
 
-    # ── Attach metadata and persist ──────────────────────────────────────────
     result["resultId"] = result_id
     result["originalName"] = original_name
     result["ownerUid"] = g.uid
@@ -62,5 +59,4 @@ def assess():
 
     save_result(result_id, result)
 
-    # ── Respond with the id (frontend uses it for the redirect) ──────────────
     return jsonify({"resultId": result_id}), 200

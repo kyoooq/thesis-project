@@ -144,8 +144,7 @@ def register():
             "createdAt": datetime.utcnow().isoformat(),
         })
     except Exception as exc:
-        # Rollback: if profile save fails, remove the Auth user too,
-        # otherwise we leak orphaned accounts with no profile data.
+        # Rollback if profile save fails, remove the Auth user too
         delete_auth_user(uid)
         return jsonify({"error": f"Registration failed: {str(exc)}"}), 500
 
@@ -186,7 +185,6 @@ def login():
         with urllib.request.urlopen(req, timeout=10) as resp:
             body = json.loads(resp.read())
     except urllib.error.HTTPError as e:
-        # Firebase returned 4xx — bad credentials, disabled account, etc.
         return jsonify({"error": "Invalid email or password."}), 401
     except urllib.error.URLError:
         return jsonify({"error": "Authentication service unavailable."}), 503
@@ -195,7 +193,7 @@ def login():
     if not uid:
         return jsonify({"error": "Login failed."}), 500
 
-    # Reject login if email is not verified, and resend the verification email
+    # Reject login if email is not verified
     try:
         user = fb_auth.get_user(uid)
         if not user.email_verified:
@@ -243,10 +241,6 @@ def forgot_password():
     if not EMAIL_RE.match(email):
         return jsonify({"error": "Please provide a valid email address."}), 400
 
-    # Ask Firebase to send the reset email.
-    # We don't check if the email exists first — that would leak which
-    # emails are registered. Firebase handles the "email not found" case
-    # silently, and our response is the same either way.
     _send_oob_email(email, "PASSWORD_RESET")
 
     return jsonify({
@@ -263,7 +257,6 @@ def resend_verification():
     if not EMAIL_RE.match(email):
         return jsonify({"error": "Please provide a valid email address."}), 400
 
-    # Fire off the email. We don't leak whether the email exists.
     _send_oob_email(email, "VERIFY_EMAIL")
 
     return jsonify({

@@ -9,9 +9,7 @@ from storage.firebase_store import load_result
 
 results_bp = Blueprint("results", __name__)
 
-# UUID-ish pattern to reject obviously malformed ids before touching disk
 ID_PATTERN = re.compile(r"^[A-Za-z0-9_-]{8,64}$")
-
 
 @results_bp.get("/results/<result_id>")
 @require_auth

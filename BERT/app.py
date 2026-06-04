@@ -3,10 +3,10 @@ import os
 from flask import Flask, jsonify
 from flask_cors import CORS
 
-import pipeline.analyzer  # noqa: F401
+import pipeline.analyzer
 
 
-# ── Flask app ────────────────────────────────────────────────────────────────
+# Flask
 app = Flask(__name__)
 
 CORS(
@@ -18,11 +18,10 @@ CORS(
     supports_credentials=False,
 )
 
-# ── Config ───────────────────────────────────────────────────────────────────
+# Config
 app.config["MAX_CONTENT_LENGTH"] = 25 * 1024 * 1024
 
 
-# ── Blueprint registration ────────────────────────────────────────────────────
 from api.assess  import assess_bp
 from api.results import results_bp
 from api.auth    import auth_bp
@@ -36,13 +35,11 @@ app.register_blueprint(user_bp, url_prefix="/api/user")
 app.register_blueprint(history_bp, url_prefix="/api")
 
 
-# ── Health check ─────────────────────────────────────────────────────────────
 @app.get("/api/health")
 def health():
     return jsonify({"status": "ok"})
 
 
-# ── Error handlers ───────────────────────────────────────────────────────────
 @app.errorhandler(413)
 def too_large(e):
     return jsonify({"error": "File too large. Maximum size is 25 MB."}), 413

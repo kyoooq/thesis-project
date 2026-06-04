@@ -121,7 +121,6 @@ const DEFAULT_COLOR = 'amethyst';
 function Navbar({activePage, user, onLogout, avatarGradient}) {
     const [menuOpen, setMenuOpen] = useState(false);
 
-    // TODO: Replace with real user data from auth context/token
     const username = user?.name || 'User';
     const initials = user?.initials || username.split(' ').map(n => n[0]).join('').toUpperCase().slice(0,2);
 
