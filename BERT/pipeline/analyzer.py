@@ -37,8 +37,6 @@ GENDERED_PRONOUNS = {"he", "his", "him", "she", "her", "hers"}
 
 
 def _has_proper_name_nearby(sentence: str) -> bool:
-    """Returns True if sentence contains a capitalized word (likely a proper name)
-    that is not the first word of the sentence."""
     words = sentence.split()
     for i, word in enumerate(words):
         clean = word.strip(".,;:()'\"")
@@ -48,8 +46,6 @@ def _has_proper_name_nearby(sentence: str) -> bool:
 
 
 def _pronoun_only_flag(sentence: str) -> bool:
-    """Returns True if the sentence contains a gendered pronoun
-    but no lexicon match — meaning BERT fired on a pronoun alone."""
     lower = sentence.lower()
     return any(
         re.search(r'\b' + p + r'\b', lower)
