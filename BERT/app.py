@@ -18,8 +18,8 @@ CORS(
     supports_credentials=False,
 )
 
-# Config
-app.config["MAX_CONTENT_LENGTH"] = 25 * 1024 * 1024
+# Config (file size)
+app.config["MAX_CONTENT_LENGTH"] = 50 * 1024 * 1024
 
 
 from api.assess  import assess_bp
