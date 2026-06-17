@@ -1,6 +1,7 @@
 from collections import defaultdict
 from html import escape
 from math import gcd
+import re
 
 import pandas as pd
 
@@ -19,7 +20,6 @@ from pipeline.scoring import (
 )
 
 
-# Display metadata per label
 LABEL_META = {
     "gender_sensitive": {
         "aspect":   "Gender-Sensitive",
@@ -32,6 +32,29 @@ LABEL_META = {
         "rec_note": "Rephrase to avoid gender-based generalization.",
     },
 }
+
+GENDERED_PRONOUNS = {"he", "his", "him", "she", "her", "hers"}
+
+
+def _has_proper_name_nearby(sentence: str) -> bool:
+    """Returns True if sentence contains a capitalized word (likely a proper name)
+    that is not the first word of the sentence."""
+    words = sentence.split()
+    for i, word in enumerate(words):
+        clean = word.strip(".,;:()'\"")
+        if i > 0 and clean and clean[0].isupper() and clean.isalpha() and len(clean) > 1:
+            return True
+    return False
+
+
+def _pronoun_only_flag(sentence: str) -> bool:
+    """Returns True if the sentence contains a gendered pronoun
+    but no lexicon match — meaning BERT fired on a pronoun alone."""
+    lower = sentence.lower()
+    return any(
+        re.search(r'\b' + p + r'\b', lower)
+        for p in GENDERED_PRONOUNS
+    )
 
 
 def _build_issue_html(sentence: str, phrase: str | None) -> str:
@@ -235,6 +258,12 @@ def analyze_paper(file_path: str, threshold: float = 0.7,
         bert_fires    = gs_result["predicted"]
         lexicon_fires = gendered_word is not None
 
+        # Suppress BERT-only flags caused by gendered pronouns
+        # referring to a named person in the sentence
+        if bert_fires and not lexicon_fires:
+            if _pronoun_only_flag(sentence) and _has_proper_name_nearby(sentence):
+                bert_fires = False
+
         if bert_fires or lexicon_fires:
             probability = 1.0 if lexicon_fires else gs_result["probability"]
             row = _build_row(
@@ -244,7 +273,9 @@ def analyze_paper(file_path: str, threshold: float = 0.7,
                 triggers        = gs_result["triggers"],
                 total_sentences = len(sentences),
             )
-            if row is not None:
+            # Skip rows where phrase fell back to entire sentence
+            # (means lexicon found nothing meaningful to highlight)
+            if row is not None and row["phrase"] != sentence:
                 sentence_was_flagged = True
                 label_flag_counts["gender_sensitive"] += 1
                 rows.append(row)
